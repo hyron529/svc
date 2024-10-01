@@ -1,0 +1,253 @@
+@font-face {
+    font-family: "titulos";
+    src: url('../../fonts/High\ Speed.otf') format('truetype');
+}
+
+@font-face {
+    font-family: "secundaria";
+    src: url('../../fonts/nasalization-rg.otf') format('truetype');
+}
+
+.bg-color{
+    background-color: #D9D9D9;
+}
+
+/*
+    Header
+*/
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2em;
+    background-color: #474545;
+    border: solid 0.35em #FF0000;
+    border-radius: 1em;
+    margin: 1em 2em;
+}
+.brand {
+    display: flex;
+    align-items: center;
+}
+
+.brand img {
+    max-height: 7em;
+    margin-right: 1.5em;
+    cursor: pointer;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    font-family: 'titulos';
+    color: whitesmoke;
+}
+
+.brand-text h1{
+    margin-left: 1em;
+    font-size: 2.5em;
+}
+
+.brand-text h2{
+    color: whitesmoke !important;
+    font-family: 'secundaria';
+    margin-left: 10em;
+    margin-top: 0.8em;
+    font-size: 1.17em;
+}
+
+.language-switch {
+    display: flex;
+    align-items: center;
+    margin-right: 2.5em; 
+}
+
+.language-switch img {
+    max-height: 2.6em;
+    margin-left: 1.2em;
+    cursor: pointer;
+}
+
+.header-container .btn {
+    margin-left: 1em;
+}
+
+/*
+    Nav
+*/
+
+.custom-nav {
+    background-color: #474545;
+    border: solid 0.35em #FF0000;
+    border-radius: 1em;
+    margin: 0 30em;
+    padding: 0.8em 1em;
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff !important;
+}
+
+.navbar-nav .nav-link:hover {
+    color:chartreuse !important;
+}
+
+.text-red {
+    color: #FF0000;
+}
+
+.nav-item{
+    font-family: 'titulos';
+    margin: 0 1em;
+}
+
+/*
+    Footer
+*/
+
+.footer-container {
+    background-color: #474545;
+    padding: 2em;
+    text-align: center;
+    margin: 1em 2em;
+    border: solid 0.35em #FF0000;
+    border-radius: 1em;
+}
+
+.footer-text h3 {
+    font-family: 'titulos', sans-serif;
+    color: whitesmoke;
+    margin-bottom: 1em;
+}
+
+.footer-text h3 span.text-red {
+    color: #FF0000;
+}
+
+.social-icons img {
+    max-height: 3em;
+    margin: 0 1em;
+    cursor: pointer;
+}
+
+.footer-container hr {
+    border: none !important;
+    border-top: solid 0.55em #FF0000 !important;
+    margin: 2em 6em !important;
+}
+
+.car-logos img {
+    max-height: 4em;
+    margin: 0 4.5em;
+    cursor: pointer;
+}
+
+.social-icons img, 
+.car-logos img {
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.social-icons img:hover, 
+.car-logos img:hover {
+    filter: grayscale(0%);
+}
+
+/*
+    Index
+*/
+
+.carousel-item img {
+    height: 22em; 
+    object-fit: cover;
+}
+
+.carousel-inner {
+    max-width: 60em;
+    margin: 0 auto;
+}
+
+
+
+
+.main-container {
+    background-color: #474545;
+    border: solid 0.35em #FF0000;
+    border-radius: 1em;
+    margin: 2em 2em; 
+    padding: 2em;
+}
+
+.intro-section p{
+    font-family: "secundaria", sans-serif;
+    color: whitesmoke ;
+}
+
+.intro-section h1,
+.model-gallery h2,
+.packages-section h2,
+.appointment-section h2 {
+    font-family: 'titulos', sans-serif;
+    color: whitesmoke;
+    text-transform: uppercase;
+}
+
+.intro-section .text-red,
+.model-gallery .text-red,
+.packages-section .text-red,
+.appointment-section .text-red {
+    color: #FF0000;
+}
+
+.packages-section p{
+    font-family: "secundaria", sans-serif;
+    color: whitesmoke;
+}
+
+.card {
+    background-color: #dfdfd7 !important;
+    color: #636361 !important;
+    font-family: "secundaria", sans-serif;
+    border: 0.35em solid #FF0000 !important;
+    border-radius: 1em !important;
+    cursor: pointer;
+}
+
+.card:hover{
+    background-color:chartreuse !important;
+}
+
+/*
+    Caja de citas
+*/
+
+.main-container .appointment-section {
+    background-image: url('/SVC/public/fondocitas.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: solid 0.35em #FF0000;
+    border-radius: 1em;
+    padding: 2em;
+    margin-top: 2em;
+}
+
+.appointment-section h2 {
+    color: #ffffff !important;
+}
+
+.appointment-section p {
+    font-family: "secundaria", sans-serif;
+    color: #ffffff !important;
+}
+
+.appointment-section .text-red {
+    color: #FF0000; 
+}
+
+
+
+
+
+
