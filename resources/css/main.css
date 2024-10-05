@@ -206,7 +206,7 @@
 }
 
 .card {
-    background-color: #dfdfd7 !important;
+    background-color: #969693 !important;
     color: #636361 !important;
     font-family: "secundaria", sans-serif;
     border: 0.35em solid #FF0000 !important;
@@ -247,6 +247,117 @@
 }
 
 
+/* 
+    login 
+*/
+
+.login-card {
+    background-color: #dfdfd7;
+    border: 0.35em solid #FF0000;
+    border-radius: 1em;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-family: 'titulos', sans-serif;
+    text-transform: uppercase;
+    color: #474545;
+}
+
+h2 .text-red {
+    color: #FF0000;
+}
+
+.btn-primary {
+    background-color: #FF0000;
+    border-color: #FF0000;
+}
+
+.btn-primary:hover {
+    background-color: #C00000;
+    border-color: #C00000;
+}
+
+.form-control {
+    background-color: #ffffff;
+    border: 0.2em solid #FF0000;
+    border-radius: 0.5em;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #FF0000;
+}
+
+.text-secondary {
+    color: #636361 !important;
+}
+
+.text-secondary:hover {
+    color: #FF0000 !important;
+    text-decoration: underline;
+}
+
+
+
+/* 
+    registro 
+*/
+
+.register-card {
+    background-color: #dfdfd7;
+    border: 0.35em solid #FF0000;
+    border-radius: 1em;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-family: 'titulos', sans-serif;
+    text-transform: uppercase;
+    color: #474545;
+}
+
+h2 .text-red {
+    color: #FF0000;
+}
+
+.btn-primary {
+    background-color: #FF0000;
+    border-color: #FF0000;
+}
+
+.btn-primary:hover {
+    background-color: #C00000;
+    border-color: #C00000;
+}
+
+.form-control {
+    background-color: #ffffff;
+    border: 0.2em solid #FF0000;
+    border-radius: 0.5em;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #FF0000;
+}
+
+.form-check-label {
+    color: #636361;
+}
+
+.form-check-input:checked {
+    background-color: #FF0000;
+    border-color: #FF0000;
+}
+
+.mb-3{
+    font-family: "secundaria", sans-serif;
+}
 
 
 
