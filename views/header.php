@@ -13,7 +13,7 @@
             <img src="/SVC/public/español.png" alt="Cambiar a Español" title="Español">
             <img src="/SVC/public/uk.webp" alt="Cambiar a Inglés" title="Inglés">
         </div>
-        <button class="btn btn-outline-success ml-4">Registrarse</button>
+        <button id="registerclient" class="btn btn-outline-success ml-4">Registrarse</button>
         <button class="btn btn-success ml-3">Iniciar Sesión</button>
     </div>
 </header>

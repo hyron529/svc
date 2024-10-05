@@ -19,7 +19,7 @@
 <body class="bg-color">
     <?php require_once('./views/header.php'); ?>
 
-    <main class="main-container">
+    <main id="maincontainer" class="main-container">
         <section class="intro-section text-center">
             <h1 class="main-heading">
                 <span class="text-red">C</span>ONOCE <span class="text-red">A</span>L <span class="text-red">I</span>NSTANTE <span class="text-red">L</span>OS <span class="text-red">Ú</span>LTIMOS <span class="text-red">M</span>ODELOS <span class="text-red">A</span>L <span class="text-red">M</span>EJOR <span class="text-red">P</span>RECIO
@@ -85,12 +85,13 @@
             <button class="btn btn-primary btn-lg">Ver Modelos Disponibles</button>
         </section>
     </main>
+    <div id="formzone"></div>
 
     <?php require_once('./views/footer.php'); ?>
     
     <!-- Scripts de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-qMVi+iwfxJwOtdJPRil5uA0x0S8XRCJQHDbhQV6nXJbzbYH39iJr3GoW0ksrG2N" crossorigin="anonymous"></script>
-
+    <script type="module" src="./resources/js/index.js"></script>
 </body>
 
 </html>
