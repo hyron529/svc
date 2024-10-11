@@ -24,5 +24,20 @@ class DaoClient extends DB {
 
         $this->ConsultaSimple($consulta, $param);
     }
+
+
+    public function login($user, $password){
+        $consulta = "SELECT email, role FROM client WHERE email=:email and password=:password";
+
+        $param = array(
+            ":email" => $user,
+            ":password" => $password
+        );
+
+        $this->ConsultaDatos($consulta, $param);
+
+        return $this->filas[0] ?? null;
+    }
 }
 ?>
+

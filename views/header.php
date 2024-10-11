@@ -14,7 +14,23 @@
             <img src="/SVC/public/uk.webp" alt="Cambiar a Inglés" title="Inglés">
         </div>
         <button id="registerclient" class="btn btn-outline-success ml-4">Registrarse</button>
-        <button class="btn btn-success ml-3">Iniciar Sesión</button>
+
+        <?php
+            session_start();
+            if(!isset($_SESSION['client'])) {
+                echo "<a href='/svc/web/login.php' class='btn btn-success ml-3'>Iniciar Sesión</a>";
+            } else {
+                
+                echo " <div class='dropdown'>
+                            <button class='btn btn-success text-black dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                                ". $_SESSION['client']['name'] ."
+                            </button>
+                            <ul class='dropdown-menu'>
+                                <li><a href='/svc/seeders/logout.php' class='dropdown-item'>Cerrar sesion</a></li>
+                            </ul>
+                        </div>";
+            }
+        ?>
     </div>
 </header>
 
@@ -32,9 +48,6 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#"><span class="text-red">T</span>IENDA</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><span class="text-red">C</span>ITAS</a>
             </li>
         </ul>
     </div>
