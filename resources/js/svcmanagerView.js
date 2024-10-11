@@ -15,6 +15,17 @@ class SvcManagerView {
         history.pushState(data, null, url);
         event.preventDefault();
     }
+
+    showClientCategories(categories) {
+        const loginMenu = document.getElementById("loginMenu");
+        const container = loginMenu.nextElementSibling;
+        for (const category of categories) {
+            container.insertAdjacentHTML(
+                "beforeend",
+                `<li><a class='dropdown-item'>${category.name}</a></li>` 
+            )
+        }
+    }
     
     // Create register client form
     showFormRegisterClient() {

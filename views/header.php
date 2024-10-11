@@ -22,7 +22,7 @@
             } else {
                 
                 echo " <div class='dropdown'>
-                            <button class='btn btn-success text-black dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                            <button id='loginMenu' class='btn btn-success text-black dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
                                 ". $_SESSION['client']['name'] ."
                             </button>
                             <ul class='dropdown-menu'>

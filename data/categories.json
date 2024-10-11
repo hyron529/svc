@@ -1,0 +1,20 @@
+{
+    "role": {
+      "client": {
+        "category": [
+            {
+                "title": "Ver Citas",
+                "id": "seeappointment"
+            },
+            {
+                "title": "Modificar Correo",
+                "id": "modifiedemail"
+            },
+            {
+                "title": "Modificar contraseña",
+                "id": "modifiedpassword"
+            }
+        ]
+      }
+    }
+}
