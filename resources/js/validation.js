@@ -42,93 +42,208 @@ function defaultCheckElement(event) {
     Función para la validación del formulario de registro del cliente
 */
 export function createClientValidation(handler) {
-    //Obtenemos el formuario por su nombre y desactivamos la navegación nativa del navegador
-    const form = document.forms.fcreateclient;
-    form.setAttribute("novalidate", true);
+  //Obtenemos el formuario por su nombre y desactivamos la navegación nativa del navegador
+  const form = document.forms.fcreateclient;
+  form.setAttribute("novalidate", true);
 
-    //Añadimos un event listener para el evento submit
-    form.addEventListener("submit", function(event) {
-        let isValid = true;
-        let firstInvalidElement = null;
+  //Añadimos un event listener para el evento submit
+  form.addEventListener("submit", function (event) {
+    let isValid = true;
+    let firstInvalidElement = null;
 
-        //Validación para cada campo del formulario
-        if (!this.name.checkValidity()) {
-            isValid = false;
-            showFeedBack(this.name, false);
-            //Guarda el primer campo inválido para hacerle focus
-            firstInvalidElement = this.name;
-        } else {
-            showFeedBack(this.name, true);
-        }
+    //Validación para cada campo del formulario
+    if (!this.name.checkValidity()) {
+      isValid = false;
+      showFeedBack(this.name, false);
+      //Guarda el primer campo inválido para hacerle focus
+      firstInvalidElement = this.name;
+    } else {
+      showFeedBack(this.name, true);
+    }
 
-        if (!this.surname.checkValidity()) {
-            isValid = false;
-            showFeedBack(this.surname, false);
-            firstInvalidElement = this.surname;
-        } else {
-            showFeedBack(this.surname, true);
-        }
+    if (!this.surname.checkValidity()) {
+      isValid = false;
+      showFeedBack(this.surname, false);
+      firstInvalidElement = this.surname;
+    } else {
+      showFeedBack(this.surname, true);
+    }
 
-        if (!this.dob.checkValidity()) {
-            isValid = false;
-            showFeedBack(this.dob, false);
-            firstInvalidElement = this.dob;
-        } else {
-            showFeedBack(this.dob, true);
-        }
+    if (!this.dob.checkValidity()) {
+      isValid = false;
+      showFeedBack(this.dob, false);
+      firstInvalidElement = this.dob;
+    } else {
+      showFeedBack(this.dob, true);
+    }
 
-        if (!this.nationality.checkValidity()) {
-            isValid = false;
-            showFeedBack(this.nationality, false);
-            firstInvalidElement = this.nationality;
-        } else {
-            showFeedBack(this.name, true);
-        }
+    if (!this.nationality.checkValidity()) {
+      isValid = false;
+      showFeedBack(this.nationality, false);
+      firstInvalidElement = this.nationality;
+    } else {
+      showFeedBack(this.name, true);
+    }
 
-        if (!this.email.checkValidity()) {
-            isValid = false;
-            showFeedBack(this.email, false);
-            firstInvalidElement = this.email;
-        } else {
-            showFeedBack(this.email, true);
-        }
+    if (!this.email.checkValidity()) {
+      isValid = false;
+      showFeedBack(this.email, false);
+      firstInvalidElement = this.email;
+    } else {
+      showFeedBack(this.email, true);
+    }
 
-        if (!this.password.checkValidity()) {
-            isValid = false;
-            showFeedBack(this.password, false);
-            firstInvalidElement = this.password;
-        } else {
-            showFeedBack(this.password, true);
-        }
+    if (!this.password.checkValidity()) {
+      isValid = false;
+      showFeedBack(this.password, false);
+      firstInvalidElement = this.password;
+    } else {
+      showFeedBack(this.password, true);
+    }
 
-        //Hacemos foco en el primer elemento inválido si dicho formulario es erróneo
-        if (!isValid) {
-            firstInvalidElement.focus();
-        } else {
-            //Construimos el objeto con la info del cliente si el formulario es válido
-            const data = {
-                name: this.name.value,
-                surname: this.surname.value,
-                birthdate: this.dob.value,
-                nationality: this.nationality.value,
-                email: this.email.value,
-                password: this.password.value
-            }
+    //Hacemos foco en el primer elemento inválido si dicho formulario es erróneo
+    if (!isValid) {
+      firstInvalidElement.focus();
+    } else {
+      //Construimos el objeto con la info del cliente si el formulario es válido
+      const data = {
+        name: this.name.value,
+        surname: this.surname.value,
+        birthdate: this.dob.value,
+        nationality: this.nationality.value,
+        email: this.email.value,
+        password: this.password.value,
+      };
 
-            //Llamamos al manejador pasado como argumento para procesar los datos del clliente
-            handler(data);
-        }
+      //Llamamos al manejador pasado como argumento para procesar los datos del clliente
+      handler(data);
+    }
 
-        //Prevenimos que el formulario se envíe de forma estándar
-        event.preventDefault();
-        event.stopPropagation();
-    });
+    //Prevenimos que el formulario se envíe de forma estándar
+    event.preventDefault();
+    event.stopPropagation();
+  });
 
-    //Finalmente, añadimos validacion cuando el usuario cambie alguno de los campos del formulario
-    form.name.addEventListener("change", defaultCheckElement);
-    form.surname.addEventListener("change", defaultCheckElement);
-    form.dob.addEventListener("change", defaultCheckElement);
-    form.nationality.addEventListener("change", defaultCheckElement);
-    form.email.addEventListener("change", defaultCheckElement);
-    form.password.addEventListener("change", defaultCheckElement);
+  //Finalmente, añadimos validacion cuando el usuario cambie alguno de los campos del formulario
+  form.name.addEventListener("change", defaultCheckElement);
+  form.surname.addEventListener("change", defaultCheckElement);
+  form.dob.addEventListener("change", defaultCheckElement);
+  form.nationality.addEventListener("change", defaultCheckElement);
+  form.email.addEventListener("change", defaultCheckElement);
+  form.password.addEventListener("change", defaultCheckElement);
+}
+
+export function createBrandValidation(handler) {
+  //Obtenemos el formuario por su nombre y desactivamos la navegación nativa del navegador
+  const form = document.forms.fcreatebrand;
+  form.setAttribute("novalidate", true);
+
+  //Añadimos un event listener para el evento submit
+  form.addEventListener("submit", function (event) {
+    let isValid = true;
+    let firstInvalidElement = null;
+
+    //Validación para cada campo del formulario
+    if (!this.brandName.checkValidity()) {
+      isValid = false;
+      showFeedBack(this.brandName, false);
+      //Guarda el primer campo inválido para hacerle focus
+      firstInvalidElement = this.brandName;
+    } else {
+      showFeedBack(this.brandName, true);
+    }
+
+    //Validación para cada campo del formulario
+    if (!this.foundationDate.checkValidity()) {
+      isValid = false;
+      showFeedBack(this.foundationDate, false);
+      //Guarda el primer campo inválido para hacerle focus
+      firstInvalidElement = this.foundationDate;
+    } else {
+      showFeedBack(this.foundationDate, true);
+    }
+
+    //Validación para cada campo del formulario
+    if (!this.country.checkValidity()) {
+      isValid = false;
+      showFeedBack(this.country, false);
+      //Guarda el primer campo inválido para hacerle focus
+      firstInvalidElement = this.country;
+    } else {
+      showFeedBack(this.country, true);
+    }
+
+    //Validación para cada campo del formulario
+    if (!this.headquarters.checkValidity()) {
+      isValid = false;
+      showFeedBack(this.headquarters, false);
+      //Guarda el primer campo inválido para hacerle focus
+      firstInvalidElement = this.headquarters;
+    } else {
+      showFeedBack(this.headquarters, true);
+    }
+
+    //Validación para cada campo del formulario
+    if (!this.email.checkValidity()) {
+      isValid = false;
+      showFeedBack(this.email, false);
+      //Guarda el primer campo inválido para hacerle focus
+      firstInvalidElement = this.email;
+    } else {
+      showFeedBack(this.email, true);
+    }
+
+    //Validación para cada campo del formulario
+    if (!this.website.checkValidity()) {
+      isValid = false;
+      showFeedBack(this.website, false);
+      //Guarda el primer campo inválido para hacerle focus
+      firstInvalidElement = this.website;
+    } else {
+      showFeedBack(this.website, true);
+    }
+
+    //Validación para cada campo del formulario
+    if (!this.password.checkValidity()) {
+      isValid = false;
+      showFeedBack(this.password, false);
+      //Guarda el primer campo inválido para hacerle focus
+      firstInvalidElement = this.password;
+    } else {
+      showFeedBack(this.password, true);
+    }
+
+    //Hacemos foco en el primer elemento inválido si dicho formulario es erróneo
+    if (!isValid) {
+      firstInvalidElement.focus();
+    } else {
+      //Construimos el objeto con la info del cliente si el formulario es válido
+      const data = {
+        brandName: this.brandName.value,
+        foundationDate: this.foundationDate.value,
+        country: this.country.value,
+        headquarters: this.headquarters.value,
+        email: this.email.value,
+        website: this.website.value,
+        password: this.password.value,
+      };
+
+      //Llamamos al manejador pasado como argumento para procesar los datos del clliente
+      handler(data);
+    }
+
+    //Prevenimos que el formulario se envíe de forma estándar
+    event.preventDefault();
+    event.stopPropagation();
+  });
+
+  //Finalmente, añadimos validacion cuando el usuario cambie alguno de los campos del formulario
+  form.brandName.addEventListener("change", defaultCheckElement);
+  form.foundationDate.addEventListener("change", defaultCheckElement);
+  form.country.addEventListener("change", defaultCheckElement);
+  form.headquarters.addEventListener("change", defaultCheckElement);
+  form.email.addEventListener("change", defaultCheckElement);
+  form.website.addEventListener("change", defaultCheckElement);
+  form.password.addEventListener("change", defaultCheckElement);
+
 }

@@ -1,7 +1,6 @@
 {
-    "role": {
-      "client": {
-        "category": [
+    "roles": {
+      "client": [
             {
                 "title": "Ver Citas",
                 "id": "seeappointment"
@@ -14,7 +13,12 @@
                 "title": "Modificar contraseña",
                 "id": "modifiedpassword"
             }
+        ],
+        "brand": [
+            {
+                "title": "Crear Articulo",
+                "id": "createarticle"
+            }
         ]
-      }
     }
 }

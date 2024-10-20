@@ -21,7 +21,7 @@
 
     <?php
         //LLamamos a los daos necesarios para gestionar clientes y sus registros y logueos
-        require_once '../dao/ClientDAO.php';
+        require_once '../dao/UserDAO.php';
         require_once '../dao/RegisterLoginDAO.php';
 
         //Iniciamos una nueva sesión
@@ -37,7 +37,7 @@
         $base = "svc";
 
         //Creamos las instancias de nuestros daos
-        $daoclient = new DaoClient($base);
+        $daouser = new DaoUser($base);
         $daoregister = new DAORegisterLogin($base);
 
         //Comprobamos si el login se ha enviado
@@ -71,7 +71,7 @@
                 if($isBlockUser) { 
                     echo "<div class='alert alert-danger' role='alert'> !Usuario bloqueado!. Contacte con soporte técnico </div>";
                 } else {
-                    $row = $daoclient->login($user, $clientpassword);
+                    $row = $daouser->login($user, $clientpassword);
 
                     if($row) {
                         $_SESSION['client'] = array (

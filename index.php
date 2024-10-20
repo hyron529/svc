@@ -86,6 +86,20 @@
         </section>
     </main>
     <div id="formzone"></div>
+      <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialogscrollable">
+            <div class="modal-content text-bg-dark">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="messageModalTitle"></h1>
+                    <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-white">...</div>
+                <div class="modal-footer">
+                    <button type="button" class="button red" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <?php require_once('./views/footer.php'); ?>
     

@@ -14,8 +14,15 @@
             <img src="/SVC/public/uk.webp" alt="Cambiar a Inglés" title="Inglés" class="mx-2">
         </div>
         <div class="d-flex justify-content-center justify-content-lg-start">
-            <button id="registerclient" class="btn btn-outline-success mt-2 mt-lg-0">Registrarse</button>
-
+            <div class='dropdown ms-3 mt-2 mt-lg-0'>
+                                <button id='registerMenu' class='btn btn-success text-black dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                                    Registrarse
+                                </button>
+                                <ul class='dropdown-menu'>
+                                    <li><button id="registerclient" class="dropdown-item">Registrar Cliente</button></li>
+                                    <li><button id="registerbrand" class="dropdown-item">Registrar Marca</button></li>
+                                </ul>
+                            </div>
             <?php
                 session_start();
                 if(!isset($_SESSION['client'])) {

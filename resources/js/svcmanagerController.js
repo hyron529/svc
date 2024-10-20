@@ -21,8 +21,8 @@ class SvcManagerController {
     Primero obtenemos las categorías que tenemos, y después iteramos sobre ellas
     y las agregamos al modelo
   */
-  [LOAD_MANAGER_OBJECTS](data) {
-    const categories = data.role.client.category;
+  [LOAD_MANAGER_OBJECTS](data, loadRoleCategory) {
+    const categories = data.roles[loadRoleCategory];
 
     for( const category of categories) {
         const c = this[MODEL].createCategory(category.title);
@@ -53,7 +53,7 @@ class SvcManagerController {
         //cargamos las categorías, y luego las mostramos en la vista
           .then((response) => response.json())
           .then((data) => {
-            this[LOAD_MANAGER_OBJECTS](data)
+            this[LOAD_MANAGER_OBJECTS](data, client.role)
           })
           .then(() => {
             this[VIEW].showClientCategories(this[MODEL].categories);
@@ -66,7 +66,7 @@ class SvcManagerController {
     });
 
     //Abrimos el formulario de registro del cliente
-    this[VIEW].bindFormValidation(this.handleCreateFormRegisterClient);
+    this[VIEW].bindFormValidation(this.handleCreateFormRegisterClient, this.handleCreateBrandForm);
   };
 
   //Manejador para el formulario de registro del cliente
@@ -75,10 +75,16 @@ class SvcManagerController {
     this[VIEW].bindRegisterClientValidation(this.handleRegisterClient);
   };
 
+  
+  //Manejador para el formulario de registro de la marca
+  handleCreateBrandForm = () => {
+    this[VIEW].showFormRegisterBrand();
+    this[VIEW].bindBrandFormValidation(this.handleRegisterBrand);
+  };
+
   //Manejador para el registro del cliente, aquí enviamos los datos del cliente
   //al servidor, y los enviamos en formato JSON
   handleRegisterClient = (data) => {
-    console.log(data);
     fetch("/svc/seeders/createClient.php", {
       method: "POST",
       headers: {
@@ -92,8 +98,32 @@ class SvcManagerController {
         return response.text();
       })
       .then((text) => {
-        console.log(text);
+       this[VIEW].showClientModal(true)
+      }).catch((err) => {
+        this[VIEW].showClientModal(false)
       });
+  };
+
+   //Manejador para el registro de la marca, aquí enviamos los datos de la marca
+  //al servidor, y los enviamos en formato JSON
+  handleRegisterBrand = (data) => {
+    fetch("/svc/seeders/createBrand.php", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+    //Lanzamos un error si la solicitud es fallida
+      .then((response) => {
+        if (!response.ok) throw new Error("Datos enviados de manera fallida.");
+        return response.text();
+      })
+      .then((text) => {
+        this[VIEW].showBrandModal(true)
+       }).catch((err) => {
+         this[VIEW].showBrandModal(false)
+       });
   };
 }
 

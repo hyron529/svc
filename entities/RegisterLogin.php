@@ -15,7 +15,6 @@ class RegisterLogin {
     public function __set($name,  $value) {
         return $this->$name = $value;
     }
-
 } 
 
 ?>

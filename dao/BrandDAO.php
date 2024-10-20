@@ -1,11 +1,11 @@
 <?php
 //Incluimos las librerías que necesitamos para gestionar los daos del cliente
 require_once '../bd/libreriaPDO.php';
-require_once '../entities/Client.php';
+require_once '../entities/Brand.php';
 
-class DaoClient extends DB {
-    //Array para almacenar clientes
-    public $clients = array();
+class DaoBrand extends DB {
+    //Array para almacenar marcas
+    public $brands = array();
 
     //Constructor donde recogemos el nombre de la bbdd pasándolo como parámetro
     public function __construct($base) {
@@ -18,15 +18,16 @@ class DaoClient extends DB {
         Asignamos los valores del cliente a los parámetros definidos en la consulta
         Finalmente, llamamos a consultaSimple para ejecutar la consulta y realizar la inserción 
     */
-    public function insertClient($client) {
-        $consulta = "INSERT INTO client VALUES (:name, :surname, :birthdate, :nationality, :email)";
+    public function insertBrand($brand) {
+        $consulta = "INSERT INTO brand VALUES (:name, :foundation_date, :country, :headquarter, :email, :website)";
 
         $param = array(
-            ":name" => $client->__get('name'),
-            ":surname" => $client->__get('surname'),
-            ":birthdate" => $client->__get('birthdate'),
-            ":nationality" => $client->__get('nationality'),
-            ":email" => $client->__get('email')
+            ":name" => $brand->__get('name'),
+            ":foundation_date" => $brand->__get('foundation_date'),
+            ":country" => $brand->__get('country'),
+            ":headquarter" => $brand->__get('headquarter'),
+            ":email" => $brand->__get('email'),
+            ":website" => $brand->__get('website')
         );
 
         $this->ConsultaSimple($consulta, $param);
