@@ -1,5 +1,7 @@
 <?php
 
+//Creación de la clase cliente, donde definimos todos sus atributos
+//para poder trabajar con ellos
 class Client { 
     private $name;
     private $surname;

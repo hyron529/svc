@@ -1,5 +1,7 @@
 <?php
 
+//Creación de la clase register, donde vamos a guardar los atributos
+//para crear el registro de nuestros usuarios
 class RegisterLogin { 
     private $user;
     private $password;

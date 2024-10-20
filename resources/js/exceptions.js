@@ -1,3 +1,8 @@
+/*
+    Excepciones para controlar los errores en nuestra aplicación
+*/
+
+//Creamos la base de nuestras excepciones
 class BaseException extends Error {
     constructor (message = "", fileName, fileNumber) {
         super(message, fileName, fileNumber);
@@ -7,6 +12,8 @@ class BaseException extends Error {
         }
     }
 }
+
+//Recogemos todos los tipos de excepciones que necesitamos
 
 class EmptyValueException extends BaseException {
     constructor(value, fileName, fileNumber) {
@@ -58,5 +65,5 @@ class ExistsException extends BaseException {
     }
 }
 
-
+//Exportamos todas las excepciones para poder utilizarlas en otras clases
 export { InvalidConstructorException, InvalidadArgumentException, EmptyValueException, ExistsException}

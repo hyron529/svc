@@ -1,21 +1,39 @@
+//Importamos las clases necesarias
 import { createClientValidation } from "./validation.js";
 
+//Definimos el symbol
 const EXECUTE_HANDLER = Symbol("ExecuteHandler");
 
 class SvcManagerView {
+    //Constructor de la clase view donde obtenemos las referencias
+    //de los elementos principales de la página y mostrar el contenido deseado
     constructor() {
         this.mainZone = document.getElementById("maincontainer");
         this.formZone = document.getElementById("formzone");
     }
 
+    /*  
+        Método privado con el que ejecutamos el controlador y manejamos los eventos, historial y desplazamiento
+        Ejecutamos el controlador 
+    */
     [EXECUTE_HANDLER](handler,handlerArguments,scrollElement,data,url,event) {
+        //Ejecutamos el controlador
         handler(...handlerArguments);
+        //Controlamos el desplazamiento
         const scroll = document.querySelector(scrollElement);
+        //Desplazamos la vista al elemento si existe
         if (scroll) scroll.scrollIntoView();
+        //Actualizamos el estado del navegador
         history.pushState(data, null, url);
+        //Prevenimos el comportamiento por defecto del evento
         event.preventDefault();
     }
 
+    /*
+        Función para mostrar las categorías de los clientes en el desplegable
+        tras loguearse. Obtenemos el menú del login y el contenedor donde están las
+        categorías, para después poder insertarlas en nuestro desplegable
+    */
     showClientCategories(categories) {
         const loginMenu = document.getElementById("loginMenu");
         const container = loginMenu.nextElementSibling;
@@ -27,16 +45,17 @@ class SvcManagerView {
         }
     }
     
-    // Create register client form
+    //Función para crear el formulario de registro de los clientes
     showFormRegisterClient() {
-        // Clean main zone
+        //Limpiamos el contenedor
         this.mainZone.remove();
         this.formZone.replaceChildren();
 
-        // Create form container
+        //Creamos un contenedor para mostrar el formulario de registro
         const container = document.createElement("div");
         container.id = "#newclient";
 
+        //Insertamos el formulario
         container.insertAdjacentHTML(
             "beforeend",
             `
@@ -91,11 +110,15 @@ class SvcManagerView {
             `
         );
 
-        // Add contianer to main page
+        //Añadimos el contenido a la página principal
         this.formZone.append(container);
     }
 
-
+    /*  
+        Función para enlazar la vaidación del formulario de creación del cliente
+        Primero obtenemos en enlace para registrarlo, y manejamos la validación y la
+        ejecucción del formulario con un método privado 
+    */
     bindFormValidation(createClientForm) {
         const createClientFormLink = document.getElementById("registerclient");
         createClientFormLink.addEventListener("click", event => { 
@@ -110,9 +133,12 @@ class SvcManagerView {
         });
     }
 
+    //Vinculamos el controlador de validación del cliente
+    //y llamamos a la función con la que podemos validar los campos
     bindRegisterClientValidation (handler) {
         createClientValidation(handler);
     }
 }
 
+//Exportamos el view
 export default SvcManagerView;

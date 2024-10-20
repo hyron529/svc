@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+    <!--  Etiquetas de configuración y metaetiquetas-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="SVC Team">
@@ -19,41 +20,56 @@
 <body class="bg-color">
 
     <?php
+        //LLamamos a los daos necesarios para gestionar clientes y sus registros y logueos
         require_once '../dao/ClientDAO.php';
         require_once '../dao/RegisterLoginDAO.php';
 
+        //Iniciamos una nueva sesión
         session_start();
 
+        //Comprobamos que el cliente está autenticado en la sesión, y si lo está,
+        //lo redirigimos a la página principal
         if(isset($_SESSION['client']['name'])) {
             header("Location: /svc/");
         }
 
+        //BBDD de nuestro sistema
         $base = "svc";
 
+        //Creamos las instancias de nuestros daos
         $daoclient = new DaoClient($base);
         $daoregister = new DAORegisterLogin($base);
 
+        //Comprobamos si el login se ha enviado
         if(isset($_POST['Login'])) {
 
-            // Client data
+            //Recogemos los datos del cliente
             $user =  $_POST['username'];
             $password =  $_POST['password'];
 
-            // Password
+            //Declaramos los salt para encriptar la contraseña
             $saltInit = "!@$#";
             $saltEnd = "$%&@";
 
+            //Utilizamos sha1 para la encriptación
             $clientpassword = sha1($saltInit . $password . $saltEnd);
 
-            // Block user 
+            //Obtenemos el número de intentos fallidos y comprobamos si está bloqueado
             $rows = $daoregister->getAttemps($user);
             $isBlockUser =  $daoregister->blockuser($rows);
 
+            /*  
+                Comprobamos si los campos de usuario y clave están vacíos
+                En caso de que haya campos incompletos, lanzamos al advertencia al cliente
+                Además comprobamos si el cliente está bloqueado y en caso contrario se intenta autenticar con el dao de clientes
+                Guardamos la info del cliente si ha realizado el login, registramos el intento exitoso y lo redirigimos al index, pero
+                en caso contrario, mostramos al cliente el error y guardamos el intento fallido
+            */
             if (empty($user) || empty($password)) {
                 echo "<div class='alert alert-warning' role='alert'> !Usuario o contraseña no válidos! </div>";
             } else {
                 if($isBlockUser) { 
-                    echo "<div class='alert alert-danger' role='alert'> !Usuario bloqueado contacte con soporte técnico! </div>";
+                    echo "<div class='alert alert-danger' role='alert'> !Usuario bloqueado!. Contacte con soporte técnico </div>";
                 } else {
                     $row = $daoclient->login($user, $clientpassword);
 
@@ -74,6 +90,7 @@
         }
 
     ?>
+    <!-- Contenedores para mostrar los campos del formulario de login -->
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="login-card p-5">
             <h2 class="text-center mb-4">
