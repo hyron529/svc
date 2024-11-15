@@ -28,29 +28,29 @@
         </section>
 
         <section class="model-gallery py-5 text-center">
-    <h2 class="text-white mb-4"><span class="text-red">N</span>uestros <span class="text-red">M</span>odelos</h2>
-    <div id="modelCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="/SVC/public/jaecoo1.jpg" class="d-block w-100 carousel-image" alt="Modelo 1">
+            <h2 class="text-white mb-4"><span class="text-red">N</span>uestros <span class="text-red">M</span>odelos</h2>
+            <div id="modelCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="/SVC/public/jaecoo1.jpg" class="d-block w-100 carousel-image" alt="Modelo 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/SVC/public/jaecoo2.webp" class="d-block w-100 carousel-image" alt="Modelo 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/SVC/public/jaecoo3.png" class="d-block w-100 carousel-image" alt="Modelo 3">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#modelCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#modelCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
             </div>
-            <div class="carousel-item">
-                <img src="/SVC/public/jaecoo2.webp" class="d-block w-100 carousel-image" alt="Modelo 2">
-            </div>
-            <div class="carousel-item">
-                <img src="/SVC/public/jaecoo3.png" class="d-block w-100 carousel-image" alt="Modelo 3">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#modelCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#modelCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Siguiente</span>
-        </button>
-    </div>
-</section>
+        </section>
         <section class="packages-section py-5 text-center">
             <h2 class="text-white mb-4"><span class="text-red">P</span>aquetes <span class="text-red">E</span>xclusivos</h2>
             <p>Ofrecemos un sistema de selección de extras sencillo y rápido de usar, aplicado a todos los modelos por igual</p>
@@ -59,7 +59,7 @@
                     <div class="card p-3 mb-4">
                         <h3 class="text-red">Básico</h3>
                         <p>Contiene los extras básicos para tu coche</p>
-                            <p>Más sencillez, pero un precio más asequible</p>
+                        <p>Más sencillez, pero un precio más asequible</p>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -79,6 +79,30 @@
             </div>
         </section>
 
+        <section class="news-section py-5 text-center">
+            <h2 class="text-white mb-3" style="font-family: 'titulos';">
+                <span class="text-red">N</span>oticias <span class="text-red">I</span>nteresantes
+            </h2>
+            <p class="text-white mb-4" style="font-family: 'secundaria';">
+                ¡Nuevo récord en Nürburgring! El Xiaomi SU7 logra un tiempo de 6'46"874
+            </p>
+            <p class="text-white mb-4" style="font-family: 'secundaria';">
+                Así ha sido la vuelta que le ha quitado el trono a Tesla
+            </p>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <video controls class="w-100 rounded shadow">
+                            <source src="/SVC/public/video.mp4" type="video/mp4">
+                            Tu navegador no soporta la reproducción de este video.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
         <section class="appointment-section py-5 text-center bg-light">
             <h2 class="text-dark mb-4"><span class="text-red">R</span>eserva <span class="text-red">T</span>u <span class="text-red">C</span>ita</h2>
             <p>¡Facilita la compra de tu coche! Reserva automáticamente una cita cuando elijas tu coche ideal.</p>
@@ -86,7 +110,7 @@
         </section>
     </main>
     <div id="formzone"></div>
-      <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalTitle" aria-hidden="true">
+    <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialogscrollable">
             <div class="modal-content text-bg-dark">
                 <div class="modal-header">
@@ -102,7 +126,7 @@
     </div>
 
     <?php require_once('./views/footer.php'); ?>
-    
+
     <!-- Scripts de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>

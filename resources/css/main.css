@@ -247,9 +247,6 @@
     margin: 0 auto;
 }
 
-
-
-
 .main-container {
     background-color: #474545;
     border: solid 0.35em #FF0000;
@@ -263,14 +260,26 @@
     color: whitesmoke ;
 }
 
+.main-container .news-section h2 {
+    font-family: "titulos", sans-serif !important;
+    color: whitesmoke;
+}
+
+.news-section p {
+    margin-bottom: 1.5em;
+}
+
+
+
 .intro-section h1,
 .model-gallery h2,
 .packages-section h2,
 .appointment-section h2 {
-    font-family: 'titulos', sans-serif;
+    font-family: 'titulos', sans-serif !important;
     color: whitesmoke;
     text-transform: uppercase;
 }
+
 
 .intro-section .text-red,
 .model-gallery .text-red,
@@ -286,7 +295,7 @@
 
 .card {
     background-color: #969693 !important;
-    color: #636361 !important;
+    color: white !important;
     font-family: "secundaria", sans-serif;
     border: 0.35em solid #FF0000 !important;
     border-radius: 1em !important;
@@ -294,10 +303,10 @@
 }
 
 .card:hover{
-    background-color:chartreuse !important;
+    background-color:rgba(27, 26, 26, 0.462) !important;
 }
 
-/*
+/* 
     Caja de citas
 */
 
@@ -438,6 +447,18 @@ h2 .text-red {
     font-family: "secundaria", sans-serif;
 }
 
+summary{
+    margin-left: 1rem;
+}
 
 
 
+
+
+
+
+
+
+
+
+  
