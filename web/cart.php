@@ -109,6 +109,10 @@
                         if (count($orders) == 0) {
                             echo '<p class="text-center">Su carrito esta vacio!</p>';
                         } else {
+                            // Array con el precio total de los coches de nuestro carrito
+                            $orderTotalPrices = array();
+                            $orderPrice = 0; // Precio total del pedido
+
                             foreach ($orders as $key => $value) {
                                 $carData = array($value->__get('id_car'),$value->__get('id_order'),$value->__get('extra'),$value->__get('color'));
                                 // Obtenemos el modelo del coche
@@ -117,6 +121,15 @@
                                 $color = $daoColor->getColor($value->__get('color'));
                                 // Obtenemos el nombre del extra
                                 $extra = $daoExtra->getExtra($value->__get('extra'));
+
+                                // Calculamos el precio total de la compra del coche
+                                $extraPrice = $extra['price'];
+                                $colorPrice = $color['price'];
+                                $carPrice = $car['base_price'];
+                                // Precio total
+                                $totalPrice = ($carPrice * $value->__get('quantity')) + $extraPrice + $colorPrice;
+                                $orderTotalPrice[] = $totalPrice; // Servira para calcular el precio total del pedido
+
                                 echo '<div class="col-md-4 mb-4 d-flex align-items-stretch">';
                                 echo '<div class="card shadow-sm border-0">';
                                     echo '<div class="product-image">';
@@ -127,7 +140,7 @@
                                         echo '<h5 class="product-title mb-1 fw-bold">' . $car['model_name'] . '</h5>';
     
                                         echo '<div class="d-flex flex-column mb-3">';
-                                            echo "<p class='card-text'>Color: " . $color['name'] . " | Extra: " . $extra['name'] . "</p>";
+                                            echo "<p class='card-text'>Color: " . $color['name'] . " | Extra: " . $extra['name'] . " <br><strong class='text-primary'>Precio Total: ".$totalPrice."€</strong></p>";
                                         echo "</div>";
     
                                         echo "<div class='input-group input-group-sm'>";
@@ -141,7 +154,10 @@
                                 echo '</div>';
                             echo '</div>';            
                             }
-                            echo '<input class="m-auto btn btn-secondary" type="submit" name="Buy" value="Realizar Compra">';
+
+                            foreach ($orderTotalPrice as $key => $value) {$orderPrice += $value;}
+
+                            echo "<input class='m-auto btn btn-secondary' type='submit' name='Buy' value='Realizar Compra (".$orderPrice."€)'>";
                         }
                     } else {
                         echo '<p class="text-center">Su carrito esta vacio!</p>';

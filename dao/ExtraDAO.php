@@ -15,7 +15,7 @@ class DaoExtra extends DB
   }
 
   public function getExtra($extraId) {
-    $consulta = "SELECT name FROM extra WHERE id=:extraId";
+    $consulta = "SELECT name, price FROM extra WHERE id=:extraId";
    
     $param = array(
       ":extraId" => $extraId

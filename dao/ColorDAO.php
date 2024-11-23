@@ -15,7 +15,7 @@ class DaoColor extends DB
   }
 
   public function getColor($colorid) {
-    $consulta = "SELECT name FROM color WHERE id=:colorid";
+    $consulta = "SELECT name, price FROM color WHERE id=:colorid";
    
     $param = array(
       ":colorid" => $colorid
