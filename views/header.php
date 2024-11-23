@@ -20,7 +20,7 @@
                                 </ul>
                             </div>
             <?php
-            session_start();
+            if(!isset($_SESSION)) session_start();
             if (!isset($_SESSION['client'])) {
               echo "<a href='/svc/web/login.php' class='btn btn-success ms-3 mt-2 mt-lg-0'>Iniciar Sesión</a>";
             } else {
