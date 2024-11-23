@@ -6,7 +6,7 @@ require_once '../entities/OrderDetails.php';
 class DaoOrderDetails extends DB
 {
   //Array para almacenar marcas
-  public $orderDetails = array();
+  public $orders = array();
 
   //Constructor donde recogemos el nombre de la bbdd pasándolo como parámetro
   public function __construct($base)
@@ -29,6 +29,29 @@ class DaoOrderDetails extends DB
     $this->ConsultaSimple($consulta, $param);
   }
 
+  public function list($orderId) {
+    $consulta = "SELECT * FROM order_details  WHERE id_order=:idorder";
+
+    $param = array(
+      ":idorder" => $orderId
+    );
+
+    $this->orders = array();
+
+    $this->ConsultaDatos($consulta, $param);
+
+    foreach($this->filas as $fila) {
+      $orderD = new OrderDetails();
+
+      $orderD->__set("quantity", $fila['quantity']);
+      $orderD->__set("extra", $fila['extra']);
+      $orderD->__set("color",  $fila['color']);
+      $orderD->__set("id_order",  $fila['id_order']);
+      $orderD->__set("id_car",  $fila['id_car']);
+
+      $this->orders[] = $orderD;
+    }
+  }
 
   public function existsOderDetails($idorder, $idcar, $extra, $color) {
     $consulta = 'SELECT quantity FROM order_details WHERE id_order=:idorder and id_car=:idcar and extra=:extra and color=:color';
@@ -58,5 +81,19 @@ class DaoOrderDetails extends DB
 
     $this->ConsultaSimple($consulta, $param);
   }
+
+  public function delete($idorder, $idcar) {
+    $consulta = 'DELETE FROM order_details WHERE id_order=:idorder and id_car=:idcar';
+
+    $param = array(
+      ":idorder" => $idorder,
+      ":idcar" => $idcar
+    );
+
+    $this->ConsultaSimple($consulta, $param);
+  }
+
+
+
 }
 

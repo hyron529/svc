@@ -14,6 +14,18 @@ class DaoExtra extends DB
     $this->dbname = $base;
   }
 
+  public function getExtra($extraId) {
+    $consulta = "SELECT name FROM extra WHERE id=:extraId";
+   
+    $param = array(
+      ":extraId" => $extraId
+    );
+
+    $this->ConsultaDatos($consulta, $param);
+
+    return $this->filas[0] ?? null;
+  }
+
   public function getExtras($emailBrand) {
     $consulta = "SELECT * FROM extra WHERE emailBrand=:emailBrand";
 

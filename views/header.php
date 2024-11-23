@@ -33,7 +33,7 @@
                                 </ul>
                             </div>";
               echo '<div class="language-switch d-flex justify-content-center">
-                            <img src="/SVC/public/carrito.png" alt="Carrito" title="Carrito" class="mx-2">
+                        <a class="nav-link" href="/svc/web/cart.php"><img src="/SVC/public/carrito.png" alt="Carrito" title="Carrito" class="mx-2"></a>
                     </div>';
             }
             ?>

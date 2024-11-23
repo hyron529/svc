@@ -14,6 +14,18 @@ class DaoColor extends DB
     $this->dbname = $base;
   }
 
+  public function getColor($colorid) {
+    $consulta = "SELECT name FROM color WHERE id=:colorid";
+   
+    $param = array(
+      ":colorid" => $colorid
+    );
+
+    $this->ConsultaDatos($consulta, $param);
+
+    return $this->filas[0] ?? null;
+  }
+
   public function getColors($emailBrand) {
     $consulta = "SELECT * FROM color WHERE emailBrand=:emailBrand";
 
