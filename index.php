@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="SVC Team">
+    <meta name="description" content="Web destinada a la compra de vehículos de marcas emergentes.">
     <meta property="og:type" content="website" />
+    <meta property="og:title" content="Bienvenido a su compraventa de confianza!" />
     <meta property="og:url" content="https://svc.cloud" />
     <meta property="og:image" content="./public/miniatura.png" />
     <meta property="og:site_name" content="SVC" />
