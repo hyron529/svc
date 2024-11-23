@@ -132,7 +132,7 @@
     
                                         echo "<div class='input-group input-group-sm'>";
                                             echo "<button class='btn btn-outline-secondary' type='submit' name='Decrement' value='".implode(",", $carData)."'>-</button>";
-                                            echo "<input type='text' class='form-control' name='Quantity' value='" . $value->__get('quantity') . "'>";
+                                            echo "<input type='text' disabled class='form-control' name='Quantity' value='" . $value->__get('quantity') . "'>";
                                             echo "<button class='btn btn-outline-secondary' type='submit' name='Increment' value='".implode(",", $carData)."'>+</button>";
                                         echo "</div>";
     
