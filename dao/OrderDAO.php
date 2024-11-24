@@ -36,5 +36,13 @@ class DaoOrder extends DB
 
     return $this->filas[0] ?? null;
   }
+
+  public function sendOrder($clien_email) {
+    $consulta = "UPDATE car_order SET sent=true where emailClient=:clientemail";
+
+    $param = array(":clientemail" => $clien_email);
+
+    $this->ConsultaSimple($consulta, $param);
+  }
 }
 

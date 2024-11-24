@@ -14,8 +14,8 @@ class DaoCar extends DB
     $this->dbname = $base;
   }
 
-  public function getCarName($idCar) {
-    $consulta = "SELECT model_name, image, base_price FROM car WHERE id=:idcar";
+  public function getCar($idCar) {
+    $consulta = "SELECT emailBrand , model_name, image, base_price FROM car WHERE id=:idcar";
    
     $param = array(
       ":idcar" => $idCar

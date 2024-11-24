@@ -23,6 +23,8 @@
         require_once('../dao/ColorDAO.php');
         require_once('../dao/ExtraDAO.php');
         require_once('../utils/alert.php');
+        require_once('../entities/Appointment.php');
+        require_once('../dao/AppointmentDAO.php');
 
         // Nombre de nuestra base de datos
         $base = "svc";
@@ -33,6 +35,7 @@
         $daoCar = new DaoCar($base);
         $daoExtra = new DaoExtra($base);
         $daoColor = new DaoColor($base);
+        $daoAppointment = new DaoAppointment($base);
         $alert = new AlertGenerator();
 
         if(!isset($_SESSION)) session_start(); // Si no se ha iniciado sesion la iniciamos
@@ -92,6 +95,30 @@
             }
         }
 
+        if (isset($_POST['Buy'])) {
+            $carsId = explode(',', $_POST['Buy']) ?? null;
+
+            foreach($carsId as $carInfo) {
+                list($id_car, $totalPrice) = explode(':', $carInfo);
+                $car = $daoCar->getCar($id_car);
+                $brandEmail  = $car['emailBrand'];
+                $date = time();
+
+                $appointment = new Appointment();
+                $appointment->__set("title", "Compra de vehiculo!");
+                $appointment->__set("description", "Información acerca de su vehiculo: " . $car['model_name'] . ". Precio total a pagar: " . $totalPrice);
+                $appointment->__set("date" , $date);
+                $appointment->__set("emailClient", $_SESSION['client']['name']);
+                $appointment->__set("emailBrand", $brandEmail);
+                $appointment->__set("type", "Cita");
+
+                $daoAppointment->insert($appointment);
+            }
+
+            $daoOrder->sendOrder($_SESSION['client']['name']);
+            echo $alert->successAlert("¡El pedido ha sido realizado de manera correcta! Vaya a ver sus citas en el menú correspondiente.");
+        }
+
         require_once('../views//header.php'); // Header de la pagina
     ?>
     <body class='bg-color'>
@@ -112,11 +139,12 @@
                             // Array con el precio total de los coches de nuestro carrito
                             $orderTotalPrices = array();
                             $orderPrice = 0; // Precio total del pedido
+                            $carsid = array(); // Array donde alamcenaremos las ids de los coches de nuestro carrito
 
                             foreach ($orders as $key => $value) {
                                 $carData = array($value->__get('id_car'),$value->__get('id_order'),$value->__get('extra'),$value->__get('color'));
                                 // Obtenemos el modelo del coche
-                                $car = $daoCar->getCarName($value->__get('id_car'));
+                                $car = $daoCar->getCar($value->__get('id_car'));
                                 // Obtenemos el nombre del color
                                 $color = $daoColor->getColor($value->__get('color'));
                                 // Obtenemos el nombre del extra
@@ -129,6 +157,9 @@
                                 // Precio total
                                 $totalPrice = ($carPrice * $value->__get('quantity')) + $extraPrice + $colorPrice;
                                 $orderTotalPrice[] = $totalPrice; // Servira para calcular el precio total del pedido
+
+                                // Recogemos el id coche y el precio total
+                                $carsid[] = $value->__get('id_car') . ':' . $totalPrice;
 
                                 echo '<div class="col-md-4 mb-4 d-flex align-items-stretch">';
                                 echo '<div class="card shadow-sm border-0">';
@@ -157,7 +188,7 @@
 
                             foreach ($orderTotalPrice as $key => $value) {$orderPrice += $value;}
 
-                            echo "<input class='m-auto btn btn-secondary' type='submit' name='Buy' value='Realizar Compra (".$orderPrice."€)'>";
+                            echo "<button class='m-auto btn btn-secondary' type='submit' name='Buy' value='".implode(",", $carsid)."'>Realizar Compra (".$orderPrice."€)</button>";
                         }
                     } else {
                         echo '<p class="text-center">Su carrito esta vacio!</p>';
