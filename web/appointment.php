@@ -16,17 +16,24 @@
         <link rel="stylesheet" href="../resources/css/main.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     </head>
-    <?php 
-    
+    <?php
         require_once('../views/header.php');
         require_once('../dao/AppointmentDAO.php');
         require_once('../utils/alert.php');
+        require_once('../dao/MessageDao.php');
+        require_once('../entities/Message.php');
+
+        // Si no eres uusario no puedes acceder
+        if(!isset($_SESSION['client'])) {
+            header("Location: /svc/");
+        }
 
         // Nombre de nuestra base de datos
         $base = "svc";
 
         // Creamos nuestros daos
         $daoAppointment = new DaoAppointment($base);
+        $daoMessage = new DaoMessage($base);
         $alert = new AlertGenerator();
 
         // Recogemos las variables necesarias
@@ -43,6 +50,21 @@
         if(isset($_POST['Delete'])) {
             $daoAppointment->delete($_POST['Delete']);
             echo $alert->successAlert("Cita eliminada correctamente.");
+        }
+
+        if(isset($_POST['Enviar'])) {
+            $message = $_POST['message'];
+            $chatid = $_POST['Enviar'];
+
+
+            $msgSend = new Message();
+            $msgSend->__set("id_appointment", $chatid);
+            $msgSend->__set("message", $message);
+            $msgSend->__set("sender", $_SESSION['client']['name']);
+            $msgSend->__set("role", $_SESSION['client']['role']);
+
+            $daoMessage->insertMessage($msgSend);
+            echo $alert->successAlert("Mensaje enviado correctamente.");
         }
 
         function MostrarFecha($fechaSeg)
@@ -92,9 +114,41 @@
                                         echo "</div>";
 
                                         echo "<button class='btn btn-danger mt-3' type='submit' name='Delete' value='".$appointment->__get('id')."'>Eliminar Cita</button>";
+                                        echo "<button class='btn btn-success mt-3 ms-3' type='submit' name='Chat'>Chat</button><br>";
+
+                                        if(isset($_POST['Chat'])) {
+                                            $daoMessage->list($appointment->__get('id'));
+                                            echo "<p class='mt-3'>Mensajes del chat:</p>";
+                                            echo "<div class='mt-3 overflow-y-scroll' style='max-height: 300px;'>";
+                                                if (count($daoMessage->messages) !=0) {
+                                                    foreach ($daoMessage->messages as $msg) {
+                                                        echo '<div class="shadow-lg border-0 text-white mb-3 p-2">';
+                                                            echo '<div class="card shadow-sm border-0">';
+                                                                if ($msg->__get("role") == "brand") {
+                                                                    echo "<div class='card-header bg-danger text-white'>Enviado por: " . $msg->__get("sender") . "</div>";
+                                                                } else {
+                                                                    echo "<div class='card-header bg-primary text-white'>Enviado por: " . $msg->__get("sender") . "</div>";
+                                                                }
+                                                                
+                                                                echo "<div class='card-body bg-dark'>";
+                                                                    echo "<p>" . $msg->__get("message") . "</p>";
+                                                                echo '</div>';
+                                                            echo '</div>';
+                                                        echo '</div>';
+                                                    }
+                                                } else {
+                                                    echo "<p>No hay mensajes en esta conversación.</p>";
+                                                }
+                                               
+                                            echo "</div>";
+                                            echo '<div class="mt-2 mb-3">';
+                                                echo '<textarea class="form-control" name="message" placeholder="Escribe un mensaje..." required></textarea>';
+                                            echo '</div>';
+                                            echo "<button type='submit' value='".$appointment->__get('id')."' name='Enviar'>Enviar</button>";
+                                        }
                                     echo '</div>';
                                 echo '</div>';
-                                echo '</div>';
+                                echo '</div>';          
                             }
                         } else {
                             echo "<p class='text-center'>No tiene ninguna cita en su calendario</p>";
