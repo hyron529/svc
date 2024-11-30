@@ -36,16 +36,8 @@
         $daoMessage = new DaoMessage($base);
         $alert = new AlertGenerator();
 
-        // Recogemos las variables necesarias
-        $type = '';
-        $options = array("Compra", "Prueba");
-        if(isset($_POST['Type'])) {
-            $type = $_POST['Type'];
-        }
-
         // Obtenemos las citas segun el filtrado correspondiente
-        $daoAppointment->list($_SESSION['client']['name'], $options[$type] ?? 'Compra');
-
+        $daoAppointment->list($_SESSION['client']['name']);
 
         if(isset($_POST['Delete'])) {
             $daoAppointment->delete($_POST['Delete']);
@@ -87,25 +79,17 @@
                         <?php 
 
                         if (count($daoAppointment->appointments)  != 0) {
-                            echo "<div class='m-auto text-center'>";
-                                echo "<h3>Seleccione el tipo de Cita que quiere consultar</h3>";
-                                    echo "<select name='Type' onchange='document.fapp.submit()'>";
-                                        foreach ($options as $k => $v) {
-                                            echo "<option value='$k'";
-
-                                            if($k == $type) {
-                                                echo " selected ";
-                                            }
-                                            
-                                            echo ">$v</option>";
-                                        } 
-                                    echo "</select>";
-                            echo "</div>";
-                        
+                            echo "<h3 class='text-center'>CITAS</h3>";
                             foreach($daoAppointment->appointments as $appointment) {
                                 echo '<div class="col-md-4 mb-4 d-flex align-items-stretch">';
                                 echo '<div class="card shadow-sm border-0">';
-                                    echo '<div class="product-content p-3 bg-dark text-white">';
+                                    echo "<div class='product-content p-3"; 
+                                        if ($appointment->__get('type') == 'Compra') {
+                                            echo " bg-dark ";
+                                        } else {
+                                            echo " bg-secondary ";
+                                        }
+                                    echo " text-white'>";
                                         echo '<h5 class="product-title mb-1 fw-bold">' . $appointment->__get('title'). '</h5>';
 
                                         echo '<div class="d-flex flex-column mb-3">';

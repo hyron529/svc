@@ -27,6 +27,9 @@
   require_once('../dao/ExtraDAO.php');
   require_once('../entities/OrderDetails.php');
   require_once('../utils/alert.php');
+  require_once('../dao/DateDetailsDAO.php');
+  require_once('../entities/Appointment.php');
+  require_once('../dao/AppointmentDAO.php');
 
   if(!isset($_SESSION)) session_start();
 
@@ -40,7 +43,33 @@
   $colorDao = new DaoColor($base);
   $extraDao = new DaoExtra($base);
   $alert = new AlertGenerator();
+  $daodetails = new DaoDateDetails($base);
+  $daoAppointment = new DaoAppointment($base);
 
+  if (isset($_POST['Test'])) {
+    if (!isset($_SESSION['client'])) {
+      echo $alert->dangerAlert("¡Debes estar logeado para comprar un vehiculo!");
+    } else {
+      $carid = $_POST['Test'];
+      $car = $cardao->getCar($carid);
+      $brandEmail  = $car['emailBrand'];
+      $date = $daodetails->getdate($car['emailBrand']);
+
+      
+      $appointment = new Appointment();
+      $appointment->__set("title", "Prueba de vehiculo!");
+      $appointment->__set("description", "Información acerca del vehiculo a probar: " . $car['model_name'] );
+      $appointment->__set("date" , $date['time']);
+      $appointment->__set("emailClient", $_SESSION['client']['name']);
+      $appointment->__set("emailBrand", $brandEmail);
+      $appointment->__set("type", "Prueba");
+
+      $daoAppointment->insert($appointment);
+      $daodetails->occuped($date['time']);
+
+      echo $alert->successAlert("La cita para probar el vehiculo ha sido creada.");
+    }
+  }
 
   if (isset($_POST['buycar'])) {
     // Recogemos los parametros del coche seleccionado por el usuario
@@ -154,7 +183,7 @@
                     echo " disabled";
                   }
                   echo ">Agregar al carrito</button>";
-                  echo '<input class="btn btn-secondary" type="submit" name="testcar" value="Probar!">';
+                  echo "<button type='submit' class='btn btn-secondary me-2'  name='Test' value='".$value->__get('id')."'>Probar!</button>";
                 echo '</div>';
               echo '</div>';
 

@@ -28,12 +28,11 @@ class DaoAppointment extends DB {
         $this->ConsultaSimple($consulta, $param);
     }
 
-    public function list($emailClient, $type) {
-        $consulta = "SELECT * FROM appointment WHERE emailClient=:emailClient and type=:type";
+    public function list($emailClient, ) {
+        $consulta = "SELECT * FROM appointment WHERE emailClient=:emailClient";
 
         $param = array(
-          ":emailClient" => $emailClient,
-          ":type" => $type
+          ":emailClient" => $emailClient
         );
     
         $this->appointments = array();
