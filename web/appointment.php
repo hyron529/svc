@@ -126,7 +126,7 @@
                                                
                                             echo "</div>";
                                             echo '<div class="mt-2 mb-3">';
-                                                echo '<textarea class="form-control" name="message" placeholder="Escribe un mensaje..." required></textarea>';
+                                                echo '<textarea class="form-control" name="message" placeholder="Escribe un mensaje..."></textarea>';
                                             echo '</div>';
                                             echo "<button type='submit' value='".$appointment->__get('id')."' name='Enviar'>Enviar</button>";
                                         }
