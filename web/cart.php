@@ -25,6 +25,7 @@
         require_once('../utils/alert.php');
         require_once('../entities/Appointment.php');
         require_once('../dao/AppointmentDAO.php');
+        require_once('../dao/DateDetailsDAO.php');
 
         // Nombre de nuestra base de datos
         $base = "svc";
@@ -37,6 +38,7 @@
         $daoColor = new DaoColor($base);
         $daoAppointment = new DaoAppointment($base);
         $alert = new AlertGenerator();
+        $daodetails = new DaoDateDetails($base);
 
         if(!isset($_SESSION)) session_start(); // Si no se ha iniciado sesion la iniciamos
 
@@ -102,17 +104,18 @@
                 list($id_car, $totalPrice) = explode(':', $carInfo);
                 $car = $daoCar->getCar($id_car);
                 $brandEmail  = $car['emailBrand'];
-                $date = time();
+                $date = $daodetails->getdate($car['emailBrand']);
 
                 $appointment = new Appointment();
                 $appointment->__set("title", "Compra de vehiculo!");
                 $appointment->__set("description", "Información acerca de su vehiculo: " . $car['model_name'] . ". Precio total a pagar: " . $totalPrice);
-                $appointment->__set("date" , $date);
+                $appointment->__set("date" , $date['time']);
                 $appointment->__set("emailClient", $_SESSION['client']['name']);
                 $appointment->__set("emailBrand", $brandEmail);
-                $appointment->__set("type", "Cita");
+                $appointment->__set("type", "Compra");
 
                 $daoAppointment->insert($appointment);
+                $daodetails->occuped($date['time']);
             }
 
             $daoOrder->sendOrder($_SESSION['client']['name']);
@@ -202,5 +205,6 @@
         require_once('../views/footer.php');
         require_once('../utils/scripts.php');
     ?>
+    <script type="module" src="../resources/js/index.js"></script>
     </body>
 </html>

@@ -7,22 +7,28 @@ import { EmptyValueException, InvalidConstructorException } from "../exceptions.
 */
 class Category { 
     #name;
+    #id;
 
     //Constructor de la clase category, y controlamos que el nombre
     //no esté vacío o que sea un objeto category
-    constructor(name) {
+    constructor(name, id) {
         if (name === undefined || name === "") throw new EmptyValueException("name");
+        if (id === undefined || id === "") throw new EmptyValueException("name");
 
         if (!(new.target === Category)) throw new InvalidConstructorException("Category");
         
         this.#name = name;
+        this.#id = id;
     }
 
     //Getter
     get name() {
         return this.#name;
     }
-
+    
+    get id() {
+        return this.#id;
+    }
  
     //Setter
     set name(value) {

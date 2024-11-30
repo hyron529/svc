@@ -170,6 +170,7 @@
     require_once('../views/footer.php');
     require_once('../utils/scripts.php');
   ?>
+  <script type="module" src="../resources/js/index.js"></script>
 </body>
 
 </html>

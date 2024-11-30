@@ -28,7 +28,7 @@
                                 <button id='loginMenu' class='btn btn-success text-black dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
                                     " . $_SESSION['client']['name'] . "
                                 </button>
-                                <ul class='dropdown-menu'>
+                                <ul id='dropdown-menu' class='dropdown-menu'>
                                     <li><a href='/svc/seeders/logout.php' class='dropdown-item'>Cerrar sesion</a></li>
                                 </ul>
                             </div>";

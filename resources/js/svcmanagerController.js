@@ -25,7 +25,7 @@ class SvcManagerController {
     const categories = data.roles[loadRoleCategory];
 
     for( const category of categories) {
-        const c = this[MODEL].createCategory(category.title);
+        const c = this[MODEL].createCategory(category.title, category.id);
         this[MODEL].addCategories(c);
     }
   }
@@ -41,12 +41,11 @@ class SvcManagerController {
 
       //Convertimos la información en JSON
       const client =  await response.json();
-        console.log(client)
 
       //Cargamos los datos de las categorías si el cliente es válido
       if (client.valid) {
         // Get data
-        fetch("./data/categories.json", {
+        fetch("/svc/data/categories.json", {
           method: "get",
         })
         //Convertimos a JSON y llamamos al método privado con el que
@@ -57,6 +56,7 @@ class SvcManagerController {
           })
           .then(() => {
             this[VIEW].showClientCategories(this[MODEL].categories);
+            this[VIEW].bindClientCategories(this.handlePressCategory);
           })
           //Controlamos los errores
           .catch((error) => {
@@ -104,7 +104,7 @@ class SvcManagerController {
       });
   };
 
-   //Manejador para el registro de la marca, aquí enviamos los datos de la marca
+  //Manejador para el registro de la marca, aquí enviamos los datos de la marca
   //al servidor, y los enviamos en formato JSON
   handleRegisterBrand = (data) => {
     fetch("/svc/seeders/createBrand.php", {
@@ -125,6 +125,28 @@ class SvcManagerController {
          this[VIEW].showBrandModal(false)
        });
   };
+
+
+  // Manejador para saber que categoria pulsa el usuario
+  handlePressCategory = (categoryId) => {
+    fetch("/svc/seeders/controller.php", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({id: categoryId}),
+    })
+    .then((response) => {
+      if (!response.ok) throw new Error("Datos enviados de manera fallida.");
+      return response.json();
+    }).then(data => {
+      if(data.page) {
+        window.location.href = data.page;
+      }
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
 }
 
 //Exportamos el controller

@@ -47,7 +47,7 @@ class SvcManagerView {
     for (const category of categories) {
       container.insertAdjacentHTML(
         "beforeend",
-        `<li><a class='dropdown-item'>${category.name}</a></li>`
+        `<li><a data-id="${category.id}" class='dropdown-item'>${category.name}</a></li>`
       );
     }
   }
@@ -225,6 +225,19 @@ class SvcManagerView {
       );
     });
   }
+
+  bindClientCategories(handler) {
+    const loginMenu = document.getElementById("dropdown-menu");
+    const links = loginMenu.querySelectorAll("li a");
+
+    for (const link of links) {
+      link.addEventListener("click", (event) => {
+        const {id} = event.currentTarget.dataset;
+        handler(id);
+      })
+    }
+  }
+
 
   //Vinculamos el controlador de validación del cliente
   //y llamamos a la función con la que podemos validar los campos

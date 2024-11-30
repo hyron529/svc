@@ -47,13 +47,13 @@ const SvcManager = (function () {
       por parámetro, y si existe, la obtenemos. En caso contrario, creamos una nueva
       instancia y retornamos la categoría.
     */
-    createCategory(name) {
+    createCategory(name, id) {
         let category;
 
         if(this.#categoriescollection.has(name)) {
             category = this.#categoriescollection.get(name);
         } else {
-            category = new Category(name);
+            category = new Category(name, id);
         }
 
         return category;
