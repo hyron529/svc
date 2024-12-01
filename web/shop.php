@@ -131,65 +131,70 @@
       <div class='row'>
         <?php
           $cardao->getCars();
-          foreach ($cardao->cars as $key => $value) {
-            echo '<div class="col-md-4 mb-4 d-flex align-items-stretch">';
-            echo '<div class="card shadow-sm border-0">';
 
-            echo '<div class="product-image">';
-              echo "<img class='card-img-top' src='data:image/jpeg;base64," . base64_encode($value->__get('image')) . "' alt='Car image' style='width: 100%; height: 250px; object-fit: cover;'>";
-            echo '</div>';
-
-            echo '<div class="product-content p-3 bg-dark text-white">';
-
-              echo '<h5 class="product-title mb-1 fw-bold">' . $value->__get('model_name') . '</h5>';
-
-              // Desplegable de características del vehículo
-              echo '<div class="d-flex flex-column mb-3">';
-                echo '<ul class="list-unstyled">';
-                  echo '<li>Tipo: ' . $value->__get('car_type') . '</li>';
-                  echo '<li>Precio base: ' . $value->__get('base_price') . ' $</li>';
-                  echo '<li>Combustible: ' . $value->__get('fuel_type') . '</li>';
-                  echo '<li>Transmisión: ' . $value->__get('transmission') . '</li>';
-                  echo '<li>Potencia: ' . $value->__get('power') . ' CV</li>';
-                echo '</ul>';
+          if(count($cardao->cars) != 0) {
+            foreach ($cardao->cars as $key => $value) {
+              echo '<div class="col-md-4 mb-4 d-flex align-items-stretch">';
+              echo '<div class="card shadow-sm border-0">';
+  
+              echo '<div class="product-image">';
+                echo "<img class='card-img-top' src='data:image/jpeg;base64," . base64_encode($value->__get('image')) . "' alt='Car image' style='width: 100%; height: 250px; object-fit: cover;'>";
               echo '</div>';
-
-              echo "<label for='Extras'>Seleccione Extras </label>";
-              echo '<div class="d-flex mb-3">';
-              $extraDao->getExtras($value->__get('emailBrand'));
-              echo "<select name='Extras_" . $value->__get('id') . "'>";
-              echo "<option value=''></option>";
-              foreach ($extraDao->extras as $c) {
-                echo "<option value='".$c->__get('id')."'>".$c->__get('name')."</option>";
-              } 
-              echo "</select>";
-              echo '</div>';
-
-              echo "<label for='Color'>Seleccione Color </label>";
-              echo "<div class='mt-2'>";
-              $colorDao->getColors($value->__get('emailBrand'));
-                echo "<select name='Color_" . $value->__get('id') . "'>";
-                  echo "<option value=''></option>";
-                  foreach ($colorDao->colors as $c) {
-                    echo "<option value='".$c->__get('id')."'>".$c->__get('name')."</option>";
-                  } 
+  
+              echo '<div class="product-content p-3 bg-dark text-white">';
+  
+                echo '<h5 class="product-title mb-1 fw-bold">' . $value->__get('model_name') . '</h5>';
+  
+                // Desplegable de características del vehículo
+                echo '<div class="d-flex flex-column mb-3">';
+                  echo '<ul class="list-unstyled">';
+                    echo '<li>Tipo: ' . $value->__get('car_type') . '</li>';
+                    echo '<li>Precio base: ' . $value->__get('base_price') . ' $</li>';
+                    echo '<li>Combustible: ' . $value->__get('fuel_type') . '</li>';
+                    echo '<li>Transmisión: ' . $value->__get('transmission') . '</li>';
+                    echo '<li>Potencia: ' . $value->__get('power') . ' CV</li>';
+                  echo '</ul>';
+                echo '</div>';
+  
+                echo "<label for='Extras'>Seleccione Extras </label>";
+                echo '<div class="d-flex mb-3">';
+                $extraDao->getExtras($value->__get('emailBrand'));
+                echo "<select name='Extras_" . $value->__get('id') . "'>";
+                echo "<option value=''></option>";
+                foreach ($extraDao->extras as $c) {
+                  echo "<option value='".$c->__get('id')."'>".$c->__get('name')."</option>";
+                } 
                 echo "</select>";
-              echo "</div>";
-
-              echo '<div class="d-flex justify-content-between align-items-center mt-3">';
-                echo '<div>';
-                  echo "<button type='submit' class='btn btn-primary me-2'  name='buycar' value='".$value->__get('id')."'";
-                  if ($value->__get('stock') == 0) {
-                    echo " disabled";
-                  }
-                  echo ">Agregar al carrito</button>";
-                  echo "<button type='submit' class='btn btn-secondary me-2'  name='Test' value='".$value->__get('id')."'>Probar!</button>";
+                echo '</div>';
+  
+                echo "<label for='Color'>Seleccione Color </label>";
+                echo "<div class='mt-2'>";
+                $colorDao->getColors($value->__get('emailBrand'));
+                  echo "<select name='Color_" . $value->__get('id') . "'>";
+                    echo "<option value=''></option>";
+                    foreach ($colorDao->colors as $c) {
+                      echo "<option value='".$c->__get('id')."'>".$c->__get('name')."</option>";
+                    } 
+                  echo "</select>";
+                echo "</div>";
+  
+                echo '<div class="d-flex justify-content-between align-items-center mt-3">';
+                  echo '<div>';
+                    echo "<button type='submit' class='btn btn-primary me-2'  name='buycar' value='".$value->__get('id')."'";
+                    if ($value->__get('stock') == 0) {
+                      echo " disabled";
+                    }
+                    echo ">Agregar al carrito</button>";
+                    echo "<button type='submit' class='btn btn-secondary me-2'  name='Test' value='".$value->__get('id')."'>Probar!</button>";
+                  echo '</div>';
+                echo '</div>';
+  
                 echo '</div>';
               echo '</div>';
-
               echo '</div>';
-            echo '</div>';
-            echo '</div>';
+            }
+          } else {
+            echo "<p>No hay vehiculos disponibles.</p>";
           }
         ?>
       </div>

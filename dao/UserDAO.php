@@ -25,7 +25,7 @@ class DaoUser extends DB {
     }
 
 
-/*
+    /*
         Método que nos va a permitir iniciar sesión
         Definimos la consulta para poder buscar a un cliente en la BBDD
         Pasamos los parámetros de la consulta y la ejecutamos
@@ -42,6 +42,17 @@ class DaoUser extends DB {
         $this->ConsultaDatos($consulta, $param);
 
         return $this->filas[0] ?? null;
+    }
+
+    public function updatePassword($user, $password) {
+        $consulta = "UPDATE USER SET password=:password where email=:email";
+
+        $param = array(
+            ":email" => $user,
+            ":password" => $password
+        );
+
+        $this->ConsultaSimple($consulta, $param);
     }
 }
 ?>

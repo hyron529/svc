@@ -7,6 +7,13 @@ try {
             case 'seeappointment':
                 echo json_encode(['page' => '/svc/web/appointment.php']);
                 break;
+            case 'modifiedemail':
+                echo json_encode(['page' => '/svc/web/emailModified.php']);
+                break;
+            case 'modifiedpassword':
+                echo json_encode(['page' => '/svc/web/passwordModified.php']);
+                break;
+                
         }
     }
 } catch (Exception $e) {

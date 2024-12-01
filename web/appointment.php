@@ -103,7 +103,7 @@
                                         if(isset($_POST['Chat'])) {
                                             $daoMessage->list($appointment->__get('id'));
                                             echo "<p class='mt-3'>Mensajes del chat:</p>";
-                                            echo "<div class='mt-3 overflow-y-scroll' style='max-height: 300px;'>";
+                                            echo "<div class='mt-3 overflow-y-scroll' style='max-height: 300px; height:300px;'>";
                                                 if (count($daoMessage->messages) !=0) {
                                                     foreach ($daoMessage->messages as $msg) {
                                                         echo '<div class="shadow-lg border-0 text-white mb-3 p-2">';
