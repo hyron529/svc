@@ -47,6 +47,17 @@ class DaoClient extends DB
 
     return $this->filas[0] ?? null;
   }
+
+  public function updateEmail($user, $newEmail) {
+    $consulta = "UPDATE client SET email=:newEmail where email=:email";
+
+    $param = array(
+        ":email" => $user,
+        ":newEmail" => $newEmail
+    );
+
+    $this->ConsultaSimple($consulta, $param);
+  }
 }
 ?>
 

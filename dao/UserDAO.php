@@ -54,6 +54,32 @@ class DaoUser extends DB {
 
         $this->ConsultaSimple($consulta, $param);
     }
+
+    public function updateEmail($user, $newEmail) {
+        $consulta = "UPDATE USER SET email=:newEmail where email=:email";
+
+        $param = array(
+            ":email" => $user,
+            ":newEmail" => $newEmail
+        );
+
+        $this->ConsultaSimple($consulta, $param);
+    }
+
+    public function emailUsed($emailClient) {
+        $consulta = "SELECT count(*) as exist FROM user WHERE email=:emailClient";
+
+        $param = array(
+            ":emailClient" => $emailClient
+        );
+
+        $this->ConsultaDatos($consulta, $param);
+
+        // Comprobamos si existe alguna fila para dicho usuario
+        $rowCount = $this->filas[0]['exist'] ?? 0;
+
+        return $rowCount > 0;
+    }
 }
 ?>
 
