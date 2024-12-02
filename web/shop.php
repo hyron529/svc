@@ -30,8 +30,13 @@
   require_once('../dao/DateDetailsDAO.php');
   require_once('../entities/Appointment.php');
   require_once('../dao/AppointmentDAO.php');
+  require_once('../dao/ClientDAO.php');
 
   if(!isset($_SESSION)) session_start();
+
+  if(isset($_SESSION['client']) && $_SESSION['client']['role'] == 'brand') {
+    header("Location: /svc/");
+  }
 
   // Declaramos el nombre de nuestra base de datos
   $base = 'svc';
@@ -45,6 +50,14 @@
   $alert = new AlertGenerator();
   $daodetails = new DaoDateDetails($base);
   $daoAppointment = new DaoAppointment($base);
+  $daoClient = new DaoClient($base);
+
+  $code = '';
+  if(isset($_SESSION['client']) && $_SESSION['client']['role'] == 'client') {
+    // Obtenemos el codigo del usuario actual
+    $userNow = $daoClient->getClientCode($_SESSION['client']['name']);
+    $code = $userNow['id'];
+  }
 
   if (isset($_POST['Test'])) {
     if (!isset($_SESSION['client'])) {
@@ -54,13 +67,12 @@
       $car = $cardao->getCar($carid);
       $brandEmail  = $car['emailBrand'];
       $date = $daodetails->getdate($car['emailBrand']);
-
       
       $appointment = new Appointment();
       $appointment->__set("title", "Prueba de vehiculo!");
       $appointment->__set("description", "Información acerca del vehiculo a probar: " . $car['model_name'] );
       $appointment->__set("date" , $date['time']);
-      $appointment->__set("emailClient", $_SESSION['client']['name']);
+      $appointment->__set("idClient", $code);
       $appointment->__set("emailBrand", $brandEmail);
       $appointment->__set("type", "Prueba");
 
@@ -83,18 +95,18 @@
     } else  if ($selectedColor != null || $selectedExtra != null){ 
       if (isset($_SESSION['client'])) {
         $emailClient = $_SESSION['client']['name'];
-    
+
         // Obtenemos el id del pedido sino ha sido realizado, si ha sido realizado creamos uno nuevo y consultamos el id de nuevo
-        $orderid = $orderdao->existOrderClient($emailClient);
+        $orderid = $orderdao->existOrderClient($code);
     
         if ($orderid == null) {
           $order = new Order();
           $order->__set('order_date', time());
-          $order->__set('emailClient', $emailClient);
+          $order->__set('idClient', $code);
           $order->__set('sent', false);
     
           $orderdao->insert($order);
-          $orderid = $orderdao->existOrderClient($emailClient);
+          $orderid = $orderdao->existOrderClient($code);
         }
     
         // Si existe el pedido para el mismo cliente y el mismo coche le sumamos uno a la cantidad del vehiculo

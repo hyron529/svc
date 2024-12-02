@@ -7,7 +7,7 @@ class Order
 
   private $id;
   private $order_date;
-  private $emailClient;
+  private $idClient;
   private $sent;
 
 

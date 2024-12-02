@@ -14,13 +14,13 @@ class DaoAppointment extends DB {
 
     
     public function insert($appointment) {
-        $consulta = "INSERT INTO appointment VALUES (null, :title, :description, :date, :emailClient, :emailBrand, :type)";
+        $consulta = "INSERT INTO appointment VALUES (null, :title, :description, :date, :idClient, :emailBrand, :type)";
 
         $param = array(
             ":title" => $appointment->__get('title'),
             ":description" => $appointment->__get('description'),
             ":date" => $appointment->__get('date'),
-            ":emailClient" => $appointment->__get('emailClient'),
+            ":idClient" => $appointment->__get('idClient'),
             ":emailBrand" => $appointment->__get('emailBrand'),
             ":type" => $appointment->__get('type'),
         );
@@ -28,11 +28,11 @@ class DaoAppointment extends DB {
         $this->ConsultaSimple($consulta, $param);
     }
 
-    public function list($emailClient, ) {
-        $consulta = "SELECT * FROM appointment WHERE emailClient=:emailClient";
+    public function list($idClient) {
+        $consulta = "SELECT * FROM appointment WHERE idClient=:idClient";
 
         $param = array(
-          ":emailClient" => $emailClient
+          ":idClient" => $idClient
         );
     
         $this->appointments = array();
@@ -45,7 +45,7 @@ class DaoAppointment extends DB {
           $appointment->__set("title", $fila['title']);
           $appointment->__set("description", $fila['description']);
           $appointment->__set("date", $fila['date']);
-          $appointment->__set("emailClient", $fila['emailClient']);
+          $appointment->__set("idClient", $fila['idClient']);
           $appointment->__set("emailBrand", $fila['emailBrand']);
           $appointment->__set("type", $fila['type']);
 

@@ -22,6 +22,7 @@
         require_once('../utils/alert.php');
         require_once('../dao/MessageDao.php');
         require_once('../entities/Message.php');
+        require_once('../dao/ClientDAO.php');
 
         // Si no eres uusario no puedes acceder
         if(!isset($_SESSION['client'])) {
@@ -34,20 +35,26 @@
         // Creamos nuestros daos
         $daoAppointment = new DaoAppointment($base);
         $daoMessage = new DaoMessage($base);
+        $daoClient = new DaoClient($base);
         $alert = new AlertGenerator();
 
+        // Obtenemos el codigo del usuario actual
+        $userNow = $daoClient->getClientCode($_SESSION['client']['name']);
+        $code = $userNow['id'];
+
         // Obtenemos las citas segun el filtrado correspondiente
-        $daoAppointment->list($_SESSION['client']['name']);
+        $daoAppointment->list($code);
 
         if(isset($_POST['Delete'])) {
-            $daoAppointment->delete($_POST['Delete']);
+            $appointmentId = $_POST['Delete'];
+            $daoMessage->deleteMessageAppointment($appointmentId);
+            $daoAppointment->delete($appointmentId);
             echo $alert->successAlert("Cita eliminada correctamente.");
         }
 
         if(isset($_POST['Enviar'])) {
-            $message = $_POST['message'];
             $chatid = $_POST['Enviar'];
-
+            $message = $_POST['message_' . $chatid] ?? null;
 
             $msgSend = new Message();
             $msgSend->__set("id_appointment", $chatid);
@@ -126,7 +133,7 @@
                                                
                                             echo "</div>";
                                             echo '<div class="mt-2 mb-3">';
-                                                echo '<textarea class="form-control" name="message" placeholder="Escribe un mensaje..."></textarea>';
+                                            echo "<textarea placeholder='Escribe un mensaje...' class='form-control' name='message_" . $appointment->__get('id') . "'></textarea>";
                                             echo '</div>';
                                             echo "<button type='submit' value='".$appointment->__get('id')."' name='Enviar'>Enviar</button>";
                                         }

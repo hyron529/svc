@@ -26,6 +26,7 @@
         require_once('../entities/Appointment.php');
         require_once('../dao/AppointmentDAO.php');
         require_once('../dao/DateDetailsDAO.php');
+        require_once('../dao/ClientDAO.php');
 
         // Nombre de nuestra base de datos
         $base = "svc";
@@ -39,6 +40,7 @@
         $daoAppointment = new DaoAppointment($base);
         $alert = new AlertGenerator();
         $daodetails = new DaoDateDetails($base);
+        $daoClient = new DaoClient($base);
 
         if(!isset($_SESSION)) session_start(); // Si no se ha iniciado sesion la iniciamos
 
@@ -46,6 +48,10 @@
         if(!isset($_SESSION['client'])) {
             header("Location: /svc/");
         }
+
+        // Obtenemos el codigo del usuario actual
+        $userNow = $daoClient->getClientCode($_SESSION['client']['name']);
+        $code = $userNow['id'];
 
         // Decrementamos la cantidad de vehiculos
         if(isset($_POST['Decrement'])) {
@@ -110,7 +116,7 @@
                 $appointment->__set("title", "Compra de vehiculo!");
                 $appointment->__set("description", "Información acerca de su vehiculo: " . $car['model_name'] . ". Precio total a pagar: " . $totalPrice);
                 $appointment->__set("date" , $date['time']);
-                $appointment->__set("emailClient", $_SESSION['client']['name']);
+                $appointment->__set("idClient", $code);
                 $appointment->__set("emailBrand", $brandEmail);
                 $appointment->__set("type", "Compra");
 
@@ -118,7 +124,7 @@
                 $daodetails->occuped($date['time']);
             }
 
-            $daoOrder->sendOrder($_SESSION['client']['name']);
+            $daoOrder->sendOrder($code);
             echo $alert->successAlert("¡El pedido ha sido realizado de manera correcta! Vaya a ver sus citas en el menú correspondiente.");
         }
 
@@ -130,7 +136,7 @@
                 <div class='row'>
                     <?php 
                     // Comprobamos si existe un pedido del cliente
-                    $orderId = $daoOrder->existOrderClient($_SESSION['client']['name']);
+                    $orderId = $daoOrder->existOrderClient($code);
 
                     if ($orderId != null) {
                         $daoOrderDetails->list($orderId['id']);

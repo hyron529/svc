@@ -16,31 +16,31 @@ class DaoOrder extends DB
 
   public function insert($order)
   {
-    $consulta = "INSERT INTO car_order VALUES (null, :orderdate, :emailclient, :sent)";
+    $consulta = "INSERT INTO car_order VALUES (null, :orderdate, :idClient, :sent)";
 
     $param = array(
       ":orderdate" => $order->__get('order_date'),
-      ":emailclient" => $order->__get('emailClient'),
+      ":idClient" => $order->__get('idClient'),
       ":sent" => $order->__get('sent'),
     );
 
     $this->ConsultaSimple($consulta, $param);
   }
 
-  public function existOrderClient($clien_email) {
-    $consulta = 'SELECT id FROM car_order WHERE emailClient=:clientemail and sent=false'; 
+  public function existOrderClient($idClient ) {
+    $consulta = 'SELECT id FROM car_order WHERE idClient=:idClient and sent=false'; 
 
-    $param = array(":clientemail" => $clien_email);
+    $param = array(":idClient" => $idClient );
 
     $this->ConsultaDatos($consulta, $param);
 
     return $this->filas[0] ?? null;
   }
 
-  public function sendOrder($clien_email) {
-    $consulta = "UPDATE car_order SET sent=true where emailClient=:clientemail";
+  public function sendOrder($idClient) {
+    $consulta = "UPDATE car_order SET sent=true where idClient=:idClient";
 
-    $param = array(":clientemail" => $clien_email);
+    $param = array(":idClient" => $idClient);
 
     $this->ConsultaSimple($consulta, $param);
   }

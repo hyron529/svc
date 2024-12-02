@@ -55,5 +55,15 @@ class DaoMessage extends DB
     }
   }
 
+  public function deleteMessageAppointment($id) {
+    $consulta = "DELETE FROM message WHERE id_appointment=:id";
+
+        $param = array(
+            ":id" => $id
+        );
+
+        $this->ConsultaSimple($consulta, $param);
+  }
+
 }
 ?>

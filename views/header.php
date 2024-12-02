@@ -32,9 +32,11 @@
                                     <li><a href='/svc/seeders/logout.php' class='dropdown-item'>Cerrar sesion</a></li>
                                 </ul>
                             </div>";
-              echo '<div class="language-switch d-flex justify-content-center">
+                if ($_SESSION['client']['role'] == 'client') {
+                    echo '<div class="language-switch d-flex justify-content-center">
                         <a class="nav-link" href="/svc/web/cart.php"><img src="/SVC/public/carrito.png" alt="Carrito" title="Carrito" class="mx-2"></a>
                     </div>';
+                }
             }
             ?>
         </div>
@@ -57,9 +59,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#"><span class="text-red">M</span>ARCAS</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/svc/web/shop.php"><span class="text-red">T</span>IENDA</a>
-                </li>
+                <?php 
+                    if(!isset($_SESSION['client']) || (isset($_SESSION['client']) && $_SESSION['client']['role'] != 'brand')) {
+                        echo '<li class="nav-item">';
+                            echo '<a class="nav-link" href="/svc/web/shop.php"><span class="text-red">T</span>IENDA</a>';
+                        echo '</li>' ;
+                    }
+                ?>
             </ul>
         </div>
     </div>

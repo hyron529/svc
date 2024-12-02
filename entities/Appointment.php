@@ -8,7 +8,7 @@ class Appointment{
     private $title;
     private $description;
     private $date;
-    private $emailClient;
+    private $idClient;
     private $emailBrand;
     private $type;
 

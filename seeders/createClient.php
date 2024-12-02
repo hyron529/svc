@@ -22,6 +22,9 @@ $saltEnd = "$%&@";
 //Encriptamos la contraseña
 $clientpassword = sha1($saltInit . $data['password']. $saltEnd);
 
+// Creamos la id del cliente
+$clientId = substr($data['name'], 0, 3).substr($data['surname'], 0, 4).substr($data['nationality'], 0, 2);
+
 //Creamos la nueva instancia de cliente y asignamos los valores enviados
 //a los atributos del objeto cliente
 $client = new Client();
@@ -30,6 +33,7 @@ $client->__set("surname", $data['surname']);
 $client->__set("birthdate", $data['birthdate']);
 $client->__set("nationality", $data['nationality']);
 $client->__set("email", $data['email']);
+$client->__set("id", $clientId);
 
 $user = new User();
 $user->__set("email", $data['email']);

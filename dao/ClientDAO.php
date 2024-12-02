@@ -22,17 +22,30 @@ class DaoClient extends DB
   */
   public function insertClient($client)
   {
-    $consulta = "INSERT INTO client VALUES (:name, :surname, :birthdate, :nationality, :email)";
+    $consulta = "INSERT INTO client VALUES (:name, :surname, :birthdate, :nationality, :email, :id)";
 
     $param = array(
       ":name" => $client->__get('name'),
       ":surname" => $client->__get('surname'),
       ":birthdate" => $client->__get('birthdate'),
       ":nationality" => $client->__get('nationality'),
-      ":email" => $client->__get('email')
+      ":email" => $client->__get('email'),
+      ":id" => $client->__get('id')
     );
 
     $this->ConsultaSimple($consulta, $param);
+  }
+
+  public function getClientCode($emailClient) {
+    $consulta = "SELECT id FROM client WHERE email=:emailClient";
+
+    $param = array(
+      ":emailClient" => $emailClient
+    );
+
+    $this->ConsultaDatos($consulta, $param);
+
+    return $this->filas[0] ?? null;
   }
 }
 ?>

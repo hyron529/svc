@@ -8,8 +8,7 @@ class Client {
     private $birthdate;
     private $nationality;
     private $email;
-    private $role;
-    private $password;
+    private $id;
 
     public function __get($name) {
         return $this->$name;
