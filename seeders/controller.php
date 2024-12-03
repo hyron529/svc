@@ -13,6 +13,9 @@ try {
             case 'modifiedpassword':
                 echo json_encode(['page' => '/svc/web/passwordModified.php']);
                 break;
+            case 'manageextra':
+                echo json_encode(['page' => '/svc/web/extraBrand.php']);
+                break;
                 
         }
     }

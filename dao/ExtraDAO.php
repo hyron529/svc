@@ -14,6 +14,18 @@ class DaoExtra extends DB
     $this->dbname = $base;
   }
 
+  public function extraInsert($extra) {
+    $consulta = "INSERT INTO extra VALUES (null, :name, :price, :emailBrand)";
+
+    $param = array(
+        ":name" => $extra->__get('name'),
+        ":price" => $extra->__get('price'),
+        ":emailBrand" => $extra->__get('emailBrand')
+    );
+
+    $this->ConsultaSimple($consulta, $param);
+  }
+
   public function getExtra($extraId) {
     $consulta = "SELECT name, price FROM extra WHERE id=:extraId";
    
@@ -46,5 +58,16 @@ class DaoExtra extends DB
       $this->extras[] = $extra;
     }
   }
+
+  public function deleteextra($id) {
+    $consulta = "DELETE FROM extra WHERE id=:id";
+
+        $param = array(
+            ":id" => $id
+        );
+
+        $this->ConsultaSimple($consulta, $param);
+  }
+
 }
 ?>

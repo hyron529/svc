@@ -56,6 +56,5 @@ class DaoCar extends DB
       $this->cars[] = $car;
     }
   }
-
 }
 ?>
