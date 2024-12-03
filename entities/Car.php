@@ -12,6 +12,7 @@ class Car
   private $fuel_type;
   private $transmission;
   private $base_color;
+  private $trunk_capacity;
   private $power;
   private $autonomy;
   private $num_seats;

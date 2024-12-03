@@ -150,7 +150,7 @@
               echo '<div class="card shadow-sm border-0">';
   
               echo '<div class="product-image">';
-                echo "<img class='card-img-top' src='data:image/jpeg;base64," . base64_encode($value->__get('image')) . "' alt='Car image' style='width: 100%; height: 250px; object-fit: cover;'>";
+                echo "<img class='card-img-top' src='data:image/jpeg;base64," . $value->__get('image') . "' alt='Car image' style='width: 100%; height: 250px; object-fit: cover;'>";
               echo '</div>';
   
               echo '<div class="product-content p-3 bg-dark text-white">';
