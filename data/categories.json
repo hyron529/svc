@@ -16,8 +16,32 @@
         ],
         "brand": [
             {
-                "title": "Crear Articulo",
-                "id": "createarticle"
+                "title": "Gestionar Articulos",
+                "id": "managearticle"
+            },
+            {
+                "title": "Gestionar Extras",
+                "id": "manageextra"
+            },
+            {
+                "title": "Gestionar Colores",
+                "id": "managecolor"
+            },
+            {
+                "title": "Gestionar Citas",
+                "id": "manageappointment"
+            },
+            {
+                "title": "Gestionar Coches",
+                "id": "managecars"
+            },
+            {
+                "title": "Modificar Correo",
+                "id": "modifiedemail"
+            },
+            {
+                "title": "Modificar contraseña",
+                "id": "modifiedpassword"
             }
         ]
     }
