@@ -46,6 +46,29 @@ class DaoColor extends DB
       $this->colors[] = $color;
     }
   }
+
+  public function colorInsert($color) {
+    $consulta = "INSERT INTO color VALUES (null, :name, :price, :emailBrand)";
+
+    $param = array(
+        ":name" => $color->__get('name'),
+        ":price" => $color->__get('price'),
+        ":emailBrand" => $color->__get('emailBrand')
+    );
+
+    $this->ConsultaSimple($consulta, $param);
+  }
+
+  
+  public function deletecolor($id) {
+    $consulta = "DELETE FROM color WHERE id=:id";
+
+    $param = array(
+        ":id" => $id
+    );
+
+    $this->ConsultaSimple($consulta, $param);
+  }
 }
 ?>
 

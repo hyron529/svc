@@ -62,12 +62,11 @@ class DaoExtra extends DB
   public function deleteextra($id) {
     $consulta = "DELETE FROM extra WHERE id=:id";
 
-        $param = array(
-            ":id" => $id
-        );
+    $param = array(
+        ":id" => $id
+    );
 
-        $this->ConsultaSimple($consulta, $param);
+    $this->ConsultaSimple($consulta, $param);
   }
-
 }
 ?>

@@ -16,6 +16,9 @@ try {
             case 'manageextra':
                 echo json_encode(['page' => '/svc/web/extraBrand.php']);
                 break;
+            case 'managecolor':
+                echo json_encode(['page' => '/svc/web/colorBrand.php']);
+                break;
                 
         }
     }

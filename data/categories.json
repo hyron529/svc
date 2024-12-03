@@ -34,14 +34,6 @@
             {
                 "title": "Gestionar Coches",
                 "id": "managecars"
-            },
-            {
-                "title": "Modificar Correo",
-                "id": "modifiedemail"
-            },
-            {
-                "title": "Modificar contraseña",
-                "id": "modifiedpassword"
             }
         ]
     }
