@@ -66,6 +66,9 @@
                         echo '</li>' ;
                     }
                 ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="/svc/web/article"><span class="text-red">A</span>RTICULOS</a>
+                </li>
             </ul>
         </div>
     </div>
