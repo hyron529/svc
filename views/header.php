@@ -67,7 +67,7 @@
                     }
                 ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="/svc/web/article"><span class="text-red">A</span>RTICULOS</a>
+                    <a class="nav-link" href="/svc/web/article.php"><span class="text-red">A</span>RTICULOS</a>
                 </li>
             </ul>
         </div>

@@ -38,18 +38,53 @@
         $daoClient = new DaoClient($base);
         $alert = new AlertGenerator();
 
-        // Obtenemos el codigo del usuario actual
-        $userNow = $daoClient->getClientCode($_SESSION['client']['name']);
-        $code = $userNow['id'];
+        if (isset($_SESSION['client']) && $_SESSION['client']['role'] == 'client') {
+            // Obtenemos el codigo del usuario actual
+            $userNow = $daoClient->getClientCode($_SESSION['client']['name']);
+            $code = $userNow['id'];
+            $daoAppointment->list($code, ""); // mostramos las citas para el cliente
+        } elseif ($_SESSION['client']['role'] == 'brand') {
+            // obtenemos las citas que tiene una marca
+            $daoAppointment->list("", $_SESSION['client']['name']);
+        }
 
-        // Obtenemos las citas segun el filtrado correspondiente
-        $daoAppointment->list($code);
 
         if(isset($_POST['Delete'])) {
             $appointmentId = $_POST['Delete'];
             $daoMessage->deleteMessageAppointment($appointmentId);
             $daoAppointment->delete($appointmentId);
             echo $alert->successAlert("Cita eliminada correctamente.");
+        }
+
+        function FechaEpoch($fecha)   //Convierte una fecha en formato dd/mm/yyyy a segundos epoch
+        {
+            $camposFecha = explode("-", $fecha);
+
+            // La convertimos a epoch para guardarla de esta forma
+            $fechaEpoch = mktime(0, 0, 0, $camposFecha[1], $camposFecha[0], $camposFecha[2]);
+
+            return $fechaEpoch;
+        }
+
+
+        if(isset($_POST['Crear'])) {
+            $userNow = $daoClient->getClientCode($_POST['email']);
+
+            if ($userNow != null) {
+                $code = $userNow['id'];
+                $appointment = new Appointment();
+                $appointment->__set("title", $_POST['title']);
+                $appointment->__set("description", $_POST['description']);
+                $appointment->__set("date" , FechaEpoch($_POST['date']));
+                $appointment->__set("idClient", $code);
+                $appointment->__set("emailBrand", $_SESSION['client']['name']);
+                $appointment->__set("type", "Prueba");
+    
+                $daoAppointment->insert($appointment);
+                echo $alert->successAlert("La cita ha sido creada correctamente.");
+            } else {
+                echo $alert->dangerAlert("El correo introducido para asignarle la cita al usuario no es valido.");
+            }
         }
 
         if(isset($_POST['Enviar'])) {
@@ -84,9 +119,17 @@
                 <div class='container mt-5'>
                     <div class='row'>
                         <?php 
-
+                        if(isset($_SESSION['client']) && $_SESSION['client']['role'] == 'brand') {
+                            echo ' <div class="container d-flex justify-content-center mb-4"> ';
+                            echo '
+                            <button type="button" class="btn btn-danger btn-sm w-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Crear Cita
+                            </button>
+                            ';
+                            echo '</div>';
+                        }
                         if (count($daoAppointment->appointments)  != 0) {
-                            echo "<h3 class='text-center'>CITAS</h3>";
+                            echo "<h2 class='text-center'>CITAS</h2>";
                             foreach($daoAppointment->appointments as $appointment) {
                                 echo '<div class="col-md-4 mb-4 d-flex align-items-stretch">';
                                 echo '<div class="card shadow-sm border-0">';
@@ -150,6 +193,40 @@
                 </div>
             </div>
         </form>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Gestionar Colores</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="fextrabrand" method="post" action='<?php echo $_SERVER['PHP_SELF']; ?>'>
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Introduce el titulo de la cita</label>
+                                <input type="text" name="title" class="form-control" placeholder="Titulo de la cita." required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Introduce la descripcion de la cita</label>
+                                <input type="text" name="description" class="form-control" placeholder="Descripcion de la cita." required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="date" class="form-label">Introduce la fecha de la cita</label>
+                                <input type="date" name="date" class="form-control" placeholder="Introduce la fecha de la cita." required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Introduce el correo del cliente</label>
+                                <input type="email" name="email" class="form-control" placeholder="Introduce el correo del cliente." required>
+                            </div>
+                            <div class="d-grid gap-2 mb-3" class="form-label">
+                                <input type="submit" class="btn btn-primary" name="Crear" value="Crear">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <?php
             require_once('../views/footer.php');
             require_once('../utils/scripts.php');

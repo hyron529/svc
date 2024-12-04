@@ -28,12 +28,20 @@ class DaoAppointment extends DB {
         $this->ConsultaSimple($consulta, $param);
     }
 
-    public function list($idClient) {
-        $consulta = "SELECT * FROM appointment WHERE idClient=:idClient";
+    public function list($idClient, $emailBrand) {
+        $consulta = "SELECT * FROM appointment WHERE";
 
-        $param = array(
-          ":idClient" => $idClient
-        );
+        if ($idClient == "") {
+            $consulta .= "  emailBrand =:emailBrand  ";
+            $param = array(
+                ":emailBrand" => $emailBrand
+            );
+        } elseif ($emailBrand == "") {
+            $consulta .= " idClient=:idClient ";
+            $param = array(
+                ":idClient" => $idClient
+            );
+        }
     
         $this->appointments = array();
     
@@ -52,6 +60,7 @@ class DaoAppointment extends DB {
           $this->appointments[] = $appointment;
         }
     }
+
 
     public function delete($id) {
         $consulta = "DELETE FROM appointment WHERE id=:id";

@@ -173,7 +173,7 @@
                                 echo '<div class="col-md-4 mb-4 d-flex align-items-stretch">';
                                 echo '<div class="card shadow-sm border-0">';
                                     echo '<div class="product-image">';
-                                        echo "<img class='card-img-top' src='data:image/jpeg;base64," . base64_encode($car['image']) . "' alt='Car image' style='width: 100%; height: 250px; object-fit: cover;'>";
+                                        echo "<img class='card-img-top' src='data:image/jpeg;base64," . $car['image'] . "' alt='Car image' style='width: 100%; height: 250px; object-fit: cover;'>";
                                     echo '</div>';
     
                                     echo '<div class="product-content p-3 bg-dark text-white">';

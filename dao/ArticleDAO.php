@@ -51,6 +51,27 @@ class DaoArticle extends DB
     }
   }
 
+  public function getAllarticles() {
+    $consulta = "SELECT * FROM articles";
+
+    $this->articles = array();
+
+    $this->ConsultaDatos($consulta);
+
+    foreach ($this->filas as $row) {
+      $article = new Article();
+
+      $article->__set("id", $row["id"]);
+      $article->__set("paragrahp1", $row["paragrahp1"]);
+      $article->__set("paragrahp2", $row["paragrahp2"]);
+      $article->__set("paragrahp3", $row["paragrahp3"]);
+      $article->__set("title", $row["title"]);
+      $article->__set("emailBrand", $row["emailBrand"]);
+      
+      $this->articles[] = $article;
+    }
+  }
+
     
   public function delete($id) {
     $consulta = "DELETE FROM articles WHERE id=:id";
