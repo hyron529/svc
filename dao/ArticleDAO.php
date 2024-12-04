@@ -15,7 +15,7 @@ class DaoArticle extends DB
   }
 
   public function insertArticle($article) {
-    $consulta = "INSERT INTO articles VALUES (:paragrahp1, :paragrahp2, :paragrahp3, :title, null, :emailBrand)";
+    $consulta = "INSERT INTO articles VALUES (:paragrahp1, :paragrahp2, :paragrahp3, :title, null, :emailBrand, :image)";
 
     $param = array(
         ":paragrahp1" => $article->__get('paragrahp1'),
@@ -23,7 +23,8 @@ class DaoArticle extends DB
         ":paragrahp3" => $article->__get('paragrahp3'),
         ":title" => $article->__get('title'),
         ":emailBrand" => $article->__get('emailBrand'),
-    );
+        ":image" => $article->__get('image'),
+    ); 
 
     $this->ConsultaSimple($consulta, $param);
   }
@@ -46,6 +47,7 @@ class DaoArticle extends DB
       $article->__set("paragrahp3", $row["paragrahp3"]);
       $article->__set("title", $row["title"]);
       $article->__set("emailBrand", $row["emailBrand"]);
+      $article->__set("image", $row["image"]);
       
       $this->articles[] = $article;
     }
@@ -67,6 +69,7 @@ class DaoArticle extends DB
       $article->__set("paragrahp3", $row["paragrahp3"]);
       $article->__set("title", $row["title"]);
       $article->__set("emailBrand", $row["emailBrand"]);
+      $article->__set("image", $row["image"]);
       
       $this->articles[] = $article;
     }

@@ -31,28 +31,33 @@
     <body class='bg-color'>
         <div class="container">
         <?php
-            foreach($daoarticle->articles as $value){
-                echo "
-                <div class='container py-5'>
-                    <div class='row justify-content-center'>
-                        <div class='col-md-8 col-lg-6'>
-                            <div class='article-card shadow-lg rounded overflow-hidden'>
-                                <div class='article-image'>
-                                    <img src='../public/images/".$value->__get("image")."' class='img-fluid' alt='Imagen del artículo'>
-                                </div>
-                                <div class='article-content p-4'>
-                                    <h2 class='article-title text-dark font-weight-bold mb-3'>".$value->__get("title")."</h2>
-                                    <p class='article-summary text-muted mb-3'>".substr($value->__get("paragrahp1"), 0, 250)."...</p>
-                                    <p class='article-text mb-3'>".substr($value->__get("paragrahp2"), 0, 250)."...</p>
-                                    <p class='article-text mb-3'>".substr($value->__get("paragrahp3"), 0, 250)."...</p>
-                                    <a href='article.php?id=".$value->__get("id")."' class='btn btn-dark btn-lg mt-4'>Leer artículo completo</a>
+            if(count($daoarticle->articles) > 0){
+                foreach($daoarticle->articles as $value){
+                    echo "
+                    <div class='container py-5'>
+                        <div class='row justify-content-center'>
+                            <div class='col-md-8 col-lg-6'>
+                                <div class='article-card shadow-lg rounded overflow-hidden'>
+                                    <div class='article-image'>
+                                        <img src='data:image/jpeg;base64," . $value->__get('image') . "' class='img-fluid' alt='Imagen del artículo'>
+                                    </div>
+                                    <div class='article-content p-4'>
+                                        <h2 class='article-title text-dark font-weight-bold mb-3'>".$value->__get("title")."</h2>
+                                        <p class='article-summary text-muted mb-3'>".substr($value->__get("paragrahp1"), 0, 250)."...</p>
+                                        <p class='article-text mb-3'>".substr($value->__get("paragrahp2"), 0, 250)."...</p>
+                                        <p class='article-text mb-3'>".substr($value->__get("paragrahp3"), 0, 250)."...</p>
+                                        <a href='article.php?id=".$value->__get("id")."' class='btn btn-dark btn-lg mt-4'>Leer artículo completo</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                ";
+                    ";
+                }
+            } else {
+                echo "<p class='text-center mt-5'>No hay articulos disponibles</p>";
             }
+            
             ?>
         </div>
         <?php 
@@ -61,4 +66,3 @@
         <script type="module" src="../resources/js/index.js"></script>
     </body>
 </html> 
-chupala maricon

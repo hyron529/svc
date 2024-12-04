@@ -38,12 +38,21 @@
             $paragrahp1 = $_POST['paragrahp1'];
             $paragrahp2 = $_POST['paragrahp2'];
             $paragrahp3 = $_POST['paragrahp3'];
+            $logo = '';
+
+            if (isset($_FILES['image']) && $_FILES['image']['tmp_name'] != "") {
+                $temp = $_FILES['image']['tmp_name'];
+                $contenido = file_get_contents($temp);
+                $contenido = base64_encode($contenido);
+                $logo = $contenido;
+            }
 
             $article = new Article();
             $article->__set("title", $title);
             $article->__set("paragrahp1", $paragrahp1);
             $article->__set("paragrahp2", $paragrahp2);
             $article->__set("paragrahp3", $paragrahp3);
+            $article->__set("image", $logo);
             $article->__set("emailBrand", $_SESSION['client']['name']);
             $daoarticle->insertArticle($article);
             echo $alert->successAlert("El articulo ha sido creado.");
@@ -51,7 +60,7 @@
 
         if(isset($_POST['Delete'])) {
             $articleid = $_POST['Delete'];
-            $daoarticle->delete($daoarticle);
+            $daoarticle->delete($articleid);
             echo $alert->successAlert("El articulo ha sido eliminado correctamente.");
         }
 
@@ -94,22 +103,26 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form name="fextrabrand" method="post" action='<?php echo $_SERVER['PHP_SELF']; ?>'>
+                                <form name="fextrabrand" method="post" action='<?php echo $_SERVER['PHP_SELF']; ?>' enctype="multipart/form-data">
                                     <div class="mb-3">
                                         <label for="title" class="form-label">Introduce el titulo del articulo</label>
-                                        <input type="text" name="title" class="form-control" placeholder="Titulo del articulo." required>
+                                        <textarea type="text" maxlength="100" name="title" class="form-control" placeholder="Titulo del articulo." required></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="paragrahp1" class="form-label">Introduce la introduccion del articulo</label>
-                                        <input type="text" name="paragrahp1" class="form-control" placeholder="Introduccion del articulo." required>
+                                        <textarea type="text"  maxlength="800" name="paragrahp1" class="form-control" placeholder="Introduccion del articulo." required></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="paragrahp2" class="form-label">Introduce el cuerpo del articulo</label>
-                                        <input type="text" name="paragrahp2" class="form-control" placeholder="Introduccion del articulo." required>
+                                        <textarea type="text" maxlength="800" name="paragrahp2" class="form-control" placeholder="Introduccion del articulo." required></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="paragrahp3" class="form-label">Introduce la conclusion del articulo</label>
-                                        <input type="text" name="paragrahp3" class="form-control" placeholder="Introduccion del articulo." required>
+                                        <textarea type="text" maxlength="800" name="paragrahp3" class="form-control" placeholder="Introduccion del articulo." required></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="image" class="form-label">Imagen del articulo</label>
+                                        <input class='form-label' type='file' name='image' accept='image/jpg'>
                                     </div>
                                     <div class="d-grid gap-2 mb-3" class="form-label">
                                         <input type="submit" class="btn btn-primary" name="Crear" value="Crear">
