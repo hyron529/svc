@@ -26,14 +26,19 @@ class DaoCar extends DB
     return $this->filas[0] ?? null;
   }
 
-  public function getCars()
+  public function getCars($model)
   {
     $consulta = "SELECT * FROM car";
+    $param = array();
+
+    if($model != "") {
+      $consulta .= " WHERE model_name LIKE :model ";
+      $param[':model'] = $model."%";
+    }
 
     $this->cars = array();
 
-    $this->ConsultaDatos($consulta);
-
+    $this->ConsultaDatos($consulta, $param);
 
     foreach ($this->filas as $row) {
       $car = new Car();
@@ -56,6 +61,7 @@ class DaoCar extends DB
       $this->cars[] = $car;
     }
   }
+
 
   public function getCarsBrand($emailBrand)
   {

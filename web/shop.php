@@ -142,7 +142,18 @@
     <div class='container mt-5'>
       <div class='row'>
         <?php
-          $cardao->getCars();
+          echo "<h2><span class='text-red'>B</span>ienvenido a la tiend<span class='text-red'>a</span></h2>";
+          echo '<div class="container d-flex justify-content-center mb-4"> ';
+          echo '<input class="form-control w-100" type="text" name="search" placeholder"Introduce el modelo del coche por el que quiere buscar">';
+          echo '<input class="ms-3 btn btn-primary" type="submit" name="searchsubmit" value="Buscar">';
+          echo '</div>';
+
+          
+          if(isset($_POST['searchsubmit']) && $_POST['search'] != '') {
+            $cardao->getCars($_POST['search']);
+          } else {
+            $cardao->getCars("");
+          }
 
           if(count($cardao->cars) != 0) {
             foreach ($cardao->cars as $key => $value) {

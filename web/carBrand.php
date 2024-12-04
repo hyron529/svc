@@ -60,7 +60,6 @@
             $trunk_capacity = $_POST['trunk_capacity'];
             $logo = '';
 
-            var_dump(($_FILES));
             if (isset($_FILES['image']) && $_FILES['image']['tmp_name'] != "") {
                 $temp = $_FILES['image']['tmp_name'];
                 $contenido = file_get_contents($temp);
