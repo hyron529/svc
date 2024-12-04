@@ -1,3 +1,5 @@
+import { getCookie } from "./cookie.js";
+
 //Declaramos las constantes para el modelo, la vista y el método de carga
 const MODEL = Symbol("SvcManagerModel");
 const VIEW = Symbol("SvcManagerView");
@@ -67,6 +69,10 @@ class SvcManagerController {
 
     //Abrimos el formulario de registro del cliente
     this[VIEW].bindFormValidation(this.handleCreateFormRegisterClient, this.handleCreateBrandForm);
+
+    if(getCookie("acceptedCookieMessage") !== 'true') {
+      this[VIEW].showCookies();
+    }
   };
 
   //Manejador para el formulario de registro del cliente

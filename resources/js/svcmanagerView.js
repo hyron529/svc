@@ -1,5 +1,6 @@
 //Importamos las clases necesarias
 import { createBrandValidation, createClientValidation } from "./validation.js";
+import { setCookie } from "./cookie.js";
 
 //Definimos el symbol
 const EXECUTE_HANDLER = Symbol("ExecuteHandler");
@@ -194,6 +195,113 @@ class SvcManagerView {
 
     //Añadimos el contenido a la página principal
     this.formZone.append(container);
+  }
+
+  /*
+  
+    COOKIES
+  
+  */
+  // Metodo que llamaremos desde nuestro controlador para mostrar el mensaje
+  // al usuario de que tiene que aceptar o denegar el uso de cookies
+  showCookies() {
+    // Definimos el div que contiene el mensaje de aviso de las cookies
+    const toast = `
+    <div class="fixed-top p-5 mt-5">
+      <div
+        id="cookies-message"
+        class="toast fade show bg-dark text-white  w-100 mw-100"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+      <div class="toast-header">
+        <h4 class="me-auto text-sm">Alerta de cookies</h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+          id="btnDismissCookie"
+        ></button>
+      </div>
+      <div class="toast-body p-4 d-flex flex-column">
+        <p>
+          ¡Importante! Al usar nuestros servicios, aceptas nuestros términos y cookies automáticamente.
+        </p>
+        <div class="ml-auto">
+          <button
+            type="button"
+            class="btn btn-danger  text-white mr-3"
+            id="btnDenyCookie"
+            data-bs-dismiss="toast"
+          >
+            Denegar
+          </button>
+          <button
+            type="button"
+            class="btn btn-success text-white"
+            id="btnAcceptCookie"
+            data-bs-dismiss="toast"
+          >
+            Aceptar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  `;
+
+    // Añadimos el div con el contenido a nuestra pagina
+    document.body.insertAdjacentHTML("afterbegin", toast);
+
+    // Vamos a controlar los eventos que boostrap genera al ser cerrado el mensaje
+    // independientemente del metodo que se este usando
+    const cookiesMessage = document.getElementById("cookies-message");
+    cookiesMessage.addEventListener("hidden.bs.toast", (event) => {
+      // Eliminamos la notificacion del arbol dom de nuestra pagina
+      event.currentTarget.parentElement.remove();
+    });
+
+    // Añadimos un manejador para cuando se haga click en los botones de cerrar de nuestra notificacion
+    // para que se muestre un mensaje de que no se puede continuar navegando de la pagina si no 
+    // son aceptada las cookies por parte del usuario
+    const denyCookieFunction = (event) => {
+      // Eliminamos el contenido de la parte incial y central de nuestra pagina para mostrar el respectivo mensaje
+      this.mainZone.replaceChildren();
+
+      // Mostramos el mensaje en la parte inicial de nuestra pagina
+      this.mainZone.insertAdjacentHTML(
+        "afterbegin",
+        `
+          <div class="container my3">
+            <div class="alert alert-warning" role="alert">
+              <strong>Para utilizar esta web es necesario aceptar el uso de
+              cookies. Debe recargar la página y aceptar las condicones para seguir
+              navegando. Gracias.</strong>
+            </div>
+          </div>
+        `
+      );
+
+      this.mainZone.remove();
+    };
+
+    // Si se pulsa alguno de los botones de denegar de nuestra notificacion capturamos el evento 
+    // y mostramos el mensaje de que el usuario no podra navegar en nuestra pagina si no acepta las cookies
+    // 1 boton de denegar
+    const btnDenyCookie = document.getElementById("btnDenyCookie");
+    btnDenyCookie.addEventListener("click", denyCookieFunction);
+
+    // 2 boton de denegar
+    const btnDismissCookie = document.getElementById("btnDismissCookie");
+    btnDismissCookie.addEventListener("click", denyCookieFunction);
+
+    // Si hacemos click en el boton de aceptar capturamos el evento y establecemos la cookies
+    const btnAcceptCookie = document.getElementById('btnAcceptCookie');
+    btnAcceptCookie.addEventListener("click", (event) => {
+      setCookie("acceptedCookieMessage", "true", 1);
+    });
   }
 
   /*  
