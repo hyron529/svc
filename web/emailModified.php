@@ -51,10 +51,10 @@
             $password = $_POST['password'];
 
             if (($oldEmail == '') || ($newEmail == '') || ($password == '')) {
-                echo $alert->dangerAlert("Debe introducir datos en todos los campos.");
+                echo $alert->dangerAlert("Debe introducir datos en todos los campos");
             } else {
                 if(($daouser->emailUsed($newEmail))|| ($oldEmail == $newEmail) || ($oldEmail != $username)) {
-                    echo $alert->dangerAlert("Datos no validos.");
+                    echo $alert->dangerAlert("Datos no válidos.");
                 } else {
                     //Declaramos los salt para encriptar la contraseña
                     $saltInit = "!@$#";
@@ -69,12 +69,12 @@
                         if($_SESSION['client']['role'] == 'client') {
                             $daoclient->updateEmail($oldEmail, $newEmail);
                         }
-                        echo $alert->successAlert("Contraseña cambiada correctamente, cerrando sesion.");
+                        echo $alert->successAlert("Contraseña cambiada correctamente, cerrando sesión.");
                         $daouser->updateEmail($oldEmail, $newEmail);
                         sleep(5);
                         header("Location: /svc/seeders/logout.php");
                     } else {
-                        echo $alert->dangerAlert("Datos no validos.");
+                        echo $alert->dangerAlert("Datos no válidos.");
                     }
                 }
             }

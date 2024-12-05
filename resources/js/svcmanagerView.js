@@ -67,53 +67,53 @@ class SvcManagerView {
     container.insertAdjacentHTML(
       "beforeend",
       `
-                <div class="container d-flex justify-content-center align-items-center vh-100">
-                    <div class="register-card p-5">
-                        <h2 class="text-center mb-4">
-                            <span class="text-red">R</span>EGISTRO <span class="text-red">D</span>E <span class="text-red">U</span>SUARIO
-                        </h2>
-                        <form name="fcreateclient" role="form" id="fcreateclient" novalidate enctype="multipart/form-data">
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="name" placeholder="Introduce tu nombre" required>
-                                <div class="invalid-feedback d-none">Debe introducir nombre.</div>
-                                <div class="valid-feedback">Correcto.</div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="surname" class="form-label">Apellidos</label>
-                                <input type="text" class="form-control" id="surname" placeholder="Introduce tus apellidos" required>
-                                <div class="invalid-feedback d-none">Debe introducir apellidos.</div>
-                                <div class="valid-feedback">Correcto.</div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="dob" class="form-label">Fecha de nacimiento</label>
-                                <input type="date" class="form-control" id="dob" required>
-                                <div class="invalid-feedback d-none">Debe introducir fecha nacimiento.</div>
-                                <div class="valid-feedback">Correcto.</div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="nationality" class="form-label">Nacionalidad</label>
-                                <input type="text" class="form-control" id="nationality" placeholder="Introduce tu nacionalidad" required>
-                                <div class="invalid-feedback d-none">Debe introducir nacionalidad.</div>
-                                <div class="valid-feedback">Correcto.</div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Correo Electrónico</label>
-                                <input type="email" class="form-control" id="email" placeholder="Introduce tu correo" required>
-                                <div class="invalid-feedback d-none">Debe introducir correo.</div>
-                                <div class="valid-feedback">Correcto.</div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="password" placeholder="Introduce una contraseña" required>
-                                <div class="invalid-feedback d-none">Debe introducir contraseña.</div>
-                                <div class="valid-feedback">Correcto.</div>
-                            </div>
-                            <div class="d-grid gap-2 mb-3">
-                                <button type="submit" class="btn btn-primary">Registrarse</button>
-                            </div>
-                        </form>
-                    </div>
+                <div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh; padding-top: 10px; padding-bottom: 10px;">
+                  <div class="register-card p-5">
+                    <h2 class="text-center mb-4">
+                      <span class="text-red">R</span>EGISTRO <span class="text-red">D</span>E <span class="text-red">U</span>SUARIO
+                    </h2>
+                    <form name="fcreateclient" role="form" id="fcreateclient" novalidate enctype="multipart/form-data">
+                      <div class="mb-3">
+                        <label for="name" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="name" placeholder="Introduzca su nombre" required>
+                        <div class="invalid-feedback d-none">Debe introducir su nombre</div>
+                        <div class="valid-feedback">Correcto.</div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="surname" class="form-label">Apellidos</label>
+                        <input type="text" class="form-control" id="surname" placeholder="Introduzca sus apellidos" required>
+                        <div class="invalid-feedback d-none">Debe introducir sus apellidos</div>
+                        <div class="valid-feedback">Correcto.</div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="dob" class="form-label">Fecha de nacimiento</label>
+                        <input type="date" class="form-control" id="dob" required>
+                        <div class="invalid-feedback d-none">Debe introducir su fecha de nacimiento</div>
+                        <div class="valid-feedback">Correcto.</div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="nationality" class="form-label">Nacionalidad</label>
+                        <input type="text" class="form-control" id="nationality" placeholder="Introduzca su nacionalidad" required>
+                        <div class="invalid-feedback d-none">Debe introducir su nacionalidad</div>
+                        <div class="valid-feedback">Correcto.</div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="email" class="form-label">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="email" placeholder="Introduzca su correo" required>
+                        <div class="invalid-feedback d-none">Debe introducir su correo</div>
+                        <div class="valid-feedback">Correcto.</div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="password" placeholder="Introduzca una contraseña" required>
+                        <div class="invalid-feedback d-none">Debe introducir una contraseña</div>
+                        <div class="valid-feedback">Correcto.</div>
+                      </div>
+                      <div class="d-grid gap-2 mb-3">
+                        <button type="submit" class="btn btn-primary">Registrarse</button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
             `
     );
@@ -122,7 +122,7 @@ class SvcManagerView {
     this.formZone.append(container);
   }
 
-  //Función para crear el formulario de registro de los clientes
+  //Función para crear el formulario de registro de las marcas
   showFormRegisterBrand() {
     //Limpiamos el contenedor
     this.mainZone.remove();
@@ -136,60 +136,61 @@ class SvcManagerView {
     container.insertAdjacentHTML(
       "beforeend",
       `
-                <div class="container d-flex justify-content-center align-items-center vh-100">
-                    <div class="register-card p-5">
-                        <h2 class="text-center mb-4">
-                            <span class="text-red">R</span>EGISTRO <span class="text-red">D</span>E <span class="text-red">M</span>ARCA
-                        </h2>
-                        <form name="fcreatebrand" role="form" id="fcreatebrand" novalidate enctype="multipart/form-data">
-                            <div class="mb-3">
-                                <label for="brandName" class="form-label">Nombre de la Marca</label>
-                                <input type="text" class="form-control" id="brandName" placeholder="Introduce el nombre de la marca" required>
-                                 <div class="invalid-feedback d-none">Introduce el nombre de la marca.</div>
-                                <div class="valid-feedback">Correcto.</div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="foundationDate" class="form-label">Fecha de Fundación</label>
-                                <input type="date" class="form-control" id="foundationDate">
-                                <div class="invalid-feedback d-none">Introduce una fecha valida.</div>
-                                <div class="valid-feedback">Correcto.</div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="country" class="form-label">País de Origen</label>
-                                <input type="text" class="form-control" id="country" placeholder="Introduce el país de origen" required>
-                                <div class="invalid-feedback d-none">Introduce el pais de origen.</div>
-                                <div class="valid-feedback">Correcto.</div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="headquarters" class="form-label">Sede Principal</label>
-                                <input type="text" class="form-control" id="headquarters" placeholder="Introduce la sede principal" required>
-                                 <div class="invalid-feedback d-none">Introduce la sede principal.</div>
-                                <div class="valid-feedback">Correcto.</div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Correo Electrónico de Contacto</label>
-                                <input type="email" class="form-control" id="email" placeholder="Introduce el correo de contacto" required>
-                                 <div class="invalid-feedback d-none">Introduce el correo de contacto.</div>
-                                <div class="valid-feedback">Correcto.</div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="website" class="form-label">Sitio Web</label>
-                                <input type="url" class="form-control" id="website" placeholder="Introduce la URL del sitio web" required>
-                                 <div class="invalid-feedback d-none">Introduce la url de la marca.</div>
-                                <div class="valid-feedback">Correcto.</div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="password" placeholder="Introduce una contraseña" required>
-                                <div class="invalid-feedback d-none">Debe introducir contraseña.</div>
-                                <div class="valid-feedback">Correcto.</div>
-                            </div>
-                            <div class="d-grid gap-2 mb-3">
-                                <button type="submit" class="btn btn-primary">Registrar Marca</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                <div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh; padding-top: 10px; padding-bottom: 10px;">
+                  <div class="register-card p-5">
+                      <h2 class="text-center mb-4">
+                          <span class="text-red">R</span>EGISTRO <span class="text-red">D</span>E <span class="text-red">M</span>ARCA
+                      </h2>
+                      <form name="fcreatebrand" role="form" id="fcreatebrand" novalidate enctype="multipart/form-data">
+                          <div class="mb-3">
+                              <label for="brandName" class="form-label">Nombre de la Marca</label>
+                              <input type="text" class="form-control" id="brandName" placeholder="Introduzca el nombre de la marca" required>
+                              <div class="invalid-feedback d-none">Introduzca el nombre de la marca</div>
+                              <div class="valid-feedback">Correcto.</div>
+                          </div>
+                          <div class="mb-3">
+                              <label for="foundationDate" class="form-label">Fecha de Fundación</label>
+                              <input type="date" class="form-control" id="foundationDate">
+                              <div class="invalid-feedback d-none">Introduzca una fecha válida</div>
+                              <div class="valid-feedback">Correcto.</div>
+                          </div>
+                          <div class="mb-3">
+                              <label for="country" class="form-label">País de Origen</label>
+                              <input type="text" class="form-control" id="country" placeholder="Introduzca el país de origen" required>
+                              <div class="invalid-feedback d-none">Introduzca el pais de origen</div>
+                              <div class="valid-feedback">Correcto.</div>
+                          </div>
+                          <div class="mb-3">
+                              <label for="headquarters" class="form-label">Sede Principal</label>
+                              <input type="text" class="form-control" id="headquarters" placeholder="Introduzca la sede principal" required>
+                              <div class="invalid-feedback d-none">Introduzca la sede principal</div>
+                              <div class="valid-feedback">Correcto.</div>
+                          </div>
+                          <div class="mb-3">
+                              <label for="email" class="form-label">Correo Electrónico de Contacto</label>
+                              <input type="email" class="form-control" id="email" placeholder="Introduzca el correo de contacto" required>
+                              <div class="invalid-feedback d-none">Introduzca el correo de contacto</div>
+                              <div class="valid-feedback">Correcto.</div>
+                          </div>
+                          <div class="mb-3">
+                              <label for="website" class="form-label">Sitio Web</label>
+                              <input type="url" class="form-control" id="website" placeholder="Introduzca la URL del sitio web" required>
+                              <div class="invalid-feedback d-none">Introduzca la url de la marca</div>
+                              <div class="valid-feedback">Correcto.</div>
+                          </div>
+                          <div class="mb-3">
+                              <label for="password" class="form-label">Contraseña</label>
+                              <input type="password" class="form-control" id="password" placeholder="Introduzca una contraseña" required>
+                              <div class="invalid-feedback d-none">Debe introducir una contraseña</div>
+                              <div class="valid-feedback">Correcto.</div>
+                          </div>
+                          <div class="d-grid gap-2 mb-3">
+                              <button type="submit" class="btn btn-primary">Registrar Marca</button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+
             `
     );
 
@@ -216,7 +217,7 @@ class SvcManagerView {
         aria-atomic="true"
       >
       <div class="toast-header">
-        <h4 class="me-auto text-sm">Alerta de cookies</h4>
+        <h4 class="me-auto text-sm">Aviso de cookies</h4>
         <button
           type="button"
           class="btn-close"
@@ -227,7 +228,7 @@ class SvcManagerView {
       </div>
       <div class="toast-body p-4 d-flex flex-column">
         <p>
-          ¡Importante! Al usar nuestros servicios, aceptas nuestros términos y cookies automáticamente.
+          Aceptando las cookies, podemos mejorar su experiencia y realizar un análisis de navegación. 
         </p>
         <div class="ml-auto">
           <button
@@ -276,9 +277,8 @@ class SvcManagerView {
         `
           <div class="container my3">
             <div class="alert alert-warning" role="alert">
-              <strong>Para utilizar esta web es necesario aceptar el uso de
-              cookies. Debe recargar la página y aceptar las condicones para seguir
-              navegando. Gracias.</strong>
+              <strong>Es imprescindible aceptar el uso de cookies para poder usar esta web. 
+              Por favor, recargue la página y acepte las condiciones para continuar navegando.</strong>
             </div>
           </div>
         `

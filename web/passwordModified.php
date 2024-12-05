@@ -55,13 +55,13 @@
                 $row = $daouser->login($username, $clientpasswordOld);
 
                 if($row) {
-                    echo $alert->successAlert("Contraseña cambiada correctamente, cerrando sesion.");
+                    echo $alert->successAlert("Contraseña cambiada correctamente, cerrando sesión.");
                     $clientpasswordnew = sha1($saltInit . $passwordNew . $saltEnd);
                     $daouser->updatePassword($username, $clientpasswordnew);
                     sleep(5);
                     header("Location: /svc/seeders/logout.php");
                 } else {
-                    echo $alert->dangerAlert("Las contraseña anituga no coincide.");
+                    echo $alert->dangerAlert("Error. La contraseña antigua no coincide");
                 }
             }
         }

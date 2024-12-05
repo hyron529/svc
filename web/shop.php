@@ -12,7 +12,7 @@
   <meta property="og:site_name" content="SVC" />
   </meta>
   <link rel="shortcut icon" href="../public/favicon.ico" type="image/x-icon" />
-  <title>SVC - Shop</title>
+  <title>SVC - Tienda</title>
   <link rel="stylesheet" href="../resources/css/main.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
@@ -142,11 +142,16 @@
     <div class='container mt-5'>
       <div class='row'>
         <?php
-          echo "<h2><span class='text-red'>B</span>ienvenido a la tiend<span class='text-red'>a</span></h2>";
-          echo '<div class="container d-flex justify-content-center mb-4"> ';
-          echo '<input class="form-control w-100" type="text" name="search" placeholder"Introduce el modelo del coche por el que quiere buscar">';
-          echo '<input class="ms-3 btn btn-primary" type="submit" name="searchsubmit" value="Buscar">';
+          echo "<div class='d-flex justify-content-center'>";
+          echo "<h2><span class='text-red'>B</span>ienvenido <span class='text-red'>a</span> <span class='text-red'>l</span>a <span class='text-red'>T</span>ienda</h2>";
+          echo "</div>";          
+          echo '<div class="container d-flex justify-content-center mb-4">';
+          echo '<div class="input-group w-75">';
+          echo '<input class="form-control py-2" type="text" name="search" placeholder="Introduzca el modelo que desee buscar" aria-label="Buscar">';
+          echo '<button class="btn btn-danger py-2 ms-2" type="submit" name="searchsubmit"><i class="bi bi-search"></i> Buscar</button>';
           echo '</div>';
+          echo '</div>';
+
 
           
           if(isset($_POST['searchsubmit']) && $_POST['search'] != '') {
@@ -179,7 +184,7 @@
                   echo '</ul>';
                 echo '</div>';
   
-                echo "<label for='Extras'>Seleccione Extras </label>";
+                echo "<label for='Extras'>Seleccione extras </label>";
                 echo '<div class="d-flex mb-3">';
                 $extraDao->getExtras($value->__get('emailBrand'));
                 echo "<select name='Extras_" . $value->__get('id') . "'>";
@@ -190,7 +195,7 @@
                 echo "</select>";
                 echo '</div>';
   
-                echo "<label for='Color'>Seleccione Color </label>";
+                echo "<label for='Color'>Seleccione un color </label>";
                 echo "<div class='mt-2'>";
                 $colorDao->getColors($value->__get('emailBrand'));
                   echo "<select name='Color_" . $value->__get('id') . "'>";
@@ -208,7 +213,7 @@
                       echo " disabled";
                     }
                     echo ">Agregar al carrito</button>";
-                    echo "<button type='submit' class='btn btn-secondary me-2'  name='Test' value='".$value->__get('id')."'>Probar!</button>";
+                    echo "<button type='submit' class='btn btn-secondary me-2'  name='Test' value='".$value->__get('id')."'>¡Probar!</button>";
                   echo '</div>';
                 echo '</div>';
   
@@ -217,7 +222,7 @@
               echo '</div>';
             }
           } else {
-            echo "<p>No hay vehiculos disponibles.</p>";
+            echo "<p>No hay vehículos disponibles.</p>";
           }
         ?>
       </div>

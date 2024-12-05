@@ -30,29 +30,32 @@
         </section>
 
         <section class="model-gallery py-5 text-center">
-            <h2 class="text-white mb-4"><span class="text-red">N</span>uestros <span class="text-red">M</span>odelos</h2>
-            <div id="modelCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="/SVC/public/jaecoo1.jpg" class="d-block w-100 carousel-image" alt="Modelo 1">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/SVC/public/jaecoo2.webp" class="d-block w-100 carousel-image" alt="Modelo 2">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="/SVC/public/jaecoo3.png" class="d-block w-100 carousel-image" alt="Modelo 3">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#modelCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Anterior</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#modelCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Siguiente</span>
-                </button>
+    <h2 class="text-white mb-4"><span class="text-red">N</span>uestros <span class="text-red">M</span>odelos</h2>
+    <div id="modelCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/SVC/public/grenadier-1.jpg" class="d-block w-100 carousel-image" alt="Modelo 1">
             </div>
-        </section>
+            <div class="carousel-item">
+                <img src="/SVC/public/polestar2.webp" class="d-block w-100 carousel-image" alt="Modelo 2">
+            </div>
+            <div class="carousel-item">
+                <img src="/SVC/public/lux a-3.jpg" class="d-block w-100 carousel-image" alt="Modelo 3">
+            </div>
+            <div class="carousel-item">
+                <img src="/SVC/public/jaecoo3.png" class="d-block w-100 carousel-image" alt="Modelo 4">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#modelCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#modelCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+        </button>
+    </div>
+</section>
         <section class="packages-section py-5 text-center">
             <h2 class="text-white mb-4"><span class="text-red">P</span>aquetes <span class="text-red">E</span>xclusivos</h2>
             <p>Ofrecemos un sistema de selección de extras sencillo y rápido de usar, aplicado a todos los modelos por igual</p>
@@ -80,6 +83,34 @@
                 </div>
             </div>
         </section>
+        
+        <section class="features-section">
+            <div class="container">
+                <h2 class="custom-title">
+                <span class="text-red">P</span>or <span class="text-red">q</span>ué <span class="text-red">e</span>legirnos
+                </h2>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="feature-box">
+                            <h3>Vehículo Ideal</h3>
+                            <p>Selecciona entre distintos paquetes de extras y colores para personalizar tu vehículo a tu gusto.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="feature-box">
+                            <h3>Proceso de Compra Fácil</h3>
+                            <p>Compra online de manera rápida y segura, con la posibilidad de añadir varios vehículos al carrito.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="feature-box">
+                            <h3>Asesoramiento Personalizado</h3>
+                            <p>Contamos con un equipo especializado para ayudarte en cada paso del proceso de compra.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section class="news-section py-5 text-center">
             <h2 class="text-white mb-3" style="font-family: 'titulos';">
@@ -94,7 +125,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-8">
-                        <video controls class="w-100 rounded shadow">
+                        <video muted autoplay loop controls class="w-100 rounded shadow">
                             <source src="/SVC/public/video.mp4" type="video/mp4">
                             Tu navegador no soporta la reproducción de este video.
                         </video>
@@ -103,12 +134,10 @@
             </div>
         </section>
 
-
-
         <section class="appointment-section py-5 text-center bg-light">
             <h2 class="text-dark mb-4"><span class="text-red">R</span>eserva <span class="text-red">T</span>u <span class="text-red">C</span>ita</h2>
             <p>¡Facilita la compra de tu coche! Reserva automáticamente una cita cuando elijas tu coche ideal.</p>
-            <button class="btn btn-primary btn-lg">Ver Modelos Disponibles</button>
+            <a href="/svc/web/shop.php"><button class="btn btn-primary btn-lg">Ver Modelos Disponibles</button></a>
         </section>
     </main>
     <div id="formzone"></div>

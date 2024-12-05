@@ -1,6 +1,6 @@
 <header class="header-container container-fluid px-3">
     <div class="brand d-flex flex-wrap justify-content-center justify-content-lg-start align-items-center">
-        <img src="/SVC/public/logo.png" alt="Logo de la Empresa" class="img-fluid">
+        <a href="/svc/"><img src="/SVC/public/logo.png" alt="Logo de la Empresa" class="img-fluid"></a>
         <div class="brand-text">
             <h1 class="h4 mb-1 text-center text-lg-start">
                 <span class="text-red">S</span>MART <span class="text-red">V</span>ALUE <span class="text-red">C</span>ARS
@@ -52,12 +52,6 @@
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="/svc/"><span class="text-red">I</span>NICIO</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><span class="text-red">C</span>ONOCENOS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><span class="text-red">M</span>ARCAS</a>
                 </li>
                 <?php 
                     if(!isset($_SESSION['client']) || (isset($_SESSION['client']) && $_SESSION['client']['role'] != 'brand')) {

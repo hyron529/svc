@@ -59,7 +59,7 @@
         <div class='container mt-5'>
             <div class='row'>
                 <h2 class="text-center mb-4">
-                    <span class="text-red">GES</span>TIONAR <span class="text-red">C</span>OLORES
+                    <span class="text-red">G</span>ESTIONAR <span class="text-red">C</span>OLORES
                 </h2>
                 <div class="container d-flex justify-content-center mb-4"> 
                     <button type="button" class="btn btn-danger btn-sm w-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -77,12 +77,12 @@
                             <div class="modal-body">
                                 <form name="fextrabrand" method="post" action='<?php echo $_SERVER['PHP_SELF']; ?>'>
                                     <div class="mb-3">
-                                        <label for="colorname" class="form-label">Introduce el nombre del color</label>
-                                        <input type="text" name="colorname" class="form-control" placeholder="Nombre del color." required>
+                                        <label for="colorname" class="form-label">Introduzca el color</label>
+                                        <input type="text" name="colorname" class="form-control" placeholder="Nombre del color" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="pricecolor" class="form-label">Introduce el precio del color</label>
-                                        <input type="number" name="pricecolor" class="form-control" placeholder="Precio del color." required>
+                                        <label for="pricecolor" class="form-label">Introduzca el precio del color</label>
+                                        <input type="number" name="pricecolor" class="form-control" placeholder="Precio del color" required>
                                     </div>
                                     <div class="d-grid gap-2 mb-3" class="form-label">
                                         <input type="submit" class="btn btn-primary" name="Crear" value="Crear">
@@ -115,7 +115,7 @@
                             }
                             echo '</div>'; 
                         } else {
-                            echo "<p class='text-center'>No hay colores disponibles cree uno nuevo.</p>";
+                            echo "<p class='text-center'>No hay colores disponibles. Puede crear uno nuevo.</p>";
                         }
                     ?>
                 </form>

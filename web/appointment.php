@@ -83,7 +83,7 @@
                 $daoAppointment->insert($appointment);
                 echo $alert->successAlert("La cita ha sido creada correctamente.");
             } else {
-                echo $alert->dangerAlert("El correo introducido para asignarle la cita al usuario no es valido.");
+                echo $alert->dangerAlert("El correo introducido para asignarle la cita al usuario no es válido.");
             }
         }
 
@@ -176,7 +176,7 @@
                                                
                                             echo "</div>";
                                             echo '<div class="mt-2 mb-3">';
-                                            echo "<textarea placeholder='Escribe un mensaje...' class='form-control' name='message_" . $appointment->__get('id') . "'></textarea>";
+                                            echo "<textarea placeholder='Escriba un mensaje...' class='form-control' name='message_" . $appointment->__get('id') . "'></textarea>";
                                             echo '</div>';
                                             echo "<button type='submit' value='".$appointment->__get('id')."' name='Enviar'>Enviar</button>";
                                         }
@@ -198,25 +198,25 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Gestionar Colores</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Gestionar Citas</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form name="fextrabrand" method="post" action='<?php echo $_SERVER['PHP_SELF']; ?>'>
                             <div class="mb-3">
-                                <label for="title" class="form-label">Introduce el titulo de la cita</label>
+                                <label for="title" class="form-label">Introduzca el título de la cita</label>
                                 <input type="text" name="title" class="form-control" placeholder="Titulo de la cita." required>
                             </div>
                             <div class="mb-3">
-                                <label for="description" class="form-label">Introduce la descripcion de la cita</label>
+                                <label for="description" class="form-label">Introduzca la descripción de la cita</label>
                                 <input type="text" name="description" class="form-control" placeholder="Descripcion de la cita." required>
                             </div>
                             <div class="mb-3">
-                                <label for="date" class="form-label">Introduce la fecha de la cita</label>
+                                <label for="date" class="form-label">Introduzca la fecha de la cita</label>
                                 <input type="date" name="date" class="form-control" placeholder="Introduce la fecha de la cita." required>
                             </div>
                             <div class="mb-3">
-                                <label for="email" class="form-label">Introduce el correo del cliente</label>
+                                <label for="email" class="form-label">Introduzca el correo del cliente</label>
                                 <input type="email" name="email" class="form-control" placeholder="Introduce el correo del cliente." required>
                             </div>
                             <div class="d-grid gap-2 mb-3" class="form-label">

@@ -67,7 +67,7 @@
                 $quantity = $orderExists['quantity'] - 1;
                 $daoOrderDetails->add($quantity, $oderid, $carid, $extra, $color);
   
-                echo $alert->successAlert("Se ha quitado un coche del carrito.");
+                echo $alert->successAlert("Se ha eliminado un coche del carrito");
               }
         }
 
@@ -85,7 +85,7 @@
               $quantity = $orderExists['quantity'] + 1;
               $daoOrderDetails->add($quantity, $oderid, $carid, $extra, $color);
 
-              echo $alert->successAlert("Se ha añadido un nuevo coche al carrito.");
+              echo $alert->successAlert("Se ha añadido un nuevo coche al carrito");
             }
         }
 
@@ -99,7 +99,7 @@
 
               $daoOrderDetails->delete($oderid, $carid);
 
-              echo $alert->successAlert("Coche eliminado del carrito.");
+              echo $alert->successAlert("Coche eliminado del carrito");
             }
         }
 
@@ -113,8 +113,8 @@
                 $date = $daodetails->getdate($car['emailBrand']);
 
                 $appointment = new Appointment();
-                $appointment->__set("title", "Compra de vehiculo!");
-                $appointment->__set("description", "Información acerca de su vehiculo: " . $car['model_name'] . ". Precio total a pagar: " . $totalPrice);
+                $appointment->__set("title", "Compra de vehículo!");
+                $appointment->__set("description", "Información acerca de su vehiculo: " . $car['model_name'] . ". Precio total: " . $totalPrice);
                 $appointment->__set("date" , $date['time']);
                 $appointment->__set("idClient", $code);
                 $appointment->__set("emailBrand", $brandEmail);
@@ -125,7 +125,7 @@
             }
 
             $daoOrder->sendOrder($code);
-            echo $alert->successAlert("¡El pedido ha sido realizado de manera correcta! Vaya a ver sus citas en el menú correspondiente.");
+            echo $alert->successAlert("¡El pedido ha sido realizado de manera correcta! Puede consultar sus citas en el menú correspondiente.");
         }
 
         require_once('../views//header.php'); // Header de la pagina
@@ -143,7 +143,7 @@
                         $orders = $daoOrderDetails->orders;
 
                         if (count($orders) == 0) {
-                            echo '<p class="text-center">Su carrito esta vacio!</p>';
+                            echo '<p class="text-center">Su carrito está vacío!</p>';
                         } else {
                             // Array con el precio total de los coches de nuestro carrito
                             $orderTotalPrices = array();
@@ -200,7 +200,7 @@
                             echo "<button class='m-auto btn btn-secondary' type='submit' name='Buy' value='".implode(",", $carsid)."'>Realizar Compra (".$orderPrice."€)</button>";
                         }
                     } else {
-                        echo '<p class="text-center">Su carrito esta vacio!</p>';
+                        echo '<p class="text-center">¡Su carrito está vacío!</p>';
                     }
                     
                     ?>

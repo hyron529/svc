@@ -12,7 +12,7 @@
         <meta property="og:site_name" content="SVC" />
         </meta>
         <link rel="shortcut icon" href="../public/favicon.ico" type="image/x-icon" />
-        <title>SVC - Gestionar Articulos</title>
+        <title>SVC - Gestionar Artículos</title>
         <link rel="stylesheet" href="../resources/css/main.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     </head>
@@ -55,13 +55,13 @@
             $article->__set("image", $logo);
             $article->__set("emailBrand", $_SESSION['client']['name']);
             $daoarticle->insertArticle($article);
-            echo $alert->successAlert("El articulo ha sido creado.");
+            echo $alert->successAlert("El artículo ha sido creado correctamente");
         }
 
         if(isset($_POST['Delete'])) {
             $articleid = $_POST['Delete'];
             $daoarticle->delete($articleid);
-            echo $alert->successAlert("El articulo ha sido eliminado correctamente.");
+            echo $alert->successAlert("El artículo ha sido eliminado correctamente");
         }
 
         if(isset($_POST['Modificar'])) {
@@ -78,7 +78,7 @@
             $article->__set("paragrahp2", $paragrahp2);
             $article->__set("paragrahp3", $paragrahp3);
             $daoarticle->update($article);
-            echo $alert->successAlert("El articulo ha sido actualizado.");
+            echo $alert->successAlert("El artículo ha sido actualizado correctamente");
         }
 
         require_once('../views/header.php'); // Header de la pagina
@@ -87,11 +87,11 @@
         <div class='container mt-5'>
             <div class='row'>
                 <h2 class="text-center mb-4">
-                    <span class="text-red">GES</span>TIONAR <span class="text-red">AR</span>TICULOS
+                    <span class="text-red">G</span>ESTIONAR <span class="text-red">A</span>RTICULOS
                 </h2>
                 <div class="container d-flex justify-content-center mb-4"> 
                     <button type="button" class="btn btn-danger btn-sm w-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Crear articulo
+                        Crear artículo
                     </button>
                 </div>
                 <!-- Modal -->
@@ -99,29 +99,29 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Crear Articulos</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Crear Artículos</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <form name="fextrabrand" method="post" action='<?php echo $_SERVER['PHP_SELF']; ?>' enctype="multipart/form-data">
                                     <div class="mb-3">
-                                        <label for="title" class="form-label">Introduce el titulo del articulo</label>
+                                        <label for="title" class="form-label">Introdzca el título del artículo</label>
                                         <textarea type="text" maxlength="100" name="title" class="form-control" placeholder="Titulo del articulo." required></textarea>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="paragrahp1" class="form-label">Introduce la introduccion del articulo</label>
+                                        <label for="paragrahp1" class="form-label">Introduzca el primer párrafo del artículo</label>
                                         <textarea type="text"  maxlength="800" name="paragrahp1" class="form-control" placeholder="Introduccion del articulo." required></textarea>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="paragrahp2" class="form-label">Introduce el cuerpo del articulo</label>
+                                        <label for="paragrahp2" class="form-label">Introduzca el segundo párrafo del artículo</label>
                                         <textarea type="text" maxlength="800" name="paragrahp2" class="form-control" placeholder="Introduccion del articulo." required></textarea>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="paragrahp3" class="form-label">Introduce la conclusion del articulo</label>
+                                        <label for="paragrahp3" class="form-label">Introduzca la conclusión del artículo</label>
                                         <textarea type="text" maxlength="800" name="paragrahp3" class="form-control" placeholder="Introduccion del articulo." required></textarea>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="image" class="form-label">Imagen del articulo</label>
+                                        <label for="image" class="form-label">Imagen del artículo</label>
                                         <input class='form-label' type='file' name='image' accept='image/jpg'>
                                     </div>
                                     <div class="d-grid gap-2 mb-3" class="form-label">
@@ -159,24 +159,24 @@
                                         echo '  <div class="modal-dialog">';
                                         echo '    <div class="modal-content">';
                                         echo '      <div class="modal-header">';
-                                        echo '        <h1 class="modal-title fs-5" id="modal2Label">Actualizar articulo</h1>';
+                                        echo '        <h1 class="modal-title fs-5" id="modal2Label">Actualizar artículo</h1>';
                                         echo '        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
                                         echo '      </div>';
                                         echo '      <div class="modal-body">';
                                         echo "  <div class='mb-3'>";
-                                        echo "    <label for='title' class='form-label'>Introduce el titulo del articulo</label>";
+                                        echo "    <label for='title' class='form-label'>Introduzca el título del artículo</label>";
                                         echo "    <input type='text' name='title' class='form-control' value='".$value->__get('title')."' required>";
                                         echo "  </div>";
                                         echo "  <div class='mb-3'>";
-                                        echo "    <label for='paragrahp1' class='form-label'>Introduce la introduccion del articulo</label>";
+                                        echo "    <label for='paragrahp1' class='form-label'>Introduzca el primer párrafo del artículo</label>";
                                         echo "    <input type='text' name='paragrahp1' class='form-control' value='".$value->__get('paragrahp1')."' required>";
                                         echo "  </div>";
                                         echo "  <div class='mb-3'>";
-                                        echo "    <label for='paragrahp2' class='form-label'>Introduce el cuerpo del articulo</label>";
+                                        echo "    <label for='paragrahp2' class='form-label'>Introduzca el segundo párrafo del artículo</label>";
                                         echo "    <input type='text' name='paragrahp2' class='form-control' value='".$value->__get('paragrahp2')."' required>";
                                         echo "  </div>";
                                         echo "  <div class='mb-3'>";
-                                        echo "    <label for='paragrahp3' class='form-label'>Introduce la conclusion del articulo</label>";
+                                        echo "    <label for='paragrahp3' class='form-label'>Introduzca la conclusión del artículo</label>";
                                         echo "    <input type='text' name='paragrahp3' class='form-control' value='".$value->__get('paragrahp3')."' required>";
                                         echo "  </div>";
                                         echo "  <div class='d-grid gap-2 mb-3'>";
@@ -189,7 +189,7 @@
                                 }
                             echo '</div>'; 
                         } else {
-                            echo "<p class='text-center'>No hay articulos disponibles cree uno nuevo.</p>";
+                            echo "<p class='text-center'>Lo sentimos. No hay artículos disponibles. Puede crear uno nuevo.</p>";
                         }
                     ?>
                 </form>

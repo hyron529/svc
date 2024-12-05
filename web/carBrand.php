@@ -99,7 +99,7 @@
         <div class='container mt-5'>
             <div class='row'>
                 <h2 class="text-center mb-4">
-                    <span class="text-red">GES</span>TIONAR <span class="text-red">C</span>OCHES
+                    <span class="text-red">G</span>ESTIONAR <span class="text-red">C</span>OCHES
                 </h2>
                 <div class="container d-flex justify-content-center mb-4"> 
                     <button type="button" class="btn btn-danger btn-sm w-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -117,8 +117,8 @@
                             <div class="modal-body">
                                 <form name="fextrabrand" method="post" action='<?php echo $_SERVER['PHP_SELF']; ?>' enctype="multipart/form-data">
                                     <div class="mb-3">
-                                        <label for="modelname" class="form-label">Introduce el nombre del modelo del coche</label>
-                                        <input type="text" name="modelname" class="form-control" placeholder="Nombre del coche." required>
+                                        <label for="modelname" class="form-label">Introduzca el modelo</label>
+                                        <input type="text" name="modelname" class="form-control" placeholder="Nombre del modelo" required>
                                     </div>
 
                                     <div class="mb-3">
@@ -137,8 +137,8 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="trunk_capacity" class="form-label">Capacidad del deposito</label>
-                                        <input type="number" name="trunk_capacity" class="form-control" placeholder="Capacidad del deposito" required>
+                                        <label for="trunk_capacity" class="form-label">Capacidad del depósito</label>
+                                        <input type="number" name="trunk_capacity" class="form-control" placeholder="Capacidad del depósito" required>
                                     </div>
 
                                     <div class="mb-3">
@@ -219,7 +219,7 @@
                             }
                             echo '</div>'; 
                         } else {
-                            echo "<p class='text-center'>No hay vehiculos disponibles cree uno nuevo.</p>";
+                            echo "<p class='text-center'>No hay vehículos disponibles. Puede crear uno nuevo.</p>";
                         }
                     ?>
                 </form>
