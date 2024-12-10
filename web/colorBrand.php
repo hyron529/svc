@@ -76,15 +76,20 @@
                             </div>
                             <div class="modal-body">
                                 <form name="fextrabrand" method="post" action='<?php echo $_SERVER['PHP_SELF']; ?>'>
+                                    <!-- Nombre del color -->
                                     <div class="mb-3">
                                         <label for="colorname" class="form-label">Introduzca el color</label>
                                         <input type="text" name="colorname" class="form-control" placeholder="Nombre del color" required>
                                     </div>
+
+                                    <!-- Precio del color -->
                                     <div class="mb-3">
-                                        <label for="pricecolor" class="form-label">Introduzca el precio del color</label>
-                                        <input type="number" name="pricecolor" class="form-control" placeholder="Precio del color" required>
+                                        <label for="pricecolor" class="form-label">Introduzca el precio del color (€)</label>
+                                        <input type="number" name="pricecolor" class="form-control" placeholder="Precio del color" min="0" step="0.01" required>
                                     </div>
-                                    <div class="d-grid gap-2 mb-3" class="form-label">
+
+                                    <!-- Botón Crear -->
+                                    <div class="d-grid gap-2">
                                         <input type="submit" class="btn btn-primary" name="Crear" value="Crear">
                                     </div>
                                 </form>
@@ -92,6 +97,7 @@
                         </div>
                     </div>
                 </div>
+
                 <form name="fextrabrand" method="post" action='<?php echo $_SERVER['PHP_SELF']; ?>'>
                     <?php 
                         $daocolor->getColors($_SESSION['client']['name']);

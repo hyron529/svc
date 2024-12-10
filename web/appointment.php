@@ -21,6 +21,7 @@
         require_once('../dao/AppointmentDAO.php');
         require_once('../utils/alert.php');
         require_once('../dao/MessageDao.php');
+        require_once('../dao/DateDetailsDAO.php');
         require_once('../entities/Message.php');
         require_once('../dao/ClientDAO.php');
 
@@ -35,6 +36,7 @@
         // Creamos nuestros daos
         $daoAppointment = new DaoAppointment($base);
         $daoMessage = new DaoMessage($base);
+        $daoDetails = new DaoDateDetails($base);
         $daoClient = new DaoClient($base);
         $alert = new AlertGenerator();
 
@@ -46,6 +48,7 @@
         } elseif ($_SESSION['client']['role'] == 'brand') {
             // obtenemos las citas que tiene una marca
             $daoAppointment->list("", $_SESSION['client']['name']);
+            $daoDetails->getDateDetails($_SESSION['client']['name']);
         }
 
 
@@ -56,12 +59,22 @@
             echo $alert->successAlert("Cita eliminada correctamente.");
         }
 
-        function FechaEpoch($fecha)   //Convierte una fecha en formato dd/mm/yyyy a segundos epoch
+        function FechaEpoch($fecha) 
         {
-            $camposFecha = explode("-", $fecha);
+            // Dividimos la fecha en la parte de fecha y hora
+            $camposFechaHora = explode("T", $fecha);
+            $fechaPartes = explode("-", $camposFechaHora[0]); 
+            $horaPartes = explode(":", $camposFechaHora[1]);
 
-            // La convertimos a epoch para guardarla de esta forma
-            $fechaEpoch = mktime(0, 0, 0, $camposFecha[1], $camposFecha[0], $camposFecha[2]);
+            // Convertimos a epoch
+            $fechaEpoch = mktime(
+                $horaPartes[0], // Horas
+                $horaPartes[1], // Minutos
+                0,              // Segundos
+                $fechaPartes[1], // Mes
+                $fechaPartes[2], // Día
+                $fechaPartes[0]  // Año
+            );
 
             return $fechaEpoch;
         }
@@ -101,6 +114,19 @@
             echo $alert->successAlert("Mensaje enviado correctamente.");
         }
 
+        if(isset($_POST['AddTime'])) {
+            $date = $_POST['date'];
+            $epochDate = FechaEpoch($date);
+            $daoDetails->insert($epochDate, $_SESSION['client']['name']);
+            echo $alert->successAlert("Hueco creado correctamente.");
+        }
+
+        if(isset($_POST['DeleteAppointment'])) {
+            $id = $_POST['DeleteAppointment'];
+            $daoDetails->delete($id);
+            echo $alert->successAlert("Hueco eliminado correctamente.");
+        }
+
         function MostrarFecha($fechaSeg)
         {
             $rows = getdate($fechaSeg);
@@ -124,6 +150,11 @@
                             echo '
                             <button type="button" class="btn btn-danger btn-sm w-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Crear Cita
+                            </button>
+                            ';
+                            echo '
+                            <button type="button" class="btn btn-danger btn-sm w-auto ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                               Añadir huecos de citas
                             </button>
                             ';
                             echo '</div>';
@@ -187,6 +218,37 @@
                         } else {
                             echo "<p class='text-center'>No tiene ninguna cita en su calendario</p>";
                         }
+                        
+                        if($_SESSION['client']['role'] == 'brand') {
+                            if(count($daoDetails->datedeatils) != 0) {
+                                echo "<h2 class='text-center'>Huecos</h2>";
+                                echo '<div class="row">';  
+                                foreach($daoDetails->datedeatils as $value) {
+                                    if ($value->__get('isOccuped') == 1) {
+                                        $ocupped = "La cita esta ocupada.";
+                                    } else {
+                                        $ocupped = "La cita esta disponible.";
+                                    }
+                                    echo '<div class="col-md-4 mb-4 d-flex align-items-stretch">';
+                                    echo '<div class="card shadow-sm border-0 h-100 w-100">';  
+                                        echo "<div class='product-content p-3 bg-dark text-white'>";
+                                            echo '<h5 class="product-title mb-1 fw-bold">Hueco para cita</h5>';
+                        
+                                            echo '<div class="d-flex flex-column mb-3">';
+                                                echo "<p class='card-text'>Fecha: ".MostrarFecha($value->__get('time'))."</strong></p>";
+                                                echo "<p class='card-text'>Ocupada: ".$ocupped."</strong></p>";
+                                            echo "</div>";
+                        
+                                            echo "<button class='btn btn-danger mt-3' type='submit' name='DeleteAppointment' value='".$value->__get('id')."'>Eliminar</button>";
+                                        echo '</div>';
+                                    echo '</div>';
+                                    echo '</div>';       
+                                }
+                                echo '</div>'; 
+                            } else {
+                                echo "<p class='text-center'>No hay huecos de citas disponibles. Puede crear uno nuevo.</p>";
+                            }
+                        }
        
                         ?>
                     </div>
@@ -205,19 +267,29 @@
                         <form name="fextrabrand" method="post" action='<?php echo $_SERVER['PHP_SELF']; ?>'>
                             <div class="mb-3">
                                 <label for="title" class="form-label">Introduzca el título de la cita</label>
-                                <input type="text" name="title" class="form-control" placeholder="Titulo de la cita." required>
+                                <input type="text" name="title" class="form-control" placeholder="Titulo de la cita." 
+                                    pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\s\.\,\-]+" required>
+                                <div class="invalid-feedback d-none">El título solo puede contener letras, números, espacios, comas, puntos o guiones.</div>
+                                <div class="valid-feedback">Correcto.</div>
                             </div>
                             <div class="mb-3">
                                 <label for="description" class="form-label">Introduzca la descripción de la cita</label>
-                                <input type="text" name="description" class="form-control" placeholder="Descripcion de la cita." required>
+                                <input type="text" name="description" class="form-control" placeholder="Descripcion de la cita." 
+                                    pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\s\.\,\-]+" required>
+                                <div class="invalid-feedback d-none">La descripción solo puede contener letras, números, espacios, comas, puntos o guiones.</div>
+                                <div class="valid-feedback">Correcto.</div>
                             </div>
                             <div class="mb-3">
                                 <label for="date" class="form-label">Introduzca la fecha de la cita</label>
                                 <input type="date" name="date" class="form-control" placeholder="Introduce la fecha de la cita." required>
+                                <div class="invalid-feedback d-none">Debe introducir una fecha válida.</div>
+                                <div class="valid-feedback">Correcto.</div>
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Introduzca el correo del cliente</label>
                                 <input type="email" name="email" class="form-control" placeholder="Introduce el correo del cliente." required>
+                                <div class="invalid-feedback d-none">Debe introducir un correo válido.</div>
+                                <div class="valid-feedback">Correcto.</div>
                             </div>
                             <div class="d-grid gap-2 mb-3" class="form-label">
                                 <input type="submit" class="btn btn-primary" name="Crear" value="Crear">
@@ -227,6 +299,31 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Gestionar Citas</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="fextrabrand" method="post" action='<?php echo $_SERVER['PHP_SELF']; ?>'>
+                            <div class="d-grid gap-2 mb-3" class="form-label">
+                                <div class="mb-3">
+                                    <label for="date" class="form-label">Introduzca el hueco para la cita</label>
+                                    <input type="datetime-local" name="date" class="form-control" placeholder="Introduce la fecha de la cita." required>
+                                    <div class="invalid-feedback d-none">Debe introducir un hueco para una cita valido.</div>
+                                    <div class="valid-feedback">Correcto.</div>
+                                </div>
+                                <input type="submit" class="btn btn-primary" name="AddTime" value="Añadir hueco">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <?php
             require_once('../views/footer.php');
             require_once('../utils/scripts.php');

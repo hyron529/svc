@@ -5,7 +5,7 @@
 class DateDetails
 {
 
-  private $date;
+  private $id;
   private $time;
   private $isOccuped;
   private $emailBrand;

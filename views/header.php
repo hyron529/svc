@@ -1,6 +1,6 @@
 <header class="header-container container-fluid px-3">
     <div class="brand d-flex flex-wrap justify-content-center justify-content-lg-start align-items-center">
-        <a href="/svc/"><img src="/SVC/public/logo.png" alt="Logo de la Empresa" class="img-fluid"></a>
+        <a href="/svc/"><img src="/svc/public/logo.png" alt="Logo de la Empresa" class="img-fluid"></a>
         <div class="brand-text">
             <h1 class="h4 mb-1 text-center text-lg-start">
                 <span class="text-red">S</span>MART <span class="text-red">V</span>ALUE <span class="text-red">C</span>ARS

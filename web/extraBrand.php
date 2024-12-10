@@ -77,14 +77,14 @@
                             <div class="modal-body">
                                 <form name="fextrabrand" method="post" action='<?php echo $_SERVER['PHP_SELF']; ?>'>
                                     <div class="mb-3">
-                                        <label for="extraname" class="form-label">Introduzca el nombre del extra</label>
-                                        <input type="text" name="extraname" class="form-control" placeholder="Nombre del extra" required>
+                                        <label for="extraname" class="form-label">Nombre del Extra</label>
+                                        <input type="text" name="extraname" id="extraname" class="form-control" placeholder="Nombre del extra" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="priceextra" class="form-label">Introduzca el precio del Extra</label>
-                                        <input type="number" name="priceextra" class="form-control" placeholder="Precio del extra" required>
+                                        <label for="priceextra" class="form-label">Precio del Extra</label>
+                                        <input type="number" name="priceextra" id="priceextra" class="form-control" placeholder="Precio del extra" required>
                                     </div>
-                                    <div class="d-grid gap-2 mb-3" class="form-label">
+                                    <div class="d-grid gap-2">
                                         <input type="submit" class="btn btn-primary" name="Crear" value="Crear">
                                     </div>
                                 </form>
@@ -92,6 +92,7 @@
                         </div>
                     </div>
                 </div>
+
                 <form name="fextrabrand" method="post" action='<?php echo $_SERVER['PHP_SELF']; ?>'>
                     <?php 
                         $daoextra->getExtras($_SESSION['client']['name']);

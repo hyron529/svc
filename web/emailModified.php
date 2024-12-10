@@ -81,30 +81,44 @@
         }
     ?>
     <body class='bg-color'>
-        <div class="container d-flex justify-content-center align-items-center vh-100">
-            <div class="login-card p-5">
-                <h2 class="text-center mb-4">
-                    <span class="text-red">M</span>ODIFICAR <span class="text-red">C</span>ORREO
-                </h2>
-                <form name="femail" method="post" action='<?php echo $_SERVER['PHP_SELF']; ?>'>
-                    <div class="mb-3">
-                        <label for="oldEmail" class="form-label">Correo Actual</label>
-                        <input type="text" name="oldEmail" class="form-control" placeholder="Introduzca su correo actual.">
-                    </div>
-                    <div class="mb-3">
-                        <label for="newEmail" class="form-label">Nuevo Correo</label>
-                        <input type="text" name="newEmail" class="form-control" placeholder="Introduzca el nuevo correo.">
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Introduzca su contraseña</label>
-                        <input type="password" name="password" class="form-control" placeholder="Introduzca su contraseña.">
-                    </div>
-                    <div class="d-grid gap-2 mb-3">
-                        <input type="submit" class="btn btn-primary" value="Modificar" name="Modificar">
-                    </div>
-                </form>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="login-card p-5 shadow rounded">
+        <h2 class="text-center mb-4">
+            <span class="text-danger">M</span>ODIFICAR <span class="text-danger">C</span>ORREO
+        </h2>
+        <form name="femail" method="post" action='<?php echo $_SERVER['PHP_SELF']; ?>'>
+            <!-- Correo Actual -->
+            <div class="mb-3">
+                <label for="oldEmail" class="form-label">Correo Actual</label>
+                <input 
+                    type="email" 
+                    name="oldEmail" 
+                    id="oldEmail" 
+                    class="form-control" 
+                    placeholder="Introduzca su correo actual" 
+                    required>
             </div>
-        </div>
+            
+            <!-- Nuevo Correo -->
+            <div class="mb-3">
+                <label for="newEmail" class="form-label">Nuevo Correo</label>
+                <input type="email" name="newEmail" id="newEmail" class="form-control" placeholder="Introduzca el nuevo correo" required>
+            </div>
+            
+            <!-- Contraseña -->
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Introduzca su contraseña" required>
+            </div>
+            
+            <!-- Botón Modificar -->
+            <div class="d-grid gap-2 mb-3">
+                <input type="submit" class="btn btn-primary" value="Modificar" name="Modificar">
+            </div>
+        </form>
+    </div>
+</div>
+
         <?php require_once('../utils/scripts.php'); ?>
     </body>
 </html>

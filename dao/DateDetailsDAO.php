@@ -13,7 +13,7 @@ class DaoDateDetails extends DB {
     }
 
     public function getDate($emailBrand) {
-        $consulta = "SELECT time FROM date_list WHERE emailBrand=:emailBrand and isOccuped=false";
+        $consulta = "SELECT id, time FROM date_list WHERE emailBrand=:emailBrand and isOccuped=false";
 
         $param = array(":emailBrand" => $emailBrand);
 
@@ -22,10 +22,55 @@ class DaoDateDetails extends DB {
         return $this->filas[0] ?? null;
     }
 
-    public function occuped($time) {
-        $consulta = "UPDATE date_list SET isOccuped=true where time=:time";
+
+    public function getDateDetails($emailBrand) {
+        $consulta = "SELECT * FROM date_list WHERE emailBrand=:emailBrand";
     
-        $param = array(":time" => $time);
+        $param = array(":emailBrand" => $emailBrand);
+    
+        $this->datedeatils = array();
+    
+        $this->ConsultaDatos($consulta, $param);
+    
+        foreach ($this->filas as $row) {
+          $date = new DateDetails();
+    
+          $date->__set("id", $row["id"]);
+          $date->__set("time", $row["time"]);
+          $date->__set("isOccuped", $row["isOccuped"]);
+          $date->__set("emailBrand", $row["emailBrand"]);
+          
+          $this->datedeatils[] = $date;
+        }
+    }
+
+
+    public function occuped($time, $id) {
+        $consulta = "UPDATE date_list SET isOccuped=true where time=:time and id=:id";
+    
+        $param = array(":time" => $time,
+        ":id" => $id);
+
+        $this->ConsultaSimple($consulta, $param);
+    }
+
+    public function insert($time, $emailBrand) {
+        $consulta = "INSERT INTO date_list VALUES(:time, 0, :emailBrand, null)";
+        
+        $param = array(
+            ":time" => $time,
+            ":emailBrand" => $emailBrand
+        );
+    
+        $this->ConsultaSimple($consulta, $param);
+    }
+
+    public function delete($id) {
+        $consulta = "DELETE FROM date_list WHERE id=:id";
+    
+        $param = array(
+            ":id" => $id
+        );
     
         $this->ConsultaSimple($consulta, $param);
       }

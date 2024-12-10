@@ -93,6 +93,10 @@
             echo $alert->successAlert("El coche ha sido eliminado correctamente.");
         }
 
+        if(isset($_POST['AddStock'])) {
+            
+        }
+
         require_once('../views/header.php'); // Header de la pagina
     ?>
     <body class='bg-color'>
@@ -116,69 +120,87 @@
                             </div>
                             <div class="modal-body">
                                 <form name="fextrabrand" method="post" action='<?php echo $_SERVER['PHP_SELF']; ?>' enctype="multipart/form-data">
+                                    <!-- Modelo -->
                                     <div class="mb-3">
                                         <label for="modelname" class="form-label">Introduzca el modelo</label>
                                         <input type="text" name="modelname" class="form-control" placeholder="Nombre del modelo" required>
                                     </div>
 
+                                    <!-- Año de fabricación -->
                                     <div class="mb-3">
                                         <label for="fabrication_year" class="form-label">Año de fabricación</label>
-                                        <input type="date" name="fabrication_year" class="form-control" placeholder="Año de fabricación" required>
+                                        <input type="date" name="fabrication_year" class="form-control" required>
                                     </div>
 
+                                    <!-- Precio base -->
                                     <div class="mb-3">
-                                        <label for="base_price" class="form-label">Precio base</label>
-                                        <input type="number" name="base_price" class="form-control" placeholder="Precio base" required>
+                                        <label for="base_price" class="form-label">Precio base (€)</label>
+                                        <input type="number" name="base_price" class="form-control" placeholder="Precio base" min="0" step="0.01" required>
                                     </div>
 
+                                    <!-- Tipo de combustible -->
                                     <div class="mb-3">
                                         <label for="fuel_type" class="form-label">Tipo de combustible</label>
                                         <input type="text" name="fuel_type" class="form-control" placeholder="Tipo de combustible" required>
                                     </div>
 
+                                    <!-- Capacidad del depósito -->
                                     <div class="mb-3">
-                                        <label for="trunk_capacity" class="form-label">Capacidad del depósito</label>
-                                        <input type="number" name="trunk_capacity" class="form-control" placeholder="Capacidad del depósito" required>
+                                        <label for="trunk_capacity" class="form-label">Capacidad del depósito (litros)</label>
+                                        <input type="number" name="trunk_capacity" class="form-control" placeholder="Capacidad del depósito" min="0" step="1" required>
                                     </div>
 
+                                    <!-- Transmisión -->
                                     <div class="mb-3">
                                         <label for="transmission" class="form-label">Transmisión</label>
                                         <input type="text" name="transmission" class="form-control" placeholder="Transmisión" required>
                                     </div>
 
+                                    <!-- Color base -->
                                     <div class="mb-3">
                                         <label for="base_color" class="form-label">Color base</label>
                                         <input type="text" name="base_color" class="form-control" placeholder="Color base" required>
                                     </div>
 
+                                    <!-- Potencia -->
                                     <div class="mb-3">
-                                        <label for="power" class="form-label">Potencia</label>
-                                        <input type="number" name="power" class="form-control" placeholder="Potencia" required>
+                                        <label for="power" class="form-label">Potencia (CV)</label>
+                                        <input type="number" name="power" class="form-control" placeholder="Potencia" min="0" step="1" required>
                                     </div>
 
+                                    <!-- Autonomía -->
                                     <div class="mb-3">
-                                        <label for="autonomy" class="form-label">Autonomía</label>
-                                        <input type="number" name="autonomy" class="form-control" placeholder="Autonomía" required>
+                                        <label for="autonomy" class="form-label">Autonomía (km)</label>
+                                        <input type="number" name="autonomy" class="form-control" placeholder="Autonomía" min="0" step="1" required>
                                     </div>
 
+                                    <!-- Número de asientos -->
                                     <div class="mb-3">
                                         <label for="num_seats" class="form-label">Número de asientos</label>
-                                        <input type="number" name="num_seats" class="form-control" placeholder="Número de asientos" required>
+                                        <input type="number" name="num_seats" class="form-control" placeholder="Número de asientos" min="1" step="1" required>
                                     </div>
+
+                                    <!-- Tipo de coche -->
                                     <div class="mb-3">
                                         <label for="car_type" class="form-label">Tipo de coche</label>
                                         <input type="text" name="car_type" class="form-control" placeholder="Tipo de coche" required>
                                     </div>
+
+                                    <!-- Stock -->
                                     <div class="mb-3">
                                         <label for="stock" class="form-label">Stock</label>
-                                        <input type="number" name="stock" class="form-control" placeholder="Stock" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="image" class="form-label">Imagen</label>
-                                        <input class='form-label' type='file' name='image' accept='image/jpg'>
+                                        <input type="number" name="stock" class="form-control" placeholder="Stock" min="0" step="1" required>
                                     </div>
 
-                                    <div class="d-grid gap-2 mb-3" class="form-label">
+                                    <!-- Imagen -->
+                                    <div class="mb-3">
+                                        <label for="image" class="form-label">Imagen</label>
+                                        <input type="file" name="image" class="form-control" accept=".jpg,.jpeg,.png" required>
+                                        <div class="invalid-feedback d-none">Debe seleccionar un archivo de imagen válido (.jpg, .jpeg, .png).</div>
+                                    </div>
+
+                                    <!-- Botón Crear -->
+                                    <div class="d-grid gap-2">
                                         <input type="submit" class="btn btn-primary" name="Crear" value="Crear">
                                     </div>
                                 </form>
@@ -213,6 +235,7 @@
                                         echo "</div>";
                     
                                         echo "<button class='btn btn-danger mt-3' type='submit' name='Delete' value='".$value->__get('id')."'>Eliminar</button>";
+                                        echo "<button class='btn btn-primary mt-3 ms-3' type='submit' name='AddStock' value='".$value->__get('id')."'>Aumentar Stock (5)</button>";
                                     echo '</div>';
                                 echo '</div>';
                                 echo '</div>';       

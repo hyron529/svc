@@ -105,26 +105,31 @@
                             <div class="modal-body">
                                 <form name="fextrabrand" method="post" action='<?php echo $_SERVER['PHP_SELF']; ?>' enctype="multipart/form-data">
                                     <div class="mb-3">
-                                        <label for="title" class="form-label">Introdzca el título del artículo</label>
-                                        <textarea type="text" maxlength="100" name="title" class="form-control" placeholder="Titulo del articulo." required></textarea>
+                                        <label for="title" class="form-label">Introduzca el título del artículo</label>
+                                        <textarea type="text" maxlength="100" name="title" class="form-control" 
+                                                placeholder="Título del artículo." required></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="paragrahp1" class="form-label">Introduzca el primer párrafo del artículo</label>
-                                        <textarea type="text"  maxlength="800" name="paragrahp1" class="form-control" placeholder="Introduccion del articulo." required></textarea>
+                                        <textarea type="text" maxlength="800" name="paragrahp1" class="form-control" 
+                                                placeholder="Introducción del artículo." required></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="paragrahp2" class="form-label">Introduzca el segundo párrafo del artículo</label>
-                                        <textarea type="text" maxlength="800" name="paragrahp2" class="form-control" placeholder="Introduccion del articulo." required></textarea>
+                                        <textarea type="text" maxlength="800" name="paragrahp2" class="form-control" 
+                                                placeholder="Contenido del artículo." required></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="paragrahp3" class="form-label">Introduzca la conclusión del artículo</label>
-                                        <textarea type="text" maxlength="800" name="paragrahp3" class="form-control" placeholder="Introduccion del articulo." required></textarea>
+                                        <textarea type="text" maxlength="800" name="paragrahp3" class="form-control" 
+                                                placeholder="Conclusión del artículo." required></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <label for="image" class="form-label">Imagen del artículo</label>
-                                        <input class='form-label' type='file' name='image' accept='image/jpg'>
+                                        <input class="form-control" type="file" name="image" accept=".jpg,.jpeg,.png" required>
+                                        <div class="invalid-feedback d-none">Debe seleccionar un archivo de imagen válido (.jpg, .jpeg, .png).</div>
                                     </div>
-                                    <div class="d-grid gap-2 mb-3" class="form-label">
+                                    <div class="d-grid gap-2 mb-3">
                                         <input type="submit" class="btn btn-primary" name="Crear" value="Crear">
                                     </div>
                                 </form>
@@ -132,6 +137,7 @@
                         </div>
                     </div>
                 </div>
+
                 <form name="farticlebrand" method="post" action='<?php echo $_SERVER['PHP_SELF']; ?>'>
                     <?php 
                         $daoarticle->getarticles($_SESSION['client']['name']);
@@ -139,8 +145,8 @@
                         if(count($daoarticle->articles) != 0) {
                             echo '<div class="row">';  
                             foreach($daoarticle->articles as $value) {
-                                echo '<div class="col-md-4 mb-4 d-flex align-items-stretch">';
-                                echo '<div class="card shadow-sm border-0 h-100 w-100">';  
+                                echo '<div class="col-md-4 mb-4 d-flex align-items-stretch" >';
+                                echo '<div class="card shadow-sm border-0" style="max-height: 470px; height:470px">';  
                                     echo "<div class='product-content p-3 bg-dark text-white'>";
                                         echo '<h5 class="product-title mb-1 fw-bold">' . $value->__get('title'). '</h5>';
                     

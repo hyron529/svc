@@ -98,12 +98,26 @@
             </h2>
             <form name="flogin" method="post" action='<?php echo $_SERVER['PHP_SELF']; ?>'>
                 <div class="mb-3">
-                    <label for="username" class="form-label">Usuario</label>
-                    <input type="text" class="form-control" id="username"  name="username" placeholder="Introduzca tu usuario">
+                    <label for="username" class="form-label">Correo Electrónico</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="username"  
+                        name="username" 
+                        placeholder="Introduzca su correo electrónico"
+                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
+                        required 
+                        title="Introduzca un correo electrónico válido.">
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Introduzca tu contraseña">
+                    <input 
+                        type="password" 
+                        class="form-control" 
+                        id="password" 
+                        name="password" 
+                        placeholder="Introduzca su contraseña" 
+                        required>
                 </div>
                 <div class="d-grid gap-2 mb-3">
                     <input type="submit" class="btn btn-primary" value="Iniciar Sesión" name="Login">

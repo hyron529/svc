@@ -36,16 +36,16 @@
                     echo "
                     <div class='container py-5'>
                         <div class='row justify-content-center'>
-                            <div class='col-md-10 col-lg-8'> <!-- Aumenté el tamaño de la columna -->
+                            <div class='col-md-10 col-lg-8'>
                                 <div class='article-card shadow-lg rounded overflow-hidden'>
                                     <div class='article-image'>
                                         <img src='data:image/jpeg;base64," . $value->__get('image') . "' class='img-fluid' alt='Imagen del artículo'>
                                     </div>
-                                    <div class='article-content p-5'> <!-- Aumenté el padding -->
-                                        <h2 class='article-title text-dark font-weight-bold mb-4'>".$value->__get("title")."</h2> <!-- Aumenté el margen inferior -->
-                                        <p class='article-summary text-muted mb-4'>".$value->__get("paragrahp1")."</p> <!-- Aumenté el margen inferior -->
-                                        <p class='article-text mb-4'>".$value->__get("paragrahp2")."</p> <!-- Aumenté el margen inferior -->
-                                        <p class='article-text mb-4'>".$value->__get("paragrahp3")."</p> <!-- Aumenté el margen inferior -->
+                                    <div class='article-content p-5'>
+                                        <h2 class='article-title text-dark font-weight-bold mb-4'>".$value->__get("title")."</h2>
+                                        <p class='article-summary text-muted mb-4'>".$value->__get("paragrahp1")."</p>
+                                        <p class='article-text mb-4'>".$value->__get("paragrahp2")."</p>
+                                        <p class='article-text mb-4'>".$value->__get("paragrahp3")."</p>
                                     </div>
                                 </div>
                             </div>

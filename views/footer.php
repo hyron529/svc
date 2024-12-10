@@ -4,17 +4,17 @@
     </div>
 
     <div class="social-icons">
-        <img src="/SVC/public/tiktok.webp" alt="TikTok">
-        <img src="/SVC/public/x.png" alt="X">
-        <img src="/SVC/public/insta.png" alt="Instagram">
+        <img src="/svc/public/tiktok.webp" alt="TikTok">
+        <img src="/svc/public/x.png" alt="X">
+        <img src="/svc/public/insta.png" alt="Instagram">
     </div>
     <hr>
     <div class="car-logos">
-        <img src="/SVC/public/rivian.png" alt="rivian">
-        <img src="/SVC/public/jaecoo.png" alt="jaecoo">
-        <img src="/SVC/public/xiaomi.png" alt="xiaomi">
-        <img src="/SVC/public/vinfast.png" alt="vinfast">
-        <img src="/SVC/public/lp.png" alt="lp">
-        <img src="/SVC/public/marca1.png" alt="marca1">
+        <img src="/svc/public/rivian.png" alt="rivian">
+        <img src="/svc/public/jaecoo.png" alt="jaecoo">
+        <img src="/svc/public/xiaomi.png" alt="xiaomi">
+        <img src="/svc/public/vinfast.png" alt="vinfast">
+        <img src="/svc/public/lp.png" alt="lp">
+        <img src="/svc/public/marca1.png" alt="marca1">
     </div>
 </footer>

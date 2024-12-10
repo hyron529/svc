@@ -67,26 +67,27 @@
         }
     ?>
     <body class='bg-color'>
-        <div class="container d-flex justify-content-center align-items-center vh-100">
-            <div class="login-card p-5">
-                <h2 class="text-center mb-4">
-                    <span class="text-red">M</span>ODIFICAR <span class="text-red">C</span>ONTRASEÑA
-                </h2>
-                <form name="femail" method="post" action='<?php echo $_SERVER['PHP_SELF']; ?>'>
-                    <div class="mb-3">
-                        <label for="passwordOld" class="form-label">Contraseña Actual</label>
-                        <input type="password" name="passwordOld" class="form-control" placeholder="Introduzca su correo actual.">
-                    </div>
-                    <div class="mb-3">
-                        <label for="passwordNew" class="form-label">Contraseña Nueva</label>
-                        <input type="password" name="passwordNew" class="form-control" placeholder="Introduzca el nuevo correo.">
-                    </div>
-                    <div class="d-grid gap-2 mb-3" class="form-label">
-                        <input type="submit" class="btn btn-primary" name="Modificar" value="Modificar">
-                    </div>
-                </form>
-            </div>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="login-card p-5">
+            <h2 class="text-center mb-4">
+                <span class="text-red">M</span>ODIFICAR <span class="text-red">C</span>ONTRASEÑA
+            </h2>
+            <form name="femail" method="post" action='<?php echo $_SERVER['PHP_SELF']; ?>'>
+                <div class="mb-3">
+                    <label for="passwordOld" class="form-label">Contraseña Actual</label>
+                    <input type="password" name="passwordOld" class="form-control" placeholder="Introduzca su contraseña actual" required>
+                </div>
+                <div class="mb-3">
+                    <label for="passwordNew" class="form-label">Contraseña Nueva</label>
+                    <input type="password" name="passwordNew" class="form-control" placeholder="Introduzca su nueva contraseña" required>
+                </div>
+                <div class="d-grid gap-2 mb-3">
+                    <input type="submit" class="btn btn-primary" name="Modificar" value="Modificar">
+                </div>
+            </form>
         </div>
+    </div>
+
         <?php require_once('../utils/scripts.php'); ?>
     </body>
 </html>

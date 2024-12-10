@@ -34,16 +34,16 @@
     <div id="modelCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="/SVC/public/grenadier-1.jpg" class="d-block w-100 carousel-image" alt="Modelo 1">
+                <img src="/svc/public/grenadier-1.jpg" class="d-block w-100 carousel-image" alt="Modelo 1">
             </div>
             <div class="carousel-item">
-                <img src="/SVC/public/polestar2.webp" class="d-block w-100 carousel-image" alt="Modelo 2">
+                <img src="/svc/public/polestar2.webp" class="d-block w-100 carousel-image" alt="Modelo 2">
             </div>
             <div class="carousel-item">
-                <img src="/SVC/public/lux a-3.jpg" class="d-block w-100 carousel-image" alt="Modelo 3">
+                <img src="/svc/public/lux a-3.jpg" class="d-block w-100 carousel-image" alt="Modelo 3">
             </div>
             <div class="carousel-item">
-                <img src="/SVC/public/jaecoo3.png" class="d-block w-100 carousel-image" alt="Modelo 4">
+                <img src="/svc/public/jaecoo3.png" class="d-block w-100 carousel-image" alt="Modelo 4">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#modelCarousel" data-bs-slide="prev">
@@ -126,7 +126,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <video muted autoplay loop controls class="w-100 rounded shadow">
-                            <source src="/SVC/public/video.mp4" type="video/mp4">
+                            <source src="/svc/public/video.mp4" type="video/mp4">
                             Tu navegador no soporta la reproducción de este video.
                         </video>
                     </div>
@@ -142,19 +142,22 @@
     </main>
     <div id="formzone"></div>
     <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialogscrollable">
-            <div class="modal-content text-bg-dark">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="messageModalTitle"></h1>
-                    <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-white">...</div>
-                <div class="modal-footer">
-                    <button type="button" class="button red" data-bs-dismiss="modal">Cerrar</button>
-                </div>
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content custom-modal-content">
+            <div class="modal-header custom-modal-header">
+                <h1 class="modal-title fs-5" id="messageModalTitle">Título del Modal</h1>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body custom-modal-body">
+                Este es el cuerpo del modal, donde puedes colocar cualquier contenido que desees.
+            </div>
+            <div class="modal-footer custom-modal-footer">
+                <button type="button" class="button red" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
+</div>
+
 
     <?php require_once('./views/footer.php'); ?>
 

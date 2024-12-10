@@ -69,52 +69,52 @@ class SvcManagerView {
       `
                 <div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh; padding-top: 10px; padding-bottom: 10px;">
                   <div class="register-card p-5">
-                    <h2 class="text-center mb-4">
-                      <span class="text-red">R</span>EGISTRO <span class="text-red">D</span>E <span class="text-red">U</span>SUARIO
-                    </h2>
-                    <form name="fcreateclient" role="form" id="fcreateclient" novalidate enctype="multipart/form-data">
-                      <div class="mb-3">
-                        <label for="name" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="name" placeholder="Introduzca su nombre" required>
-                        <div class="invalid-feedback d-none">Debe introducir su nombre</div>
-                        <div class="valid-feedback">Correcto.</div>
-                      </div>
-                      <div class="mb-3">
-                        <label for="surname" class="form-label">Apellidos</label>
-                        <input type="text" class="form-control" id="surname" placeholder="Introduzca sus apellidos" required>
-                        <div class="invalid-feedback d-none">Debe introducir sus apellidos</div>
-                        <div class="valid-feedback">Correcto.</div>
-                      </div>
-                      <div class="mb-3">
-                        <label for="dob" class="form-label">Fecha de nacimiento</label>
-                        <input type="date" class="form-control" id="dob" required>
-                        <div class="invalid-feedback d-none">Debe introducir su fecha de nacimiento</div>
-                        <div class="valid-feedback">Correcto.</div>
-                      </div>
-                      <div class="mb-3">
-                        <label for="nationality" class="form-label">Nacionalidad</label>
-                        <input type="text" class="form-control" id="nationality" placeholder="Introduzca su nacionalidad" required>
-                        <div class="invalid-feedback d-none">Debe introducir su nacionalidad</div>
-                        <div class="valid-feedback">Correcto.</div>
-                      </div>
-                      <div class="mb-3">
-                        <label for="email" class="form-label">Correo Electrónico</label>
-                        <input type="email" class="form-control" id="email" placeholder="Introduzca su correo" required>
-                        <div class="invalid-feedback d-none">Debe introducir su correo</div>
-                        <div class="valid-feedback">Correcto.</div>
-                      </div>
-                      <div class="mb-3">
-                        <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="password" placeholder="Introduzca una contraseña" required>
-                        <div class="invalid-feedback d-none">Debe introducir una contraseña</div>
-                        <div class="valid-feedback">Correcto.</div>
-                      </div>
-                      <div class="d-grid gap-2 mb-3">
-                        <button type="submit" class="btn btn-primary">Registrarse</button>
-                      </div>
-                    </form>
+                      <h2 class="text-center mb-4">
+                          <span class="text-red">R</span>EGISTRO <span class="text-red">D</span>E <span class="text-red">U</span>SUARIO
+                      </h2>
+                      <form name="fcreateclient" role="form" id="fcreateclient" novalidate enctype="multipart/form-data">
+                          <div class="mb-3">
+                              <label for="name" class="form-label">Nombre</label>
+                              <input type="text" class="form-control" id="name" placeholder="Introduzca su nombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" required>
+                              <div class="invalid-feedback d-none">Debe introducir su nombre correctamente (solo letras y espacios).</div>
+                              <div class="valid-feedback">Correcto.</div>
+                          </div>
+                          <div class="mb-3">
+                              <label for="surname" class="form-label">Apellidos</label>
+                              <input type="text" class="form-control" id="surname" placeholder="Introduzca sus apellidos" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" required>
+                              <div class="invalid-feedback d-none">Debe introducir sus apellidos correctamente (solo letras y espacios).</div>
+                              <div class="valid-feedback">Correcto.</div>
+                          </div>
+                          <div class="mb-3">
+                              <label for="dob" class="form-label">Fecha de nacimiento</label>
+                              <input type="date" class="form-control" id="dob" required>
+                              <div class="invalid-feedback d-none">Debe introducir su fecha de nacimiento.</div>
+                              <div class="valid-feedback">Correcto.</div>
+                          </div>
+                          <div class="mb-3">
+                              <label for="nationality" class="form-label">Nacionalidad</label>
+                              <input type="text" class="form-control" id="nationality" placeholder="Introduzca su nacionalidad" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" required>
+                              <div class="invalid-feedback d-none">Debe introducir su nacionalidad correctamente (solo letras y espacios).</div>
+                              <div class="valid-feedback">Correcto.</div>
+                          </div>
+                          <div class="mb-3">
+                              <label for="email" class="form-label">Correo Electrónico</label>
+                              <input type="email" class="form-control" id="email" placeholder="Introduzca su correo" required>
+                              <div class="invalid-feedback d-none">Debe introducir un correo válido.</div>
+                              <div class="valid-feedback">Correcto.</div>
+                          </div>
+                          <div class="mb-3">
+                              <label for="password" class="form-label">Contraseña</label>
+                              <input type="password" class="form-control" id="password" placeholder="Introduzca una contraseña" pattern=".{6,}" required>
+                              <div class="invalid-feedback d-none">La contraseña debe tener al menos 6 caracteres.</div>
+                              <div class="valid-feedback">Correcto.</div>
+                          </div>
+                          <div class="d-grid gap-2 mb-3">
+                              <button type="submit" class="btn btn-primary">Registrarse</button>
+                          </div>
+                      </form>
                   </div>
-                </div>
+              </div>
             `
     );
 
@@ -136,6 +136,7 @@ class SvcManagerView {
     container.insertAdjacentHTML(
       "beforeend",
       `
+            <form name="fcreatebrand" role="form" id="fcreatebrand" novalidate enctype="multipart/form-data">
                 <div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh; padding-top: 10px; padding-bottom: 10px;">
                   <div class="register-card p-5">
                       <h2 class="text-center mb-4">
@@ -144,44 +145,44 @@ class SvcManagerView {
                       <form name="fcreatebrand" role="form" id="fcreatebrand" novalidate enctype="multipart/form-data">
                           <div class="mb-3">
                               <label for="brandName" class="form-label">Nombre de la Marca</label>
-                              <input type="text" class="form-control" id="brandName" placeholder="Introduzca el nombre de la marca" required>
-                              <div class="invalid-feedback d-none">Introduzca el nombre de la marca</div>
+                              <input type="text" class="form-control" id="brandName" placeholder="Introduzca el nombre de la marca" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" required>
+                              <div class="invalid-feedback d-none">Introduzca el nombre de la marca correctamente (solo letras y espacios).</div>
                               <div class="valid-feedback">Correcto.</div>
                           </div>
                           <div class="mb-3">
                               <label for="foundationDate" class="form-label">Fecha de Fundación</label>
-                              <input type="date" class="form-control" id="foundationDate">
-                              <div class="invalid-feedback d-none">Introduzca una fecha válida</div>
+                              <input type="date" class="form-control" id="foundationDate" required>
+                              <div class="invalid-feedback d-none">Introduzca una fecha válida.</div>
                               <div class="valid-feedback">Correcto.</div>
                           </div>
                           <div class="mb-3">
                               <label for="country" class="form-label">País de Origen</label>
-                              <input type="text" class="form-control" id="country" placeholder="Introduzca el país de origen" required>
-                              <div class="invalid-feedback d-none">Introduzca el pais de origen</div>
+                              <input type="text" class="form-control" id="country" placeholder="Introduzca el país de origen" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" required>
+                              <div class="invalid-feedback d-none">Introduzca el país de origen correctamente (solo letras y espacios).</div>
                               <div class="valid-feedback">Correcto.</div>
                           </div>
                           <div class="mb-3">
                               <label for="headquarters" class="form-label">Sede Principal</label>
-                              <input type="text" class="form-control" id="headquarters" placeholder="Introduzca la sede principal" required>
-                              <div class="invalid-feedback d-none">Introduzca la sede principal</div>
+                              <input type="text" class="form-control" id="headquarters" placeholder="Introduzca la sede principal" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" required>
+                              <div class="invalid-feedback d-none">Introduzca la sede principal correctamente (solo letras y espacios).</div>
                               <div class="valid-feedback">Correcto.</div>
                           </div>
                           <div class="mb-3">
                               <label for="email" class="form-label">Correo Electrónico de Contacto</label>
                               <input type="email" class="form-control" id="email" placeholder="Introduzca el correo de contacto" required>
-                              <div class="invalid-feedback d-none">Introduzca el correo de contacto</div>
+                              <div class="invalid-feedback d-none">Introduzca un correo válido.</div>
                               <div class="valid-feedback">Correcto.</div>
                           </div>
                           <div class="mb-3">
                               <label for="website" class="form-label">Sitio Web</label>
                               <input type="url" class="form-control" id="website" placeholder="Introduzca la URL del sitio web" required>
-                              <div class="invalid-feedback d-none">Introduzca la url de la marca</div>
+                              <div class="invalid-feedback d-none">Introduzca una URL válida.</div>
                               <div class="valid-feedback">Correcto.</div>
                           </div>
                           <div class="mb-3">
                               <label for="password" class="form-label">Contraseña</label>
-                              <input type="password" class="form-control" id="password" placeholder="Introduzca una contraseña" required>
-                              <div class="invalid-feedback d-none">Debe introducir una contraseña</div>
+                              <input type="password" class="form-control" id="password" placeholder="Introduzca una contraseña" pattern=".{6,}" required>
+                              <div class="invalid-feedback d-none">La contraseña debe tener al menos 6 caracteres.</div>
                               <div class="valid-feedback">Correcto.</div>
                           </div>
                           <div class="d-grid gap-2 mb-3">
@@ -190,7 +191,7 @@ class SvcManagerView {
                       </form>
                   </div>
               </div>
-
+            </form>
             `
     );
 
@@ -209,48 +210,50 @@ class SvcManagerView {
     // Definimos el div que contiene el mensaje de aviso de las cookies
     const toast = `
     <div class="fixed-top p-5 mt-5">
-      <div
-        id="cookies-message"
-        class="toast fade show bg-dark text-white  w-100 mw-100"
-        role="alert"
-        aria-live="assertive"
-        aria-atomic="true"
-      >
-      <div class="toast-header">
-        <h4 class="me-auto text-sm">Aviso de cookies</h4>
+  <div
+    id="cookies-message"
+    class="toast fade show bg-secondary text-light w-100 mw-100"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <div class="toast-header bg-dark text-white">
+      <h4 class="me-auto" style="font-family: 'secundaria', sans-serif;">Aviso de Cookies</h4>
+      <button
+        type="button"
+        class="btn-close btn-close-white"
+        data-bs-dismiss="toast"
+        aria-label="Cerrar"
+        id="btnDismissCookie"
+      ></button>
+    </div>
+    <div class="toast-body p-4 d-flex flex-column">
+      <p class="mb-3" style="font-family: 'secundaria', sans-serif;">
+        Usamos cookies para mejorar tu experiencia y análisis de navegación. Es necesario aceptarlas para disfrutar al máximo de nuestros servicios.
+      </p>
+      <div class="d-flex justify-content-end">
         <button
           type="button"
-          class="btn-close"
+          class="btn btn-outline-danger me-3 text-light"
+          id="btnDenyCookie"
           data-bs-dismiss="toast"
-          aria-label="Close"
-          id="btnDismissCookie"
-        ></button>
-      </div>
-      <div class="toast-body p-4 d-flex flex-column">
-        <p>
-          Aceptando las cookies, podemos mejorar su experiencia y realizar un análisis de navegación. 
-        </p>
-        <div class="ml-auto">
-          <button
-            type="button"
-            class="btn btn-danger  text-white mr-3"
-            id="btnDenyCookie"
-            data-bs-dismiss="toast"
-          >
-            Denegar
-          </button>
-          <button
-            type="button"
-            class="btn btn-success text-white"
-            id="btnAcceptCookie"
-            data-bs-dismiss="toast"
-          >
-            Aceptar
-          </button>
-        </div>
+          style="font-family: 'secundaria', sans-serif;"
+        >
+          Rechazar
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-success text-light"
+          id="btnAcceptCookie"
+          data-bs-dismiss="toast"
+          style="font-family: 'secundaria', sans-serif;"
+        >
+          Aceptar
+        </button>
       </div>
     </div>
   </div>
+</div>
   `;
 
     // Añadimos el div con el contenido a nuestra pagina
@@ -404,7 +407,7 @@ class SvcManagerView {
     if (done) {
       body.insertAdjacentHTML(
         "afterbegin",
-        `<div class="p-3">La marca ha sido creado de manera correcta.</div>`
+        `<div class="p-3">La marca ha sido creada de manera correcta.</div>`
       );
     } else {
       body.insertAdjacentHTML(

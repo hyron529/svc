@@ -77,7 +77,7 @@
       $appointment->__set("type", "Prueba");
 
       $daoAppointment->insert($appointment);
-      $daodetails->occuped($date['time']);
+      $daodetails->occuped($date['time'], $date['id']);
 
       echo $alert->successAlert("La cita para probar el vehiculo ha sido creada.");
     }

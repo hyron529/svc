@@ -672,7 +672,7 @@
 */
 
 .main-container .appointment-section {
-    background-image: url('/SVC/public/fondocitas.jpg');
+    background-image: url('/svc/public/fondocitas.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -945,6 +945,71 @@ summary{
 .section-text {
     font-size: 1rem;
     line-height: 1.6;
+}
+
+
+/*modal de registro*/
+.custom-modal-content {
+    background: linear-gradient(135deg, #1f2937, #3a3f47);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.custom-modal-header {
+    background: #111827;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+}
+
+.custom-modal-header h1 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #f8f9fa;
+}
+
+.btn-close-white {
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+}
+
+.btn-close-white:hover {
+    opacity: 1;
+}
+
+.custom-modal-body {
+    padding: 20px;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #e5e7eb;
+    background: rgba(31, 41, 55, 0.9);
+}
+
+.custom-modal-footer {
+    background: #111827;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 15px 20px;
+}
+
+.button.red {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+.button.red:hover {
+    background-color: #dc2626;
+    transform: scale(1.05);
 }
 
 

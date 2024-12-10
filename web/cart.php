@@ -107,25 +107,35 @@
             $carsId = explode(',', $_POST['Buy']) ?? null;
 
             foreach($carsId as $carInfo) {
-                list($id_car, $totalPrice) = explode(':', $carInfo);
+                list($id_car, $totalPrice, $quantity) = explode(':', $carInfo);
                 $car = $daoCar->getCar($id_car);
                 $brandEmail  = $car['emailBrand'];
                 $date = $daodetails->getdate($car['emailBrand']);
+                $canSendOrder = true;
 
-                $appointment = new Appointment();
-                $appointment->__set("title", "Compra de vehículo!");
-                $appointment->__set("description", "Información acerca de su vehiculo: " . $car['model_name'] . ". Precio total: " . $totalPrice);
-                $appointment->__set("date" , $date['time']);
-                $appointment->__set("idClient", $code);
-                $appointment->__set("emailBrand", $brandEmail);
-                $appointment->__set("type", "Compra");
-
-                $daoAppointment->insert($appointment);
-                $daodetails->occuped($date['time']);
+                if ($date != null) {
+                    $appointment = new Appointment();
+                    $appointment->__set("title", "Compra de vehículo!");
+                    $appointment->__set("description", "Información acerca de su vehiculo: " . $car['model_name'] . ". Precio total: " . $totalPrice);
+                    $appointment->__set("date" , $date['time']);
+                    $appointment->__set("idClient", $code);
+                    $appointment->__set("emailBrand", $brandEmail);
+                    $appointment->__set("type", "Compra");
+    
+                    $daoAppointment->insert($appointment);
+                    $daodetails->occuped($date['time'], $date['id']);
+                    $daoCar->deleteStock($quantity, $id_car);
+                } else {
+                    echo $alert->dangerAlert("No puede comprar un vehiculo ya que la marca no tiene huecos disponibles");
+                    $canSendOrder = false; 
+                    break; 
+                }
             }
 
-            $daoOrder->sendOrder($code);
-            echo $alert->successAlert("¡El pedido ha sido realizado de manera correcta! Puede consultar sus citas en el menú correspondiente.");
+            if($canSendOrder) {
+                $daoOrder->sendOrder($code);
+                echo $alert->successAlert("¡El pedido ha sido realizado de manera correcta! Puede consultar sus citas en el menú correspondiente.");
+            }
         }
 
         require_once('../views//header.php'); // Header de la pagina
@@ -168,7 +178,7 @@
                                 $orderTotalPrice[] = $totalPrice; // Servira para calcular el precio total del pedido
 
                                 // Recogemos el id coche y el precio total
-                                $carsid[] = $value->__get('id_car') . ':' . $totalPrice;
+                                $carsid[] = $value->__get('id_car') . ':' . $totalPrice . ':'. $value->__get('quantity');
 
                                 echo '<div class="col-md-4 mb-4 d-flex align-items-stretch">';
                                 echo '<div class="card shadow-sm border-0">';

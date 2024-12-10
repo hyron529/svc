@@ -128,5 +128,18 @@ class DaoCar extends DB
 
     $this->ConsultaSimple($consulta, $param);
   }
+
+
+
+  public function deleteStock ($quantity, $id) {
+    $consulta = "UPDATE car SET stock = stock - :quantity WHERE id=:id AND stock > 0;";
+
+    $param = array(
+      ":id" => $id,
+      ":quantity" => $quantity,
+    );
+
+    $this->ConsultaSimple($consulta, $param);
+  }
 }
 ?>
