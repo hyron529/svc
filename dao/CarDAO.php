@@ -15,7 +15,7 @@ class DaoCar extends DB
   }
 
   public function getCar($idCar) {
-    $consulta = "SELECT emailBrand , model_name, image, base_price FROM car WHERE id=:idcar";
+    $consulta = "SELECT emailBrand , model_name, image, base_price, stock FROM car WHERE id=:idcar";
    
     $param = array(
       ":idcar" => $idCar
@@ -129,10 +129,19 @@ class DaoCar extends DB
     $this->ConsultaSimple($consulta, $param);
   }
 
-
-
   public function deleteStock ($quantity, $id) {
     $consulta = "UPDATE car SET stock = stock - :quantity WHERE id=:id AND stock > 0;";
+
+    $param = array(
+      ":id" => $id,
+      ":quantity" => $quantity,
+    );
+
+    $this->ConsultaSimple($consulta, $param);
+  }
+
+  public function updateStock ($quantity, $id) {
+    $consulta = "UPDATE car SET stock=:quantity WHERE id=:id";
 
     $param = array(
       ":id" => $id,

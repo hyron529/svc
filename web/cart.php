@@ -113,7 +113,7 @@
                 $date = $daodetails->getdate($car['emailBrand']);
                 $canSendOrder = true;
 
-                if ($date != null) {
+                if ($date != null && (($car['stock'] - $quantity) >= 0)) {
                     $appointment = new Appointment();
                     $appointment->__set("title", "Compra de vehículo!");
                     $appointment->__set("description", "Información acerca de su vehiculo: " . $car['model_name'] . ". Precio total: " . $totalPrice);

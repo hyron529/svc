@@ -93,7 +93,16 @@
             echo $alert->successAlert("El coche ha sido eliminado correctamente.");
         }
 
-        if(isset($_POST['AddStock'])) {
+        if(isset($_POST['Modificar'])) {
+            $selectedCarId = $_POST['Modificar'];
+            $quantity = $_POST['Stock_' . $selectedCarId] ?? null;
+
+            if ($quantity != null) {
+                $daocar->updateStock($quantity, $selectedCarId);
+                echo $alert->successAlert("El stock del coche ha sido modificado a ". $quantity);
+            } else {
+                echo $alert->dangerAlert("Valor no válido.");
+            }
             
         }
 
@@ -234,8 +243,14 @@
                                             echo '</ul>';
                                         echo "</div>";
                     
-                                        echo "<button class='btn btn-danger mt-3' type='submit' name='Delete' value='".$value->__get('id')."'>Eliminar</button>";
-                                        echo "<button class='btn btn-primary mt-3 ms-3' type='submit' name='AddStock' value='".$value->__get('id')."'>Aumentar Stock (5)</button>";
+                                        echo "<button class='btn btn-danger' type='submit' name='Delete' value='".$value->__get('id')."'>Eliminar</button>";
+                                        echo "<button class='btn btn-secondary ms-3' type='submit' name='ModifyStock'>Modificar stock</button>";
+
+
+                                        if(isset($_POST['ModifyStock'])) {
+                                            echo "<input type='number' name='Stock_".$value->__get('id')."' class='form-control mt-3' placeholder='Número de stock'>";
+                                            echo "<button class='btn btn-primary mt-3' type='submit' name='Modificar' value='".$value->__get('id')."'>Modificar</button>";
+                                        }
                                     echo '</div>';
                                 echo '</div>';
                                 echo '</div>';       
@@ -246,7 +261,6 @@
                         }
                     ?>
                 </form>
-
             </div>
         </div>
         <?php 
