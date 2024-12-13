@@ -1,4 +1,6 @@
-<img src="https://svccars.site/svc/public/logo.png" alt="Logo de SVC" style="width:200px;" />
+<div style="text-align:center;">
+    <img src="https://svccars.site/svc/public/logo.png" alt="Logo de SVC" style="width:200px;" />
+</div>
 
 # Bienvenidos a SVC (Smart Value Cars)
 
