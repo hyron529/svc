@@ -1,4 +1,4 @@
-![Logo de SVC](https://svccars.site/svc/public/logo.png)
+![Logo de SVC](https://svccars.site/svc/public/logo.png){width="200"}
 
 # Bienvenidos a SVC (Smart Value Cars)
 
